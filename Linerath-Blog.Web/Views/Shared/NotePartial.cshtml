@@ -1,15 +1,9 @@
-﻿<div class="note">
-    @Html.ActionLink("Welcome", "", new { }, new { @class = "note-header" })
-    <div class="note-header-date">@DateTime.Now.ToShortDateString()</div>
-    <p>
-        To my in-development blog. I'm so excited about that idea.
-        <br />
-        Linerath. @DateTime.Now.Year
-        <br />
-        sample text 0
-        <br />
-        sample text 1
-    </p>
+﻿@model NoteSummaryViewModel
+
+<div class="note-summ">
+    @Html.ActionLink(Model.Title, "", new { }, new { @class = "note-summ-header" })
+    <div class="note-summ-header-date">@Model.CreationDate.ToLongDateString()</div>
+    <p>@Model.Body</p>
 </div>
 
 @*<div class="note">

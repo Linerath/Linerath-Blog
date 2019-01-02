@@ -13,7 +13,7 @@
         @Html.ActionLink("Linerath Blog", "Home", "Main", new { }, new { @class = "navbar-brand" })
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-                <a class="fa fa-vk nav-link" target="_blank" href="https://vk.com/Linerath"></a>
+                @*<a class="fa fa-vk nav-link" target="_blank" href="https://vk.com/Linerath"></a>*@
             </li>
             <li class="nav-item">
                 <span><a class="fa fa-github nav-link" target="_blank" href="https://github.com/Linerath"></a></span>
@@ -28,7 +28,7 @@
                 @Html.Action("MenuLeft", "Navigation")
             </div>
             <div class="col-md-8 p-0">
-                <div class="ml-1 mr-1 main-content">
+                <div class="ml-md-2 mr-md-2 main-content">
                     @RenderBody()
                 </div>
             </div>

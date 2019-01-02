@@ -13,8 +13,8 @@ namespace Linerath_Blog.Web.Controllers
         {
             List<MenuLeftViewModel> model = new List<MenuLeftViewModel>()
             {
-                new MenuLeftViewModel{ Name = "test0" },
-                new MenuLeftViewModel{ Name = "test1" },
+                new MenuLeftViewModel{ Name = "Life (0)" },
+                new MenuLeftViewModel{ Name = "Random thoughts (1)" },
             };
 
             return PartialView("MenuLeftPartial", model);
@@ -22,11 +22,7 @@ namespace Linerath_Blog.Web.Controllers
 
         public PartialViewResult MenuRight()
         {
-            List<MenuRightViewModel> model = new List<MenuRightViewModel>()
-            {
-                new MenuRightViewModel{ Name = "another test0" },
-                new MenuRightViewModel{ Name = "another test1" },
-            };
+            List<MenuRightViewModel> model = new List<MenuRightViewModel>();
 
             return PartialView("MenuRightPartial", model);
         }

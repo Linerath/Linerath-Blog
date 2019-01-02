@@ -1,7 +1,10 @@
-﻿
+﻿@model IEnumerable<NoteSummaryViewModel>
 
 @{
     ViewBag.Title = "Home";
 }
 
-@{ Html.RenderPartial("NotePartial"); }
+@foreach (var note in Model)
+{
+    { Html.RenderPartial("NotePartial", note); }
+}
