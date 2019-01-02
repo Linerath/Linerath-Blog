@@ -1,12 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
+using Linerath_Blog.DAL.Interfaces;
 using Linerath_Blog.Web.ViewModel;
 
 namespace Linerath_Blog.Web.Controllers
 {
     public class ArticlesController : Controller
     {
+        private readonly IUnitOfWork unitOfWork;
+
+        public ArticlesController(IUnitOfWork unitOfWork)
+        {
+            this.unitOfWork = unitOfWork;
+        }
+
         public ViewResult All()
         {
             List<ArticleSummaryViewModel> model = new List<ArticleSummaryViewModel>

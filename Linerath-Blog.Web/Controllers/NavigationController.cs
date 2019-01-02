@@ -1,14 +1,19 @@
-﻿using Linerath_Blog.Web.ViewModel;
-using System;
+﻿using Linerath_Blog.DAL.Interfaces;
+using Linerath_Blog.Web.ViewModel;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Linerath_Blog.Web.Controllers
 {
     public class NavigationController : Controller
     {
+        private readonly IUnitOfWork unitOfWork;
+
+        public NavigationController(IUnitOfWork unitOfWork)
+        {
+            this.unitOfWork = unitOfWork;
+        }
+
         public PartialViewResult MenuLeft()
         {
             List<MenuLeftViewModel> model = new List<MenuLeftViewModel>()
