@@ -1,0 +1,7 @@
+﻿@model ArticleSummaryViewModel
+
+<div class="article-summ">
+    @Html.ActionLink(Model.Title, null, new { }, new { @class = "article-summ-header" })
+    <div class="article-summ-header-date">@Model.CreationDate.ToLongDateString()</div>
+    <p>@Model.Body</p>
+</div>

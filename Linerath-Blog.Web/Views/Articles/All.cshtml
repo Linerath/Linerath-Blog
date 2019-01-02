@@ -1,0 +1,10 @@
+﻿@model IEnumerable<ArticleSummaryViewModel>
+
+@{
+    ViewBag.Title = "All";
+}
+
+@foreach (var article in Model)
+{
+    { Html.RenderPartial("ArticlePartial", article); }
+}
