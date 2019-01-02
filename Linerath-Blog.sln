@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28307.168
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Linerath-Blog.Web", "Linerath-Blog.Web\Linerath-Blog.Web.csproj", "{9E3762F9-2722-4421-A067-139234918D70}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Linerath-Blog.DAL", "Linerath-Blog.DAL\Linerath-Blog.DAL.csproj", "{CA7B1441-F6C1-479D-8851-A871A838DF4D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{9E3762F9-2722-4421-A067-139234918D70}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9E3762F9-2722-4421-A067-139234918D70}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9E3762F9-2722-4421-A067-139234918D70}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA7B1441-F6C1-479D-8851-A871A838DF4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA7B1441-F6C1-479D-8851-A871A838DF4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA7B1441-F6C1-479D-8851-A871A838DF4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA7B1441-F6C1-479D-8851-A871A838DF4D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
