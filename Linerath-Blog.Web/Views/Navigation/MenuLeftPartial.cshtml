@@ -1,0 +1,8 @@
+﻿@model IEnumerable<Linerath_Blog.Web.ViewModel.MenuLeftViewModel>
+
+<ul>
+    @foreach (var item in Model)
+    {
+        <li>@Html.ActionLink(item.Name, "Home", "Main")</li>
+    }
+</ul>

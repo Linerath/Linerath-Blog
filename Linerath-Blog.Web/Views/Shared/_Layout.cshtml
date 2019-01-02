@@ -9,29 +9,38 @@
     <link href="~/Content/font-awesome.min.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-    <header class="navbar navbar-dark">
+    <nav class="navbar navbar-expand">
         @Html.ActionLink("Linerath Blog", "Home", "Main", new { }, new { @class = "navbar-brand" })
-        @*<a class="fa fa-vk header-link" target="_blank" href="https://vk.com/Linerath"></a>*@
-        <a class="fa fa-github header-link" target="_blank" href="https://github.com/Linerath"></a>
-    </header>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="fa fa-vk nav-link" target="_blank" href="https://vk.com/Linerath"></a>
+            </li>
+            <li class="nav-item">
+                <span><a class="fa fa-github nav-link" target="_blank" href="https://github.com/Linerath"></a></span>
+            </li>
+
+        </ul>
+    </nav>
 
     <content class="container-fluid">
         <div class="row main-row">
-            <div class="col-2 p-0 menu menu-left">
-                @{ Html.RenderPartial("MenuLeftPartial"); }
+            <div class="col-md-2 p-0 menu menu-left">
+                @Html.Action("MenuLeft", "Navigation")
             </div>
-            <div class="col-8 p-0">
+            <div class="col-md-8 p-0">
                 <div class="ml-1 mr-1 main-content">
                     @RenderBody()
                 </div>
             </div>
-            <div class="col-2 p-0 menu menu-right">
-                @{ Html.RenderPartial("MenuRightPartial"); }
+            <div class="col-md-2 p-0 menu menu-right">
+                @Html.Action("MenuRight", "Navigation")
             </div>
         </div>
     </content>
     <hr />
-    <footer></footer>
+    <footer>
+        <div>Linerath, @DateTime.Now.Year</div>
+    </footer>
 
     <script src="~/Scripts/jquery-3.3.1.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
