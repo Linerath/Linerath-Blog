@@ -1,4 +1,5 @@
 ﻿using Linerath_Blog.Web.Infrastructure;
+using Linerath_Blog.Web.Infrastructure.Automapper;
 using Ninject;
 using Ninject.Modules;
 using Ninject.Web.Mvc;
@@ -18,6 +19,8 @@ namespace Linerath_Blog.Web
             NinjectModule ninjectModule = new NinjectDependencies();
             var kernel = new StandardKernel(ninjectModule);
             DependencyResolver.SetResolver(new NinjectDependencyResolver(kernel));
+
+            AutoMapperConfiguration.Configure();
         }
     }
 }

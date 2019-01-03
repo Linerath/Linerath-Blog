@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
+using AutoMapper;
+using Linerath_Blog.DAL.Entities;
 using Linerath_Blog.DAL.Interfaces;
-using Linerath_Blog.Web.ViewModel;
+using Linerath_Blog.Web.ViewModels;
 
 namespace Linerath_Blog.Web.Controllers
 {
@@ -17,7 +19,11 @@ namespace Linerath_Blog.Web.Controllers
 
         public ViewResult All()
         {
-            List<ArticleSummaryViewModel> model = new List<ArticleSummaryViewModel>
+            List<Article> articles = unitOfWork.ArticleRepository.GetAllArticles();
+
+            List<ArticleSummaryViewModel> model = Mapper.Map<List<Article>, List<ArticleSummaryViewModel>>(articles);
+
+            List<ArticleSummaryViewModel> list = new List<ArticleSummaryViewModel>
             {
                 new ArticleSummaryViewModel
                 {

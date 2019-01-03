@@ -1,5 +1,5 @@
 ﻿using Linerath_Blog.DAL.Interfaces;
-using Linerath_Blog.Web.ViewModel;
+using Linerath_Blog.Web.ViewModels;
 using System.Collections.Generic;
 using System.Web.Mvc;
 
