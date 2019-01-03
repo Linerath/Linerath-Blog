@@ -1,0 +1,8 @@
+﻿@model ArticleSummaryViewModel
+
+<div class="article-summ">
+    @Html.ActionLink(Model.Title, "Article", "Articles", new { id = Model.Id, returnUri = Request.Url.PathAndQuery }, new { @class = "article-summ-title" })
+    <div class="article-summ-date">@Model.CreationDate.ToLongDateString()</div>
+    <div class="article-summ-subjects">@String.Join(", ", Model.Subjects.Select(x => x.Name))</div>
+    <p class="article-summ-body">@Model.Body</p>
+</div>

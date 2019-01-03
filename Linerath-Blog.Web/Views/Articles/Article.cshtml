@@ -1,0 +1,16 @@
+﻿@model ArticleDetailsViewModel
+
+@{
+    ViewBag.Title = Model.Title;
+}
+
+<div class="container article">
+    <div class="article-header">
+        <a class="fa fa-angle-left pull-left mt-2" href="@Model.ReturnUri"></a>
+        @*<i class="fa fa-arrow-circle-left pull-left mt-2"></i>*@
+        <div class="article-title">@Model.Title</div>
+    </div>
+    <div class="article-date">@Model.CreationDate.ToLongDateString()</div>
+    <div class="article-subjects">@String.Join(", ", Model.Subjects.Select(x => x.Name))</div>
+    <p class="article-body">@Model.Body</p>
+</div>

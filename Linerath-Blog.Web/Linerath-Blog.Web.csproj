@@ -172,7 +172,7 @@
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Navigation\MenuLeftPartial.cshtml" />
     <Content Include="Views\Navigation\MenuRightPartial.cshtml" />
-    <Content Include="Views\Shared\ArticlePartial.cshtml" />
+    <Content Include="Views\Shared\ArticleSummaryPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -186,6 +186,7 @@
     <Compile Include="Infrastructure\Automapper\AutoMapperConfiguration.cs" />
     <Compile Include="Infrastructure\NinjectDependencies.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\ArticleDetailsViewModel.cs" />
     <Compile Include="ViewModels\MenuLeftViewModel.cs" />
     <Compile Include="ViewModels\MenuRightViewModel.cs" />
     <Compile Include="ViewModels\ArticleSummaryViewModel.cs" />
@@ -199,6 +200,7 @@
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
     <Content Include="Views\Articles\All.cshtml" />
+    <Content Include="Views\Articles\Article.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -208,6 +210,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Infrastructure\Extensions\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>

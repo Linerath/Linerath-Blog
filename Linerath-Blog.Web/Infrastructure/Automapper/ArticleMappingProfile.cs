@@ -8,9 +8,11 @@ namespace Linerath_Blog.Web.Infrastructure.Automapper
     {
         public ArticleMappingProfile()
         {
-            var map = CreateMap<Article, ArticleSummaryViewModel>()
+            CreateMap<Article, ArticleSummaryViewModel>()
                 //.ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
                 ;
+
+            CreateMap<Article, ArticleDetailsViewModel>();
         }
     }
 }
