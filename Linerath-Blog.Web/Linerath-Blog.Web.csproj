@@ -186,6 +186,7 @@
     <Compile Include="Infrastructure\Automapper\AutoMapperConfiguration.cs" />
     <Compile Include="Infrastructure\NinjectDependencies.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\PaginationService.cs" />
     <Compile Include="ViewModels\ArticleDetailsViewModel.cs" />
     <Compile Include="ViewModels\MenuLeftViewModel.cs" />
     <Compile Include="ViewModels\MenuRightViewModel.cs" />

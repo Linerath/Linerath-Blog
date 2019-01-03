@@ -1,7 +1,7 @@
 ﻿:root {
     --border: 1px solid rgba(0,0,0,.1);
     --border-radius: 6px;
-    --primary-font-color: #4800ff;
+    --primary-font-color: #ff2e2e /*#4800ff*/;
 }
 
 /* Mine */
@@ -9,6 +9,7 @@
     border: var(--border);
     border-radius: var(--border-radius);
     background-color: #fafafa;
+    max-height: 200px;
 }
 
 .menu-left {
@@ -18,7 +19,6 @@
 }
 
 .main-content {
-    background-color: #fafafa;
     height: 100%;
     min-height: 500px;
 }
@@ -34,9 +34,9 @@
     text-align: center;
 }
 
-.article-header i {
-    text-align: left;
-}
+    .article-header i {
+        text-align: left;
+    }
 
 .article-title {
 }
@@ -44,14 +44,14 @@
 .article-date,
 .article-subjects,
 .article-summ-date,
-.article-summ-subjects
-{
+.article-summ-subjects {
     font-size: 12px;
     opacity: 0.5;
 }
 
-.article-body {
-    margin-top: 10px;
+.article-body,
+.article-summ-body {
+    margin-top: 7px;
     white-space: pre-line;
 }
 
@@ -59,7 +59,7 @@
     border: var(--border);
     border-radius: var(--border-radius);
     background-color: #f5f5f5;
-    padding: 10px;
+    padding: 5px 15px 5px 15px;
     margin-bottom: 10px;
 }
 
@@ -68,11 +68,6 @@
 
     .article-summ:last-child {
         margin-bottom: 0px;
-    }
-
-    .article-summ-body {
-        padding-top: 7px;
-        white-space: pre-line;
     }
 
 .article-title,
