@@ -1,0 +1,27 @@
+﻿@using Linerath_Blog.Web.Services
+
+@helper Pagination(Linerath_Blog.Web.Models.PaginationModel pagination, Func<int, String> pageUri)
+{
+    int firstPage = PaginationService.GetPaginationFirstPage(pagination.Page, pagination.TotalPages, pagination.MaxVisiblePages);
+    int lastPage = PaginationService.GetPaginationLastPage(pagination.Page, pagination.TotalPages, pagination.MaxVisiblePages);
+
+    <div class="pagination-panel text-center">
+        @if (firstPage > 1)
+        {
+            <a class="btn btn-light pagination-last fa fa-angle-double-left" href="@pageUri(1)"></a>
+        }
+
+        @for (int i = firstPage; i <= lastPage; i++)
+        {
+            <a class="btn @(i == pagination.Page ? "btn-danger" : "btn-light") pagination-page"
+               @(i != pagination.Page ? ("href=" + pageUri(i)) : "")>
+                @i
+            </a>
+        }
+
+        @if (lastPage < pagination.TotalPages)
+        {
+            <a class="btn btn-light pagination-last fa fa-angle-double-right" href="@pageUri(pagination.TotalPages)"></a>
+        }
+    </div>
+}

@@ -147,6 +147,7 @@
     <Content Include="fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\fontawesome-webfont.ttf" />
     <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="App_Code\PaginationHelper.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -185,12 +186,13 @@
     <Compile Include="Infrastructure\Automapper\ArticleMappingProfile.cs" />
     <Compile Include="Infrastructure\Automapper\AutoMapperConfiguration.cs" />
     <Compile Include="Infrastructure\NinjectDependencies.cs" />
+    <Compile Include="Models\PaginationModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\PaginationService.cs" />
     <Compile Include="ViewModels\ArticleDetailsViewModel.cs" />
     <Compile Include="ViewModels\MenuLeftViewModel.cs" />
     <Compile Include="ViewModels\MenuRightViewModel.cs" />
-    <Compile Include="ViewModels\ArticleSummaryViewModel.cs" />
+    <Compile Include="ViewModels\ArticlesSummariesViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -212,7 +214,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Infrastructure\Extensions\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />

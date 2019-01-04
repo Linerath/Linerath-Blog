@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using AutoMapper;
 using Linerath_Blog.DAL.Entities;
 using Linerath_Blog.DAL.Interfaces;
 using Linerath_Blog.Web.Services;
@@ -21,12 +20,14 @@ namespace Linerath_Blog.Web.Controllers
 
         public ViewResult All(int page = 1)
         {
+            ArticlesSummariesViewModel model = new ArticlesSummariesViewModel();
+
             List<Article> articles = unitOfWork.ArticleRepository.GetAllArticles();
+
+            model.PaginationModel = PaginationService.GetDefaultPaginationModel(articles, page);
             articles = PaginationService.Paginate(articles, page).ToList();
 
-            List<ArticleSummaryViewModel> model = new List<ArticleSummaryViewModel>();
-            foreach (var item in articles)
-                model.Add(new ArticleSummaryViewModel { Article = item });
+            articles.ForEach(x => model.Articles.Add(x));
 
             return View(model);
         }

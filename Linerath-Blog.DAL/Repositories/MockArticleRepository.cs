@@ -70,6 +70,14 @@ namespace Linerath_Blog.DAL.Repositories
                 CreationDate = DateTime.Now,
                 Subjects = subjects,
             });
+            articles.Add(new Article
+            {
+                Id = 4,
+                Title = "Не люблю людей, которые спокойно меняют свое мнение на противоположное.",
+                Body = "Да. От таких людей можно ожидать чего угодно. Сегодня они говорят тебе, чтобы ненавидят, например, ходить по клубам, а завтра уже ставят перед фактом, что им захотелось его посетить и они не видят ничего плохого в этом.",
+                CreationDate = DateTime.Now,
+                Subjects = subjects,
+            });
         }
 
         public List<Article> GetAllArticles()

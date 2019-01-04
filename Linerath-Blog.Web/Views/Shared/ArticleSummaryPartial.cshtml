@@ -1,8 +1,8 @@
-﻿@model ArticleSummaryViewModel
+﻿@model Article
 
 <div class="article-summ">
-    @Html.ActionLink(Model.Article.Title, "Article", "Articles", new { id = Model.Article.Id, returnUri = Request.Url.PathAndQuery }, new { @class = "article-summ-title" })
-    <div class="article-summ-date">@Model.Article.CreationDate.ToLongDateString()</div>
-    <div class="article-summ-subjects">Категории: @String.Join(", ", Model.Article.Subjects.Select(x => x.Name))</div>
-    <p class="article-summ-body">@Model.Article.Body</p>
+    @Html.ActionLink(Model.Title, "Article", "Articles", new { id = Model.Id, returnUri = Request.Url.PathAndQuery }, new { @class = "article-summ-title" })
+    <div class="article-summ-date">@Model.CreationDate.ToLongDateString()</div>
+    <div class="article-summ-subjects">Категории: @String.Join(", ", Model.Subjects.Select(x => x.Name))</div>
+    <p class="article-summ-body">@Model.Body</p>
 </div>

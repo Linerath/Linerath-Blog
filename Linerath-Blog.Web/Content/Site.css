@@ -122,6 +122,21 @@ nav a.nav-link {
     color: #fff;
 }
 
+.pagination-panel .pagination-page {
+    width: 32px;
+    height: 32px;
+    font-size: 14px;
+    font-weight: 500;
+    text-align: center;
+    margin-left: -2px;
+    margin-right: -2px;
+}
+
+.pagination-first,
+.pagination-last {
+    width: 32px;
+}
+
 .fa.fa-angle-left {
     font-size: 26px;
     color: inherit;
