@@ -1,5 +1,6 @@
 ﻿using Linerath_Blog.DAL.Entities;
 using Linerath_Blog.Web.Models;
+using System;
 using System.Collections.Generic;
 
 namespace Linerath_Blog.Web.ViewModels
@@ -8,6 +9,7 @@ namespace Linerath_Blog.Web.ViewModels
     {
         public List<Article> Articles { get; set; }
         public PaginationModel PaginationModel { get; set; }
+        public String Category { get; set; }
 
         public ArticlesSummariesViewModel()
         {

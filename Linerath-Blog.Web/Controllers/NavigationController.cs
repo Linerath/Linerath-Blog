@@ -1,4 +1,6 @@
-﻿using Linerath_Blog.DAL.Interfaces;
+﻿using AutoMapper;
+using Linerath_Blog.DAL.Entities;
+using Linerath_Blog.DAL.Interfaces;
 using Linerath_Blog.Web.ViewModels;
 using System.Collections.Generic;
 using System.Web.Mvc;
@@ -16,11 +18,9 @@ namespace Linerath_Blog.Web.Controllers
 
         public PartialViewResult MenuLeft()
         {
-            List<MenuLeftViewModel> model = new List<MenuLeftViewModel>()
-            {
-                new MenuLeftViewModel{ Name = "Life (0)" },
-                new MenuLeftViewModel{ Name = "Random thoughts (1)" },
-            };
+            List<Category> categories = unitOfWork.ArticleRepository.GetAllCategories();
+
+            List<CategoryViewModel> model = Mapper.Map<List<Category>, List<CategoryViewModel>>(categories);
 
             return PartialView("MenuLeftPartial", model);
         }

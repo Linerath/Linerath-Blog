@@ -8,14 +8,19 @@ namespace Linerath_Blog.DAL.Repositories
 {
     public class MockArticleRepository : IArticleRepository
     {
-        private List<Subject> subjects = new List<Subject>();
+        private List<Category> categories = new List<Category>();
         private List<Article> articles = new List<Article>();
 
         public MockArticleRepository()
         {
-            // subjects.
-            subjects.Add(new Subject { Id = 0, Name = "Жизнь" });
-            subjects.Add(new Subject { Id = 1, Name = "За Нерзула" });
+            // categories.
+            Category category0 = new Category { Id = 0, Name = "Жизнь" };
+            Category category1 = new Category { Id = 0, Name = "За Нерзула" };
+            Category category2 = new Category { Id = 0, Name = "Slipknot" };
+
+            categories.Add(category0);
+            categories.Add(category1);
+            categories.Add(category2);
 
             // articles.
             articles.Add(new Article
@@ -24,7 +29,7 @@ namespace Linerath_Blog.DAL.Repositories
                 Title = "Welcome",
                 Body = "To my in-development blog. I'm so excited about that idea.\n\nlox",
                 CreationDate = DateTime.Now,
-                Subjects = subjects,
+                Categories = new List<Category> { category0 },
             });
             articles.Add(new Article
             {
@@ -38,7 +43,7 @@ namespace Linerath_Blog.DAL.Repositories
                        + "Can't see California without Marlon Brando's eyes\n"
                        + "You can't see California without Marlon Brando's eyes\n",
                 CreationDate = DateTime.Now,
-                Subjects = subjects,
+                Categories = new List<Category> { category2 },
             });
             articles.Add(new Article
             {
@@ -46,7 +51,7 @@ namespace Linerath_Blog.DAL.Repositories
                 Title = "Кликбейтный заголовок!",
                 Body = "Заголовок кликбейтный, а содержания нет. Фить Ха!.",
                 CreationDate = DateTime.Now,
-                Subjects = subjects,
+                Categories = new List<Category> { category0 },
             });
             articles.Add(new Article
             {
@@ -68,20 +73,24 @@ namespace Linerath_Blog.DAL.Repositories
                         + "Malesuada pellentesque elit eget gravida cum sociis natoque penatibus. Vel pharetra vel turpis nunc eget lorem dolor. Morbi tristique senectus et netus et malesuada fames ac. Amet purus gravida quis blandit turpis cursus in hac habitasse. Nam at lectus urna duis convallis convallis tellus id. Vulputate odio ut enim blandit volutpat maecenas. Eget dolor morbi non arcu risus quis. Venenatis tellus in metus vulputate eu scelerisque. Nisl rhoncus mattis rhoncus urna neque viverra justo. Sagittis id consectetur purus ut faucibus pulvinar elementum integer enim. Nisl rhoncus mattis rhoncus urna neque viverra justo. Justo donec enim diam vulputate ut. Nisi lacus sed viverra tellus in hac habitasse platea. Interdum varius sit amet mattis vulputate enim nulla. Massa enim nec dui nunc mattis enim ut. Et netus et malesuada fames ac turpis. Morbi tempus iaculis urna id volutpat lacus laoreet. Donec adipiscing tristique risus nec feugiat in fermentum posuere urna. Iaculis at erat pellentesque adipiscing commodo elit at imperdiet dui. Eget egestas purus viverra accumsan in nisl nisi scelerisque eu.\n\n"
                         + "Aliquet bibendum enim facilisis gravida. Mauris ultrices eros in cursus turpis. Accumsan sit amet nulla facilisi morbi tempus. Quam pellentesque nec nam aliquam sem et tortor. Amet facilisis magna etiam tempor orci eu lobortis elementum nibh. Lectus proin nibh nisl condimentum id venenatis a condimentum vitae. Mi sit amet mauris commodo quis imperdiet. Elit ut aliquam purus sit amet. Congue mauris rhoncus aenean vel. Scelerisque in dictum non consectetur. Morbi tincidunt augue interdum velit euismod in pellentesque massa. Sem viverra aliquet eget sit. Quis hendrerit dolor magna eget. Senectus et netus et malesuada fames. Vel quam elementum pulvinar etiam non quam lacus suspendisse. Sed elementum tempus egestas sed sed risus pretium. Luctus accumsan tortor posuere ac. Aenean sed adipiscing diam donec adipiscing tristique risus nec feugiat. Tellus elementum sagittis vitae et.",
                 CreationDate = DateTime.Now,
-                Subjects = subjects,
+                Categories = new List<Category> { category0, category1 },
             });
             for (int i = 0; i < 100; ++i)
                 articles.Add(articles[3]);
         }
 
-        public List<Article> GetAllArticles()
+        public List<Article> GetAllArticles(String category)
         {
-            return articles;
+            return articles
+                .Where(x => category == null || x.Categories.Any(y => y.Name == category))
+                .OrderBy(x => x.CreationDate)
+                .ToList();
         }
 
-        //public List<Article> GetArticlesBySubject(Subject subject)
-        //{
-        //}
+        public List<Category> GetAllCategories()
+        {
+            return categories;
+        }
 
         public Article GetArticleById(int id)
         {

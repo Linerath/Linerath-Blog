@@ -8,8 +8,14 @@
     <div class="article-header">
         <a class="fa fa-angle-left pull-left mt-2" href="@Model.ReturnUri"></a>
         <div class="article-title">@Model.Article.Title</div>
+        <div class="article-date">@Model.Article.CreationDate.ToLongDateString()</div>
+        <div class="article-categories">
+            <span>Категории:</span>
+            @foreach (var category in Model.Article.Categories)
+            {
+                @Html.ActionLink(category.Name + " ", "All", "Articles", new { page = 1, category = category.Name }, new { })
+            }
+        </div>
     </div>
-    <div class="article-date">@Model.Article.CreationDate.ToLongDateString()</div>
-    <div class="article-subjects">Категории: @String.Join(", ", Model.Article.Subjects.Select(x => x.Name))</div>
     <p class="article-body">@Model.Article.Body</p>
 </div>

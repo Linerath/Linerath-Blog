@@ -2,7 +2,7 @@
 
 namespace Linerath_Blog.Web.ViewModels
 {
-    public class MenuLeftViewModel
+    public class CategoryViewModel
     {
         public String Name { get; set; }
     }

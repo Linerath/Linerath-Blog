@@ -62,9 +62,8 @@ namespace Linerath_Blog.Web.Services
             int maxVisiblePages = MAX_VISIBLE_PAGES
             )
         {
-            if (page <= 0) throw new ArgumentException("page must be more than 0");
-            if (totalPages <= 0) throw new ArgumentException("totalPages must be more than 0");
-            if (maxVisiblePages <= 0) throw new ArgumentException("maxVisiblePages must be more than 0");
+            if (page <= 0 || totalPages <= 0 || maxVisiblePages <= 0)
+                return (-1, -1);
 
             int firstPage = -1, lastPage = -1;
 
@@ -73,7 +72,7 @@ namespace Linerath_Blog.Web.Services
                 firstPage = 1;
                 lastPage = totalPages;
             }
-            if (page == 1)
+            else if (page == 1)
             {
                 firstPage = 1;
                 lastPage = maxVisiblePages;
@@ -90,7 +89,7 @@ namespace Linerath_Blog.Web.Services
                 if (maxVisiblePages % 2 == 0)
                     firstPage = page - (int)Math.Floor((decimal)(maxVisiblePages - 1) / 2);
                 else
-                    firstPage = page - (int)Math.Floor((decimal)maxVisiblePages  / 2);
+                    firstPage = page - (int)Math.Floor((decimal)maxVisiblePages / 2);
 
                 if (firstPage < 1)
                 {

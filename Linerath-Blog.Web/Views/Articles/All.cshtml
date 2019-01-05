@@ -9,4 +9,4 @@
     { Html.RenderPartial("ArticleSummaryPartial", article); }
 }
 
-@PaginationHelper.Pagination(Model.PaginationModel, x => Url.Action("All", "Articles", new { page = x }))
+@PaginationHelper.Pagination(Model.PaginationModel, x => Url.Action("All", "Articles", new { page = x, category = Model.Category }))

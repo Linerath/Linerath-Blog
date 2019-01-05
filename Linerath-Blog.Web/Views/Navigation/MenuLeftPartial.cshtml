@@ -1,8 +1,9 @@
-﻿@model IEnumerable<MenuLeftViewModel>
+﻿@model IEnumerable<CategoryViewModel>
 
-<ul>
+<div class="categories-header">Категории</div>
+<ul class="categories p-2">
     @foreach (var item in Model)
     {
-        <li>@Html.ActionLink(item.Name, "Home", "Main")</li>
+        <li>@Html.ActionLink(item.Name, "All", "Articles", new { page = 1, category = item.Name  }, new { })</li>
     }
 </ul>

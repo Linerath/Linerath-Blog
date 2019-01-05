@@ -15,7 +15,7 @@
         @for (int i = firstPage; i <= lastPage; i++)
         {
             <a class="btn @(i == pagination.Page ? "btn-danger" : "btn-light") pagination-page"
-               @(i != pagination.Page ? ("href=" + pageUri(i)) : "")>
+               @(i != pagination.Page ? ("href=" + pageUri(i)) : "")    >
                 @i
             </a>
         }

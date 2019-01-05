@@ -18,11 +18,12 @@ namespace Linerath_Blog.Web.Controllers
             this.unitOfWork = unitOfWork;
         }
 
-        public ViewResult All(int page = 1)
+        public ViewResult All(int page = 1, String category = null)
         {
             ArticlesSummariesViewModel model = new ArticlesSummariesViewModel();
+            model.Category = category;
 
-            List<Article> articles = unitOfWork.ArticleRepository.GetAllArticles();
+            List<Article> articles = unitOfWork.ArticleRepository.GetAllArticles(category);
 
             model.PaginationModel = PaginationService.GetDefaultPaginationModel(articles, page);
             articles = PaginationService.Paginate(articles, page).ToList();
