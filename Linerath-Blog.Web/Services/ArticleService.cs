@@ -1,0 +1,50 @@
+﻿using Linerath_Blog.DAL.Entities;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Web;
+
+namespace Linerath_Blog.Web.Services
+{
+    public static class ArticleService
+    {
+        public const int MAX_LINES_COUNT = 5;
+        public const int MAX_ARTICLE_LENGHT = 675;
+
+        public static void TrucateArticles(List<Article> source, int maxLinesCount = MAX_LINES_COUNT, int maxArticleLength = MAX_ARTICLE_LENGHT)
+        {
+            for (int i = 0; i < source.Count(); ++i)
+                source[i].Body = ArticleService.GetTruncatedString(source[i].Body, maxLinesCount);
+        }
+
+        public static String GetTruncatedString(String source, int maxLinesCount = MAX_LINES_COUNT, int maxArticleLength = MAX_ARTICLE_LENGHT)
+        {
+
+            if (source.Length > maxArticleLength)
+            {
+                String truncated = source.Remove(maxArticleLength);
+                truncated = truncated.Remove(truncated.LastIndexOf(' '));
+                truncated += "...";
+
+                return truncated;
+            }
+            else
+            {
+                String[] lines = source.Split('\n');
+
+                if (lines.Count() > maxLinesCount)
+                {
+                    lines = lines.Take(maxLinesCount).ToArray();
+                    String truncated = String.Join("\n", lines);
+
+                    return truncated;
+                }
+                else
+                    return source;
+            }
+
+
+        }
+    }
+}

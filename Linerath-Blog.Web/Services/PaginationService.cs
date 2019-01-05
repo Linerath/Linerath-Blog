@@ -7,8 +7,8 @@ namespace Linerath_Blog.Web.Services
 {
     public static class PaginationService
     {
-        public const int PAGE_SIZE = 1;
-        public const int MAX_VISIBLE_PAGES = 3;
+        public const int PAGE_SIZE = 5;
+        public const int MAX_VISIBLE_PAGES = 10;
 
         public static IEnumerable<T> Paginate<T>(IEnumerable<T> data, int page, int pageSize = PAGE_SIZE)
         {
@@ -51,12 +51,12 @@ namespace Linerath_Blog.Web.Services
         }
 
         /// <summary>
-        /// Getting first visible page on pagination panel.
+        /// Getting first and last visible pages on pagination panel.
         /// </summary>
         /// <param name="page">Current page.</param>
         /// <param name="totalPages">Total pages.</param>
-        /// <returns>First visible page.</returns>
-        public static int GetPaginationFirstPage(
+        /// <returns>First and last visible pages.</returns>
+        public static (int, int) GetBorderPages(
             int page,
             int totalPages,
             int maxVisiblePages = MAX_VISIBLE_PAGES
@@ -66,45 +66,50 @@ namespace Linerath_Blog.Web.Services
             if (totalPages <= 0) throw new ArgumentException("totalPages must be more than 0");
             if (maxVisiblePages <= 0) throw new ArgumentException("maxVisiblePages must be more than 0");
 
-            if (totalPages <= maxVisiblePages || page == 1)
-                return 1;
+            int firstPage = -1, lastPage = -1;
 
-            if (page == totalPages)
-                return page - maxVisiblePages + 1;
-
-            if (maxVisiblePages % 2 == 0)
-                --maxVisiblePages;
-
-            int firstPage = page - (int)Math.Floor((decimal)maxVisiblePages / 2);
-
-            return firstPage;
-        }
-        /// <summary>
-        /// Getting last visible page on pagination panel.
-        /// </summary>
-        /// <param name="page">Current page.</param>
-        /// <param name="totalPages">Total pages.</param>
-        /// <returns>Last visible page.</returns>
-        public static int GetPaginationLastPage(
-            int page,
-            int totalPages,
-            int maxVisiblePages = MAX_VISIBLE_PAGES
-            )
-        {
-            if (page <= 0) throw new ArgumentException("page must be more than 0");
-            if (totalPages <= 0) throw new ArgumentException("totalPages must be more than 0");
-            if (maxVisiblePages <= 0) throw new ArgumentException("maxVisiblePages must be more than 0");
-
-            if (totalPages <= maxVisiblePages || page == totalPages)
-                return totalPages;
-
+            if (totalPages <= maxVisiblePages)
+            {
+                firstPage = 1;
+                lastPage = totalPages;
+            }
             if (page == 1)
-                return maxVisiblePages;
+            {
+                firstPage = 1;
+                lastPage = maxVisiblePages;
+            }
+            else if (page == totalPages)
+            {
+                firstPage = totalPages - maxVisiblePages + 1;
+                lastPage = totalPages;
+            }
 
-            int lastPage = page + (int)Math.Floor((decimal)maxVisiblePages / 2);
 
-            return lastPage;
+            if (firstPage == -1)
+            {
+                if (maxVisiblePages % 2 == 0)
+                    firstPage = page - (int)Math.Floor((decimal)(maxVisiblePages - 1) / 2);
+                else
+                    firstPage = page - (int)Math.Floor((decimal)maxVisiblePages  / 2);
+
+                if (firstPage < 1)
+                {
+                    firstPage = 1;
+                    lastPage = maxVisiblePages;
+                }
+
+                if (lastPage == -1)
+                {
+                    lastPage = page + (int)Math.Floor((decimal)maxVisiblePages / 2);
+                    if (lastPage > totalPages)
+                    {
+                        firstPage = totalPages - maxVisiblePages + 1;
+                        lastPage = totalPages;
+                    }
+                }
+            }
+
+            return (firstPage, lastPage);
         }
-
     }
 }

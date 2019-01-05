@@ -26,6 +26,7 @@ namespace Linerath_Blog.Web.Controllers
 
             model.PaginationModel = PaginationService.GetDefaultPaginationModel(articles, page);
             articles = PaginationService.Paginate(articles, page).ToList();
+            ArticleService.TrucateArticles(articles);
 
             articles.ForEach(x => model.Articles.Add(x));
 
@@ -40,8 +41,6 @@ namespace Linerath_Blog.Web.Controllers
                 Article = article,
                 ReturnUri = returnUri,
             };
-
-            var lines = model.Article.Body.Split('\r', '\n');
 
             return View(model);
         }

@@ -2,8 +2,9 @@
 
 @helper Pagination(Linerath_Blog.Web.Models.PaginationModel pagination, Func<int, String> pageUri)
 {
-    int firstPage = PaginationService.GetPaginationFirstPage(pagination.Page, pagination.TotalPages, pagination.MaxVisiblePages);
-    int lastPage = PaginationService.GetPaginationLastPage(pagination.Page, pagination.TotalPages, pagination.MaxVisiblePages);
+    (int, int) pages = PaginationService.GetBorderPages(pagination.Page, pagination.TotalPages, pagination.MaxVisiblePages);
+    int firstPage = pages.Item1;
+    int lastPage = pages.Item2;
 
     <div class="pagination-panel text-center">
         @if (firstPage > 1)

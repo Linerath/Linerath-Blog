@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Web.Mvc;
 using Linerath_Blog.DAL.Entities;
@@ -52,7 +53,7 @@ namespace Linerath_Blog.Tests
                 new Article { Id = 4, Title = "T4" },
             };
             int pageSize = 2;
-            
+
             int totalPages = PaginationService.GetTotalPages(data, pageSize);
 
             Assert.IsTrue(totalPages == 3);
@@ -69,27 +70,32 @@ namespace Linerath_Blog.Tests
                 new Article { Id = 3, Title = "T3" },
                 new Article { Id = 4, Title = "T4" },
             };
+            int maxVisiblePages = 3;
+            int totalPages = data.Count();
 
-            int firstPage0 = PaginationService.GetPaginationFirstPage(3, data.Count());
-            int lastPage0 = PaginationService.GetPaginationLastPage(3, data.Count());
+            int firstPage0 = PaginationService.GetBorderPages(3, totalPages, maxVisiblePages).Item1;
+            int lastPage0 = PaginationService.GetBorderPages(3, totalPages, maxVisiblePages).Item2;
             //
-            int firstPage1 = PaginationService.GetPaginationFirstPage(3, data.Count(), 2);
-            int lastPage1 = PaginationService.GetPaginationLastPage(3, data.Count(), 2);
+            int firstPage1 = PaginationService.GetBorderPages(3, totalPages, 2).Item1;
+            int lastPage1 = PaginationService.GetBorderPages(3, totalPages, 2).Item2;
             //
-            int firstPage2 = PaginationService.GetPaginationFirstPage(3, data.Count(), 4);
-            int lastPage2 = PaginationService.GetPaginationLastPage(3, data.Count(), 4);
+            int firstPage2 = PaginationService.GetBorderPages(3, totalPages, 4).Item1;
+            int lastPage2 = PaginationService.GetBorderPages(3, totalPages, 4).Item2;
             //
-            int firstPage3 = PaginationService.GetPaginationFirstPage(1, data.Count(), 5);
-            int lastPage3 = PaginationService.GetPaginationLastPage(1, data.Count(), 5);
+            int firstPage3 = PaginationService.GetBorderPages(1, totalPages, 5).Item1;
+            int lastPage3 = PaginationService.GetBorderPages(1, totalPages, 5).Item2;
             //
-            int firstPage4 = PaginationService.GetPaginationFirstPage(3, data.Count(), 1);
-            int lastPage4 = PaginationService.GetPaginationLastPage(3, data.Count(), 1);
+            int firstPage4 = PaginationService.GetBorderPages(3, totalPages, 1).Item1;
+            int lastPage4 = PaginationService.GetBorderPages(3, totalPages, 1).Item2;
             //
-            int firstPage5 = PaginationService.GetPaginationFirstPage(1, data.Count());
-            int lastPage5 = PaginationService.GetPaginationLastPage(1, data.Count());
+            int firstPage5 = PaginationService.GetBorderPages(1, totalPages, maxVisiblePages).Item1;
+            int lastPage5 = PaginationService.GetBorderPages(1, totalPages, maxVisiblePages).Item2;
             //
-            int firstPage6 = PaginationService.GetPaginationFirstPage(5, data.Count());
-            int lastPage6 = PaginationService.GetPaginationLastPage(5, data.Count());
+            int firstPage6 = PaginationService.GetBorderPages(5, totalPages, maxVisiblePages).Item1;
+            int lastPage6 = PaginationService.GetBorderPages(5, totalPages, maxVisiblePages).Item2;
+            //
+            int firstPage7 = PaginationService.GetBorderPages(4, totalPages, maxVisiblePages).Item1;
+            int lastPage7 = PaginationService.GetBorderPages(4, totalPages, maxVisiblePages).Item2;
 
 
             Assert.IsTrue(firstPage0 == 2, $"{nameof(firstPage0)} {firstPage0.ToString()}");
@@ -112,7 +118,38 @@ namespace Linerath_Blog.Tests
             //
             Assert.IsTrue(firstPage6 == 3, $"{nameof(firstPage6)} {firstPage6.ToString()}");
             Assert.IsTrue(lastPage6 == 5, $"{nameof(lastPage6)} {lastPage6.ToString()}");
+            //
+            Assert.IsTrue(firstPage7 == 3, $"{nameof(firstPage7)} {firstPage7.ToString()}");
+            Assert.IsTrue(lastPage7 == 5, $"{nameof(lastPage7)} {lastPage7.ToString()}");
+
         }
 
+
+        [TestMethod]
+        public void ArticleTruncatingWorks()
+        {
+            String text0 = "Insane - Am I the only motherfucker with a brain?\n"
+                          + "I'm hearing voices but all they do is complain\n"
+                          + "How many times have you wanted to kill\n"
+                          + "Everything and everyone - Say you'll do it but never will\n"
+                          + "You can't see California without Marlon Brando's eyes\n\n"
+                          + "Can't see California without Marlon Brando's eyes\n"
+                          + "You can't see California without Marlon Brando's eyes\n";
+            String expected0 = "Insane - Am I the only motherfucker with a brain?\n"
+                              + "I'm hearing voices but all they do is complain";
+            String expected1 = "Insane - Am I the only motherfucker with a brain?\n"
+                               + "I'm hearing voices but all they do is complain\n"
+                               + "How many times have you wanted to kill\n"
+                               + "Everything and everyone - Say you'll do it but never will\n"
+                               + "You can't see California without Marlon Brando's eyes";
+
+
+            String result0 = ArticleService.GetTruncatedString(text0, 2);
+            String result1 = ArticleService.GetTruncatedString(text0, 5);
+            
+
+            Assert.IsTrue(result0 == expected0);
+            Assert.IsTrue(result1 == expected1);
+        }
     }
 }
