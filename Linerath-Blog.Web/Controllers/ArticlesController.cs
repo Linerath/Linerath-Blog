@@ -20,8 +20,10 @@ namespace Linerath_Blog.Web.Controllers
 
         public ViewResult All(int page = 1, String category = null)
         {
-            ArticlesSummariesViewModel model = new ArticlesSummariesViewModel();
-            model.Category = category;
+            ArticlesSummariesViewModel model = new ArticlesSummariesViewModel
+            {
+                Category = category,
+            };
 
             List<Article> articles = unitOfWork.ArticleRepository.GetAllArticles(category);
 

@@ -17,9 +17,6 @@
                     @Html.ActionLink(Model.Categories[i].Name, "All", "Articles", new { page = 1, category = Model.Categories[i].Name }, new { })
                 }
             }
-            @foreach (var category in Model.Categories)
-            {
-            }
         </div>
     </div>
     <p class="article-summ-body">@Model.Body</p>

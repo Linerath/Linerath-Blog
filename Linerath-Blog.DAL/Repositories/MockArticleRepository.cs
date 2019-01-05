@@ -79,7 +79,7 @@ namespace Linerath_Blog.DAL.Repositories
                 articles.Add(articles[3]);
         }
 
-        public List<Article> GetAllArticles(String category)
+        public List<Article> GetAllArticles(String category = null)
         {
             return articles
                 .Where(x => category == null || x.Categories.Any(y => y.Name == category))
@@ -89,7 +89,9 @@ namespace Linerath_Blog.DAL.Repositories
 
         public List<Category> GetAllCategories()
         {
-            return categories;
+            return categories
+                .OrderBy(x => x.Name)
+                .ToList();
         }
 
         public Article GetArticleById(int id)

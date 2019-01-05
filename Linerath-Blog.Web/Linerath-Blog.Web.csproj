@@ -187,6 +187,7 @@
     </Compile>
     <Compile Include="Infrastructure\Automapper\ArticleMappingProfile.cs" />
     <Compile Include="Infrastructure\Automapper\AutoMapperConfiguration.cs" />
+    <Compile Include="Infrastructure\Automapper\CategoryMappingProfile.cs" />
     <Compile Include="Infrastructure\NinjectDependencies.cs" />
     <Compile Include="Models\PaginationModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

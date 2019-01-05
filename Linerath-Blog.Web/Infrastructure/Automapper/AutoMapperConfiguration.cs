@@ -9,6 +9,7 @@ namespace Linerath_Blog.Web.Infrastructure.Automapper
             Mapper.Initialize(cfg =>
             {
                 cfg.AddProfile(new ArticleMappingProfile());
+                cfg.AddProfile(new CategoryMappingProfile());
             });
         }
     }
