@@ -41,7 +41,25 @@
             color: var(--secondary-font-color-hover);
         }
 
+.search-panel {
+    text-align: center;
+    margin: 10px 0px 10px 0px;
+    padding: 0px 3px 0px 3px;
+}
 
+.search-panel a {
+    width: 30px;
+    padding: 5px 0px 0px 0px;
+}
+
+input.search {
+    height: 30px;
+    font-size: 13px;
+}
+
+input.search:hover {
+    outline: none;
+}
 
 .main-content {
     height: 100%;
@@ -64,22 +82,22 @@
     font-size: 12px;
 }
 
-    .article-date,
-    .article-categories span,
-    .article-summ-date,
-    .article-summ-categories span {
-        opacity: 0.5;
-    }
+.article-date,
+.article-categories span,
+.article-summ-date,
+.article-summ-categories span {
+    opacity: 0.5;
+}
 
-    .article-categories a,
-    .article-summ-categories a {
-        color: var(--secondary-font-color);
-    }
+.article-categories a,
+.article-summ-categories a {
+    color: var(--secondary-font-color);
+}
 
-        .article-categories a:hover,
-        .article-summ-categories a:hover {
-            color: var(--secondary-font-color-hover);
-        }
+    .article-categories a:hover,
+    .article-summ-categories a:hover {
+        color: var(--secondary-font-color-hover);
+    }
 
 .article-body,
 .article-summ-body {
@@ -171,6 +189,7 @@ nav a.nav-link {
     text-align: center;
     margin-left: -2px;
     margin-right: -2px;
+    padding: 5px;
 }
 
 .pagination-first,
@@ -203,6 +222,6 @@ footer {
 }
 /********************/
 
-input, select, textarea {
+select, textarea {
     max-width: 280px;
 }

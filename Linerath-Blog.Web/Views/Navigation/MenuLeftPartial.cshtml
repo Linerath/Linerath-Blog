@@ -7,3 +7,8 @@
         <li>@Html.ActionLink(item.Name + " (" + item.Count + ")", "All", "Articles", new { page = 1, category = item.Name  }, new { })</li>
     }
 </ul>
+<hr />
+<div class="search-panel input-group">
+    <input type="search" class="search form-control" />
+    <a class="fa fa-search input-group-append input-group-text" href="/Articles/All"></a>
+</div>
