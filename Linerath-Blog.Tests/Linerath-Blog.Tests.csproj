@@ -95,7 +95,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Linerath-Blog.DAL\Linerath-Blog.DAL.csproj">
-      <Project>{ca7b1441-f6c1-479d-8851-a871a838df4d}</Project>
+      <Project>{978960db-38c2-4444-be93-fa63e3fc4d54}</Project>
       <Name>Linerath-Blog.DAL</Name>
     </ProjectReference>
     <ProjectReference Include="..\Linerath-Blog.Web\Linerath-Blog.Web.csproj">
