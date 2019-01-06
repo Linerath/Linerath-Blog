@@ -1,5 +1,5 @@
 ﻿using Linerath_Blog.DAL.Entities;
-using Linerath_Blog.Web.ViewModels;
+using Linerath_Blog.Web.Models;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -48,7 +48,7 @@ namespace Linerath_Blog.Web.Services
 
         }
 
-        public static void CalculateCategoriesCount(List<CategoryViewModel> categories, List<Article> allArticles)
+        public static void CalculateCategoriesCount(List<CategoryModel> categories, List<Article> allArticles)
         {
             foreach (var category in categories)
             {

@@ -6,7 +6,7 @@ namespace Linerath_Blog.DAL.Interfaces
 {
     public interface IArticleRepository
     {
-        List<Article> GetAllArticles(String category = null);
+        List<Article> GetAllArticles(String category = null, String searchText = null, bool caseSensetive = false);
         List<Category> GetAllCategories();
         Article GetArticleById(int id);
     }

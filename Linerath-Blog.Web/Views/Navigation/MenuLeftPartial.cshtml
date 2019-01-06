@@ -1,14 +1,23 @@
-﻿@model IEnumerable<CategoryViewModel>
+﻿@model CategoriesListViewModel
 
 <div class="categories-header">Категории</div>
 <ul class="categories p-2">
-    @foreach (var item in Model)
+    @foreach (var item in Model.Categories)
     {
-        <li>@Html.ActionLink(item.Name + " (" + item.Count + ")", "All", "Articles", new { page = 1, category = item.Name  }, new { })</li>
+        <li>@Html.ActionLink(item.Name + " (" + item.Count + ")", "All", "Articles", new { page = 1, category = item.Name }, new { })</li>
     }
 </ul>
 <hr />
-<div class="search-panel input-group">
-    <input type="search" class="search form-control" />
-    <a class="fa fa-search input-group-append input-group-text" href="/Articles/All"></a>
-</div>
+@using (Html.BeginForm("All", "Articles", FormMethod.Post, new { @class = "search-panel" }))
+{
+    <div class="input-group">
+        @Html.TextBox("SearchText", Model.SearchText, new { type = "search", @class = "search form-control", placeholder = "Поиск по записям..." })
+        <button type="submit" class="fa fa-search input-group-append input-group-text"></button>
+    </div>
+    <div class="form-check mt-2 ml-2">
+        <label class="form-check-label" for="CaseSensetive">
+            @Html.CheckBox("CaseSensetive", Model.CaseSensetive, new { @class = "form-check-input" })
+            Учитывать регистр
+        </label>
+    </div>
+}

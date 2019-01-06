@@ -16,6 +16,9 @@ namespace Linerath_Blog.Web.Services
             if (page < 0) throw new ArgumentException("page < 0");
             if (pageSize <= 0) throw new ArgumentException("pageSize must be more than 0");
 
+            if (data.Count() == 0)
+                return data;
+
             return data.Skip((page - 1) * pageSize).Take(pageSize);
         }
 
@@ -63,7 +66,7 @@ namespace Linerath_Blog.Web.Services
             )
         {
             if (page <= 0 || totalPages <= 0 || maxVisiblePages <= 0)
-                return (-1, -1);
+                return (0, 0);
 
             int firstPage = -1, lastPage = -1;
 
@@ -82,7 +85,6 @@ namespace Linerath_Blog.Web.Services
                 firstPage = totalPages - maxVisiblePages + 1;
                 lastPage = totalPages;
             }
-
 
             if (firstPage == -1)
             {

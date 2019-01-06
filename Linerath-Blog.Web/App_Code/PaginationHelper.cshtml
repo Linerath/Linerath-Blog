@@ -7,22 +7,23 @@
     int lastPage = pages.Item2;
 
     <div class="pagination-panel text-center">
-        @if (firstPage > 1)
+        @if (firstPage > 0 && lastPage > 0)
         {
-            <a class="btn btn-light pagination-last fa fa-angle-double-left" href="@pageUri(1)"></a>
-        }
-
-        @for (int i = firstPage; i <= lastPage; i++)
-        {
-            <a class="btn @(i == pagination.Page ? "btn-danger" : "btn-light") pagination-page"
-               @(i != pagination.Page ? ("href=" + pageUri(i)) : "")    >
-                @i
-            </a>
-        }
-
-        @if (lastPage < pagination.TotalPages)
-        {
-            <a class="btn btn-light pagination-last fa fa-angle-double-right" href="@pageUri(pagination.TotalPages)"></a>
+            if (firstPage > 1)
+            {
+                <a class="btn btn-light pagination-last fa fa-angle-double-left" href="@pageUri(1)"></a>
+            }
+            for (int i = firstPage; i <= lastPage; i++)
+            {
+                <a class="btn @(i == pagination.Page ? "btn-danger" : "btn-light") pagination-page"
+                   @(i != pagination.Page ? ("href=" + pageUri(i)) : "")>
+                    @i
+                </a>
+            }
+            if (lastPage < pagination.TotalPages)
+            {
+                <a class="btn btn-light pagination-last fa fa-angle-double-right" href="@pageUri(pagination.TotalPages)"></a>
+            }
         }
     </div>
 }

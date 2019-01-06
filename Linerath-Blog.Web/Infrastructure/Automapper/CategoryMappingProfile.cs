@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Linerath_Blog.DAL.Entities;
+using Linerath_Blog.Web.Models;
 using Linerath_Blog.Web.ViewModels;
 
 namespace Linerath_Blog.Web.Infrastructure.Automapper
@@ -8,7 +9,7 @@ namespace Linerath_Blog.Web.Infrastructure.Automapper
     {
         public CategoryMappingProfile()
         {
-            CreateMap<Category, CategoryViewModel>()
+            CreateMap<Category, CategoryModel>()
             //.ForMember(dest => dest.Count, opt => opt.Ignore())
                 ;
         }

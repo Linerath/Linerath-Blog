@@ -1,12 +1,27 @@
 ﻿@model ArticlesSummariesViewModel
 
 @{
-    ViewBag.Title = "All";
+    ViewBag.Title = "All articles";
 }
 
-@foreach (var article in Model.Articles)
+@if (!Model.Articles.Any() && ViewBag.SearchText != null)
 {
-    { Html.RenderPartial("ArticleSummaryPartial", article); }
+    <div class="container">
+        <div class="text-center mt-3">
+            <div>@Html.ActionLink("Все записи", "All", "Articles", new { }, new { @class = "btn btn-primary" })</div>
+            <h1>Ничего не найдено.</h1>
+            <div>Попробуйте изменить запрос.</div>
+            <img src="https://media1.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif" height="300" class="mt-4" />
+        </div>
+    </div>
+}
+else
+{
+    foreach (var article in Model.Articles)
+    {
+        { Html.RenderPartial("ArticleSummaryPartial", article); }
+    }
+
+    @PaginationHelper.Pagination(Model.PaginationModel, x => Url.Action("All", "Articles", new { page = x, category = Model.Category, searchText = ViewBag.SearchText }))
 }
 
-@PaginationHelper.Pagination(Model.PaginationModel, x => Url.Action("All", "Articles", new { page = x, category = Model.Category }))

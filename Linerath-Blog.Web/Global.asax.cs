@@ -18,6 +18,7 @@ namespace Linerath_Blog.Web
 
             NinjectModule ninjectModule = new NinjectDependencies();
             var kernel = new StandardKernel(ninjectModule);
+            kernel.Unbind<ModelValidatorProvider>();
             DependencyResolver.SetResolver(new NinjectDependencyResolver(kernel));
 
             AutoMapperConfiguration.Configure();

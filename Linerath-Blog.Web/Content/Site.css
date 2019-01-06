@@ -12,13 +12,14 @@
     border: var(--border);
     border-radius: var(--border-radius);
     background-color: #fafafa;
-    max-height: 200px;
 }
 
 .menu-left {
+    max-height: max-content;
 }
 
 .menu-right {
+    max-height: 300px;
 }
 
 .categories-header {
@@ -47,19 +48,23 @@
     padding: 0px 3px 0px 3px;
 }
 
-.search-panel a {
-    width: 30px;
-    padding: 5px 0px 0px 0px;
-}
+    .search-panel button {
+        width: 30px;
+        padding: 0px;
+    }
+
+    .search-panel .form-check-label {
+        font-size: 13px;
+    }
 
 input.search {
     height: 30px;
     font-size: 13px;
 }
 
-input.search:hover {
-    outline: none;
-}
+    input.search:focus {
+        box-shadow: none;
+    }
 
 .main-content {
     height: 100%;

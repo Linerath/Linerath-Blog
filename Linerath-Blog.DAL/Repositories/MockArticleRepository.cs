@@ -57,7 +57,7 @@ namespace Linerath_Blog.DAL.Repositories
             {
                 Id = 3,
                 Title = "Lorem ipsum",
-                Body =  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nisi est sit amet facilisis magna. Consectetur lorem donec massa sapien faucibus et. Egestas purus viverra accumsan in nisl nisi scelerisque eu ultrices. Duis at tellus at urna condimentum mattis pellentesque. Tellus molestie nunc non blandit massa enim nec dui nunc. In vitae turpis massa sed. Mus mauris vitae ultricies leo integer malesuada nunc vel risus. Egestas quis ipsum suspendisse ultrices gravida dictum. Est ullamcorper eget nulla facilisi etiam. Vel eros donec ac odio tempor orci dapibus. Nec tincidunt praesent semper feugiat nibh sed. Amet consectetur adipiscing elit pellentesque habitant morbi. Malesuada fames ac turpis egestas. Volutpat est velit egestas dui id. Pulvinar elementum integer enim neque volutpat. Fames ac turpis egestas maecenas pharetra convallis.\n\n"
+                Body = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nisi est sit amet facilisis magna. Consectetur lorem donec massa sapien faucibus et. Egestas purus viverra accumsan in nisl nisi scelerisque eu ultrices. Duis at tellus at urna condimentum mattis pellentesque. Tellus molestie nunc non blandit massa enim nec dui nunc. In vitae turpis massa sed. Mus mauris vitae ultricies leo integer malesuada nunc vel risus. Egestas quis ipsum suspendisse ultrices gravida dictum. Est ullamcorper eget nulla facilisi etiam. Vel eros donec ac odio tempor orci dapibus. Nec tincidunt praesent semper feugiat nibh sed. Amet consectetur adipiscing elit pellentesque habitant morbi. Malesuada fames ac turpis egestas. Volutpat est velit egestas dui id. Pulvinar elementum integer enim neque volutpat. Fames ac turpis egestas maecenas pharetra convallis.\n\n"
                         + "Enim nulla aliquet porttitor lacus luctus accumsan tortor. Lectus nulla at volutpat diam. Convallis aenean et tortor at risus. Sit amet dictum sit amet justo donec enim diam vulputate. Dignissim cras tincidunt lobortis feugiat vivamus at augue. Scelerisque varius morbi enim nunc faucibus a pellentesque. Massa vitae tortor condimentum lacinia quis vel eros. Elementum nisi quis eleifend quam adipiscing vitae proin. Netus et malesuada fames ac turpis egestas sed tempus. Gravida cum sociis natoque penatibus. Quis ipsum suspendisse ultrices gravida dictum fusce ut placerat orci. Risus at ultrices mi tempus imperdiet nulla. Et molestie ac feugiat sed lectus vestibulum mattis ullamcorper. Augue eget arcu dictum varius duis at consectetur lorem. Ipsum suspendisse ultrices gravida dictum fusce ut placerat.\n\n"
                         + "Proin nibh nisl condimentum id venenatis. Tellus pellentesque eu tincidunt tortor aliquam nulla facilisi cras fermentum. Mattis molestie a iaculis at. Convallis convallis tellus id interdum velit laoreet id donec ultrices. In vitae turpis massa sed elementum. Sagittis orci a scelerisque purus semper eget. Egestas dui id ornare arcu odio. Aliquam eleifend mi in nulla posuere sollicitudin aliquam. Dictum varius duis at consectetur lorem donec. Faucibus purus in massa tempor. Morbi tristique senectus et netus et malesuada fames ac turpis. Sed vulputate odio ut enim blandit. Rutrum quisque non tellus orci ac.\n\n"
                         + "Tellus pellentesque eu tincidunt tortor. Placerat duis ultricies lacus sed turpis. Arcu ac tortor dignissim convallis aenean et tortor. Lectus quam id leo in vitae turpis massa sed elementum. Ultrices vitae auctor eu augue ut lectus arcu bibendum at. Maecenas volutpat blandit aliquam etiam erat velit scelerisque in dictum. Id velit ut tortor pretium. Arcu bibendum at varius vel pharetra. Ullamcorper velit sed ullamcorper morbi. Porttitor rhoncus dolor purus non. Porta non pulvinar neque laoreet suspendisse interdum consectetur libero. Proin sagittis nisl rhoncus mattis rhoncus urna neque. Consequat interdum varius sit amet mattis vulputate enim nulla. Arcu risus quis varius quam quisque id. Molestie at elementum eu facilisis sed odio morbi quis. Donec ultrices tincidunt arcu non. Dui ut ornare lectus sit amet est placerat in. Blandit cursus risus at ultrices mi tempus. Gravida in fermentum et sollicitudin ac orci phasellus egestas. Montes nascetur ridiculus mus mauris vitae ultricies.\n\n"
@@ -79,10 +79,36 @@ namespace Linerath_Blog.DAL.Repositories
                 articles.Add(articles[3]);
         }
 
-        public List<Article> GetAllArticles(String category = null)
+        public List<Article> GetAllArticles(String category = null, String searchText = null, bool caseSensetive = false)
         {
+            searchText = searchText?.Trim();
+            if (!caseSensetive)
+                searchText = searchText?.ToLower();
+
             return articles
-                .Where(x => category == null || x.Categories.Any(y => y.Name == category))
+                .Where(x =>
+                    {
+                        bool categoryCondition = category == null || x.Categories.Any(y => y.Name == category);
+
+                        if (searchText != null)
+                        {
+                            bool searchCondition;
+
+                            if (caseSensetive)
+                                searchCondition = (x.Title != null && x.Title.Contains(searchText))
+                                                  || (x.Body != null && x.Body.Contains(searchText))
+                                                  || (x.Categories != null && x.Categories.Any(y => y.Name.Contains(searchText)));
+                            else
+                                searchCondition = (x.Title != null && x.Title.ToLower().Contains(searchText))
+                                                  || (x.Body != null && x.Body.ToLower().Contains(searchText))
+                                                  || (x.Body != null && x.Categories.Any(y => y.Name != null && y.Name.ToLower().Contains(searchText)));
+
+                            return categoryCondition && searchCondition;
+                        }
+                        else
+                            return categoryCondition;
+                    }
+                )
                 .OrderBy(x => x.CreationDate)
                 .ToList();
         }
