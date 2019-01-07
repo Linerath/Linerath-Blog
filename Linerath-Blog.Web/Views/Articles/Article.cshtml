@@ -11,9 +11,16 @@
         <div class="article-date">@Model.Article.CreationDate.ToLongDateString()</div>
         <div class="article-categories">
             <span>Категории:</span>
-            @foreach (var category in Model.Article.Categories)
+            @for (int i = 0; i < Model.Article.Categories.Count(); i++)
             {
-                @Html.ActionLink(category.Name + " ", "All", "Articles", new { page = 1, category = category.Name }, new { })
+                if (i != Model.Article.Categories.Count() - 1)
+                {
+                    @Html.ActionLink(Model.Article.Categories[i].Name + ", ", "All", "Articles", new { category = Model.Article.Categories[i].Name }, new { })
+                }
+                else
+                {
+                    @Html.ActionLink(Model.Article.Categories[i].Name, "All", "Articles", new { category = Model.Article.Categories[i].Name }, new { })
+                }
             }
         </div>
     </div>

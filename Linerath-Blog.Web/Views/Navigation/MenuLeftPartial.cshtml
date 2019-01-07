@@ -4,7 +4,7 @@
 <ul class="categories p-2">
     @foreach (var item in Model.Categories)
     {
-        <li>@Html.ActionLink(item.Name + " (" + item.Count + ")", "All", "Articles", new { page = 1, category = item.Name }, new { })</li>
+        <li>@Html.ActionLink(item.Name + " (" + item.Count + ")", "All", "Articles", new { category = item.Name }, new { })</li>
     }
 </ul>
 <hr />

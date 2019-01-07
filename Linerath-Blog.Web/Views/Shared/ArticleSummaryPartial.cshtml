@@ -10,11 +10,11 @@
             {
                 if (i != Model.Categories.Count() - 1)
                 {
-                    @Html.ActionLink(Model.Categories[i].Name + ", ", "All", "Articles", new { page = 1, category = Model.Categories[i].Name }, new { })
+                    @Html.ActionLink(Model.Categories[i].Name + ", ", "All", "Articles", new { category = Model.Categories[i].Name }, new { })
                 }
                 else
                 {
-                    @Html.ActionLink(Model.Categories[i].Name, "All", "Articles", new { page = 1, category = Model.Categories[i].Name }, new { })
+                    @Html.ActionLink(Model.Categories[i].Name, "All", "Articles", new { category = Model.Categories[i].Name }, new { })
                 }
             }
         </div>

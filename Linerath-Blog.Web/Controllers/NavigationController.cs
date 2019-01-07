@@ -12,17 +12,17 @@ namespace Linerath_Blog.Web.Controllers
 {
     public class NavigationController : Controller
     {
-        private readonly IUnitOfWork unitOfWork;
+        private IArticlesRepository articleRepository;
 
-        public NavigationController(IUnitOfWork unitOfWork)
+        public NavigationController(IArticlesRepository articleRepository)
         {
-            this.unitOfWork = unitOfWork;
+            this.articleRepository = articleRepository;
         }
 
         public PartialViewResult MenuLeft(String searchText = null, bool caseSensetive = false)
         {
-            List<Category> categories = unitOfWork.ArticleRepository.GetAllCategories();
-            List<Article> articles = unitOfWork.ArticleRepository.GetAllArticles();
+            List<Category> categories = articleRepository.GetAllCategories();
+            List<Article> articles = articleRepository.GetAllArticles();
 
             CategoriesListViewModel model = new CategoriesListViewModel
             {

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Linerath_Blog.DAL.Interfaces
 {
-    public interface IArticleRepository
+    public interface IArticlesRepository
     {
         List<Article> GetAllArticles(String category = null, String searchText = null, bool caseSensetive = false);
         List<Category> GetAllCategories();

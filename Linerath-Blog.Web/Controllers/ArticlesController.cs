@@ -11,11 +11,11 @@ namespace Linerath_Blog.Web.Controllers
 {
     public class ArticlesController : Controller
     {
-        private readonly IUnitOfWork unitOfWork;
+        private IArticlesRepository articleRepository;
 
-        public ArticlesController(IUnitOfWork unitOfWork)
+        public ArticlesController(IArticlesRepository articleRepository)
         {
-            this.unitOfWork = unitOfWork;
+            this.articleRepository = articleRepository;
         }
 
         public ViewResult All(int page = 1, String category = null, String searchText = null, bool caseSensetive = false)
@@ -28,8 +28,8 @@ namespace Linerath_Blog.Web.Controllers
                 Category = category,
             };
 
-            List<Article> articles = unitOfWork.ArticleRepository.GetAllArticles(category, searchText, caseSensetive);
-
+            List<Article> articles = articleRepository.GetAllArticles(category, searchText, caseSensetive);
+            
             model.PaginationModel = PaginationService.GetDefaultPaginationModel(articles, page);
             articles = PaginationService.Paginate(articles, page).ToList();
             ArticleService.TrucateArticles(articles);
@@ -41,7 +41,7 @@ namespace Linerath_Blog.Web.Controllers
 
         public ViewResult Article(int id, String returnUri, String searchText = null)
         {
-            Article article = unitOfWork.ArticleRepository.GetArticleById(id);
+            Article article = articleRepository.GetArticleById(id);
             ArticleDetailsViewModel model = new ArticleDetailsViewModel
             {
                 Article = article,

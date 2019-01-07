@@ -3,10 +3,12 @@ using System.Linq;
 using System.Collections.Generic;
 using Linerath_Blog.DAL.Entities;
 using Linerath_Blog.DAL.Interfaces;
+using System.Data.SqlClient;
+using Dapper;
 
 namespace Linerath_Blog.DAL.Repositories
 {
-    public class MockArticleRepository : IArticleRepository
+    public class MockArticleRepository : IArticlesRepository
     {
         private List<Category> categories = new List<Category>();
         private List<Article> articles = new List<Article>();
@@ -22,7 +24,6 @@ namespace Linerath_Blog.DAL.Repositories
             categories.Add(category1);
             categories.Add(category2);
 
-            // articles.
             articles.Add(new Article
             {
                 Id = 0,
@@ -34,7 +35,7 @@ namespace Linerath_Blog.DAL.Repositories
             articles.Add(new Article
             {
                 Id = 1,
-                Title = "Eyeless",
+                Title = "",
                 Body = "Insane - Am I the only motherfucker with a brain?\n"
                        + "I'm hearing voices but all they do is complain\n"
                        + "How many times have you wanted to kill\n"
@@ -123,6 +124,35 @@ namespace Linerath_Blog.DAL.Repositories
         public Article GetArticleById(int id)
         {
             return articles.FirstOrDefault(x => x.Id == id);
+        }
+
+        public List<Category> DbTest(String connectionString)
+        {
+            string sql = "INSERT INTO Categories (Name, Article_Id) Values (@Name, @Article_Id);";
+
+            using (var connection = new SqlConnection(connectionString))
+            {
+                var records = new[]
+                {
+                    new { Name = "Жизнь", Article_Id = (int?)null },
+                    new { Name = "Программирование", Article_Id = (int?)null },
+                };
+
+                var affectedRows = connection.Execute(sql, records);
+
+                var customer = connection.Query<Category>("Select * FROM Categories").ToList();
+
+                return customer;
+            }
+            //string sql = "SELECT TOP 10 * FROM Categories";
+
+            //using (var connection = new SqlConnection(connectionString))
+            //{
+            //    List<Category> result = connection.Query<Category>(sql).ToList();
+
+            //    return result;
+            //    //FiddleHelper.WriteTable(orderDetails);
+            //}
         }
     }
 }
