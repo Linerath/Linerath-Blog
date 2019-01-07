@@ -15,17 +15,30 @@ namespace Linerath_Blog.Web.Services
 
         public static void TrucateArticles(List<Article> source, int maxLinesCount = MAX_LINES_COUNT, int maxArticleLength = MAX_ARTICLE_LENGHT)
         {
+            if (source == null)
+                throw new ArgumentNullException("source");
+
             for (int i = 0; i < source.Count(); ++i)
                 source[i].Body = ArticleService.GetTruncatedString(source[i].Body, maxLinesCount);
         }
 
         public static String GetTruncatedString(String source, int maxLinesCount = MAX_LINES_COUNT, int maxArticleLength = MAX_ARTICLE_LENGHT)
         {
+            if (source == null)
+                throw new ArgumentNullException("source");
+            if (maxLinesCount < 0)
+                throw new ArgumentException("maxLinesCount must be more or equal to 0");
+            if (maxArticleLength < 0)
+                throw new ArgumentException("maxArticleLength must be more or equal to 0");
+
+            if (maxLinesCount == 0 || maxArticleLength == 0)
+                return "...";
 
             if (source.Length > maxArticleLength)
             {
                 String truncated = source.Remove(maxArticleLength);
-                truncated = truncated.Remove(truncated.LastIndexOf(' '));
+                if (truncated.LastIndexOf(' ') >= 0)
+                    truncated = truncated.Remove(truncated.LastIndexOf(' '));
                 truncated += "...";
 
                 return truncated;

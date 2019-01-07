@@ -14,7 +14,7 @@
         @Html.TextBox("SearchText", Model.SearchText, new { type = "search", @class = "search form-control", placeholder = "Поиск по записям..." })
         <button type="submit" class="fa fa-search input-group-append input-group-text"></button>
     </div>
-    <div class="form-check mt-2 ml-2">
+    <div class="form-check mt-2 ml-2 disabled">
         <label class="form-check-label" for="CaseSensetive">
             @Html.CheckBox("CaseSensetive", Model.CaseSensetive, new { @class = "form-check-input" })
             Учитывать регистр

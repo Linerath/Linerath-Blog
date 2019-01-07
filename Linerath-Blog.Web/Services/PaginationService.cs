@@ -39,6 +39,7 @@ namespace Linerath_Blog.Web.Services
             int maxVisiblePages = MAX_VISIBLE_PAGES
             )
         {
+            if (data == null) throw new ArgumentNullException("data");
             if (pageSize <= 0) throw new ArgumentException("pageSize must be more than 0");
             if (maxVisiblePages <= 0) throw new ArgumentException("maxVisiblePages must be more than 0");
 

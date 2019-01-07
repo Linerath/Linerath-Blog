@@ -135,21 +135,34 @@ namespace Linerath_Blog.Tests
                           + "You can't see California without Marlon Brando's eyes\n\n"
                           + "Can't see California without Marlon Brando's eyes\n"
                           + "You can't see California without Marlon Brando's eyes\n";
-            String expected0 = "Insane - Am I the only motherfucker with a brain?\n"
+            String expected00 = "Insane - Am I the only motherfucker with a brain?\n"
                               + "I'm hearing voices but all they do is complain";
-            String expected1 = "Insane - Am I the only motherfucker with a brain?\n"
+            String expected01 = "Insane - Am I the only motherfucker with a brain?\n"
                                + "I'm hearing voices but all they do is complain\n"
                                + "How many times have you wanted to kill\n"
                                + "Everything and everyone - Say you'll do it but never will\n"
                                + "You can't see California without Marlon Brando's eyes";
+            //
+            String text1 = "Hi, how is it goin'?";
+            String expected10 = "Hi, how is it...";
+            String expected11 = "Hi...";
+            String expected12 = "...";
 
 
-            String result0 = ArticleService.GetTruncatedString(text0, 2);
-            String result1 = ArticleService.GetTruncatedString(text0, 5);
-            
+            String result00 = ArticleService.GetTruncatedString(text0, 2);
+            String result01 = ArticleService.GetTruncatedString(text0, 5);
+            //
+            String result10 = ArticleService.GetTruncatedString(text1, maxArticleLength: 14);
+            String result11 = ArticleService.GetTruncatedString(text1, maxArticleLength: 2);
+            String result12 = ArticleService.GetTruncatedString(text1, maxArticleLength: 0);
 
-            Assert.IsTrue(result0 == expected0);
-            Assert.IsTrue(result1 == expected1);
+
+            Assert.IsTrue(result00 == expected00);
+            Assert.IsTrue(result01 == expected01);
+            //
+            Assert.IsTrue(result10 == expected10, result10);
+            Assert.IsTrue(result11 == expected11, result11);
+            Assert.IsTrue(result12 == expected12, result12);
         }
     }
 }
