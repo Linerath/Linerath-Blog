@@ -42,6 +42,10 @@
             color: var(--secondary-font-color-hover);
         }
 
+.category-selected {
+    font-weight: bold;
+}
+
 .search-panel {
     text-align: center;
     margin: 10px 0px 10px 0px;
@@ -211,6 +215,10 @@ nav a.nav-link {
 .fa.fa-angle-left {
     font-size: 26px;
     color: inherit;
+}
+
+.fa.fa-times {
+    color: var(--secondary-font-color);
 }
 
 p, .intro {

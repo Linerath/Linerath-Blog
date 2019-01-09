@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
 using System.Web.Routing;
 
 namespace Linerath_Blog.Web
@@ -12,7 +13,7 @@ namespace Linerath_Blog.Web
             routes.MapRoute(
                 name: "",
                 url: "{category}",
-                defaults: new { controller = "Articles", action = "All" }
+                defaults: new { controller = "Articles", action = "All", category = (String)null, searchText = (String)null, caseSensetive = (bool?)null }
             );
 
             routes.MapRoute(
