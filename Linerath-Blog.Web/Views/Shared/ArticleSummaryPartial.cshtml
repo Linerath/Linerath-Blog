@@ -1,23 +1,28 @@
-﻿@model Article
+﻿@model (Article, BaseViewModel)
+
+@{
+    Article article = Model.Item1;
+}
 
 <div class="article-summ">
-    @Html.ActionLink(Model.Title, "Article", "Articles", new { id = Model.Id, returnUri = Request.Url.PathAndQuery }, new { @class = "article-summ-title" })
+    @Html.ActionLink(article.Title, "Article", "Articles", new { id = article.Id, returnUri = Request.Url.PathAndQuery, Model.Item2.Category, Model.Item2.SearchText, Model.Item2.CaseSensetive }, new { @class = "article-summ-title" })
     <div class="article-summ-header">
-        <div class="article-summ-date">@Model.CreationDate.ToLongDateString()</div>
+        <div class="article-summ-date">@article.CreationDate.ToLongDateString()</div>
         <div class="article-summ-categories">
             <span>Категории:</span>
-            @for (int i = 0; i < Model.Categories.Count(); i++)
+            @for (int i = 0; i < article.Categories.Count(); i++)
             {
-                if (i != Model.Categories.Count() - 1)
+                var categories = article.Categories;
+                if (i != article.Categories.Count() - 1)
                 {
-                    @Html.ActionLink(Model.Categories[i].Name + ", ", "All", "Articles", new { category = Model.Categories[i].Name }, new { })
+                    @Html.ActionLink(categories[i].Name + ", ", "All", "Articles", new { category = categories[i].Name }, null)
                 }
                 else
                 {
-                    @Html.ActionLink(Model.Categories[i].Name, "All", "Articles", new { category = Model.Categories[i].Name }, new { })
+                    @Html.ActionLink(categories[i].Name, "All", "Articles", new { category = categories[i].Name }, null)
                 }
             }
         </div>
     </div>
-    <p class="article-summ-body">@Model.Body</p>
+    <p class="article-summ-body">@article.Body</p>
 </div>

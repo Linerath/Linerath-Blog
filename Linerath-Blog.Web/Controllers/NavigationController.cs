@@ -19,12 +19,12 @@ namespace Linerath_Blog.Web.Controllers
             this.articleRepository = articleRepository;
         }
 
-        public PartialViewResult MenuLeft(String searchText = null, bool caseSensetive = false)
+        public PartialViewResult MenuLeft(String category = null, String searchText = null, bool? caseSensetive = null)
         {
             List<Category> categories = articleRepository.GetAllCategories();
             List<Article> articles = articleRepository.GetAllArticles();
 
-            CategoriesListViewModel model = new CategoriesListViewModel
+            CategoriesListViewModel model = new CategoriesListViewModel(category, searchText, caseSensetive)
             {
                 Categories = Mapper.Map<List<Category>, List<CategoryModel>>(categories),
                 SearchText = searchText,

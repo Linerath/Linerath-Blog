@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@model BaseViewModel
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -10,12 +12,13 @@
     <link rel="icon" href="~/Content/Pics/favicon.png" />
 </head>
 <body>
+    <<<<<<< HEAD
     <div class="wrapper">
         <nav class="navbar navbar-expand">
             @Html.ActionLink("Linerath Blog", "Home", "Main", new { }, new { @class = "navbar-brand" })
             <ul class="navbar-nav">
                 <li>
-                    @Html.ActionLink("Все записи", "All", "Articles")
+                    <a href="/Articles/All">Все записи</a>
                 </li>
             </ul>
             <ul class="navbar-nav ml-auto">
@@ -28,7 +31,15 @@
         <content class="container-fluid">
             <div class="row main-row">
                 <div class="col-lg-2 p-0 m-2 m-lg-0 menu menu-left">
-                    @Html.Action("MenuLeft", "Navigation", new { ViewBag.SearchText, ViewBag.CaseSensetive })
+                    @Html.Action(
+                        "MenuLeft", "Navigation",
+                        new
+                        {
+                            category = Model != null ? Model.Category : null,
+                            searchText = Model != null ? Model.SearchText : null,
+                            caseSensetive = Model != null ? Model.CaseSensetive : false,
+                        }
+                    )
                 </div>
                 <div class="col-lg-8 p-0">
                     <div class="ml-2 mr-2 main-content">

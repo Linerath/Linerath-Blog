@@ -18,15 +18,9 @@ namespace Linerath_Blog.Web.Controllers
             this.articleRepository = articleRepository;
         }
 
-        public ViewResult All(int page = 1, String category = null, String searchText = null, bool caseSensetive = false)
+        public ViewResult All(int page = 1, String category = null, String searchText = null, bool? caseSensetive = null)
         {
-            ViewBag.SearchText = searchText;
-            ViewBag.CaseSensetive = caseSensetive;
-
-            ArticlesSummariesViewModel model = new ArticlesSummariesViewModel
-            {
-                Category = category,
-            };
+            ArticlesSummariesViewModel model = new ArticlesSummariesViewModel(category, searchText, caseSensetive);
 
             List<Article> articles = articleRepository.GetAllArticles(category, searchText, caseSensetive);
             
@@ -39,10 +33,10 @@ namespace Linerath_Blog.Web.Controllers
             return View(model);
         }
 
-        public ViewResult Article(int id, String returnUri)
+        public ViewResult Article(int id, String returnUri, String category = null, String searchText = null, bool? caseSensetive = null)
         {
             Article article = articleRepository.GetArticleById(id);
-            ArticleDetailsViewModel model = new ArticleDetailsViewModel
+            ArticleDetailsViewModel model = new ArticleDetailsViewModel(category, searchText, caseSensetive)
             {
                 Article = article,
                 ReturnUri = returnUri,

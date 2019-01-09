@@ -130,7 +130,6 @@
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\Pics\favicon.png" />
-    <Content Include="Content\Pics\vk.png" />
     <Content Include="Content\Site.css" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="Global.asax" />
@@ -207,6 +206,7 @@
     <Compile Include="Services\ArticleService.cs" />
     <Compile Include="Services\PaginationService.cs" />
     <Compile Include="ViewModels\ArticleDetailsViewModel.cs" />
+    <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\CategoriesListViewModel.cs" />
     <Compile Include="Models\CategoryModel.cs" />
     <Compile Include="ViewModels\MenuRightViewModel.cs" />

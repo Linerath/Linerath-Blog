@@ -1,22 +1,44 @@
 ﻿@model CategoriesListViewModel
 
-<div class="categories-header">Категории</div>
+<div class="categories-header">
+    Категории
+    @if (Model.Category != null)
+    {
+        @Html.ActionLink(" ", "All", "Articles",
+            new
+            {
+                category = "",
+                searchText = Model.SearchText,
+                caseSensetive = Model.CaseSensetive
+            },
+            new { @class = "fa fa-times" }
+        )
+    }
+</div>
 <ul class="categories p-2">
     @foreach (var item in Model.Categories)
     {
-        <li>@Html.ActionLink(item.Name + " (" + item.Count + ")", "All", "Articles", new { category = item.Name }, new { })</li>
+        <li>@Html.ActionLink(item.Name + " (" + item.Count + ")", "All", "Articles",
+                new
+                {
+                    category = item.Name,
+                    searchText = Model.SearchText,
+                    caseSensetive = Model.CaseSensetive
+                },
+                new { @class = (item.Name == Model.Category) ? "category-selected" : "" }
+            )</li>
     }
 </ul>
 <hr />
 @using (Html.BeginForm("All", "Articles", FormMethod.Post, new { @class = "search-panel" }))
 {
     <div class="input-group">
-        @Html.TextBox("SearchText", Model.SearchText, new { type = "search", @class = "search form-control", placeholder = "Поиск по записям..." })
+        @Html.TextBoxFor(x => x.SearchText, new { type = "search", @class = "search form-control", placeholder = "Поиск по записям..." })
         <button type="submit" class="fa fa-search input-group-append input-group-text"></button>
     </div>
     <div class="form-check mt-2 ml-2 disabled">
         <label class="form-check-label" for="CaseSensetive">
-            @Html.CheckBox("CaseSensetive", Model.CaseSensetive, new { @class = "form-check-input" })
+            @Html.CheckBoxFor(x => x.CaseSensetive, new { @class = "form-check-input" })
             Учитывать регистр
         </label>
     </div>
