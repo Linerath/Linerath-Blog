@@ -10,36 +10,37 @@
     <link rel="icon" href="~/Content/Pics/favicon.png" />
 </head>
 <body>
-    <nav class="navbar navbar-expand">
-        @Html.ActionLink("Linerath Blog", "Home", "Main", new { }, new { @class = "navbar-brand" })
-        <ul class="navbar-nav">
-            <li>
-                @Html.ActionLink("Все записи", "All", "Articles")
-            </li>
-        </ul>
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-                <span><a class="fa fa-github nav-link" target="_blank" href="https://github.com/Linerath"></a></span>
-            </li>
-        </ul>
-    </nav>
+    <div class="wrapper">
+        <nav class="navbar navbar-expand">
+            @Html.ActionLink("Linerath Blog", "Home", "Main", new { }, new { @class = "navbar-brand" })
+            <ul class="navbar-nav">
+                <li>
+                    @Html.ActionLink("Все записи", "All", "Articles")
+                </li>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <span><a class="fa fa-github nav-link" target="_blank" href="https://github.com/Linerath"></a></span>
+                </li>
+            </ul>
+        </nav>
 
-    <content class="container-fluid">
-        <div class="row main-row">
-            <div class="col-lg-2 p-0 m-2 m-lg-0 menu menu-left">
-                @Html.Action("MenuLeft", "Navigation", new { ViewBag.SearchText, ViewBag.CaseSensetive })
-            </div>
-            <div class="col-lg-8 p-0">
-                <div class="ml-2 mr-2 main-content">
-                    @RenderBody()
+        <content class="container-fluid">
+            <div class="row main-row">
+                <div class="col-lg-2 p-0 m-2 m-lg-0 menu menu-left">
+                    @Html.Action("MenuLeft", "Navigation", new { ViewBag.SearchText, ViewBag.CaseSensetive })
+                </div>
+                <div class="col-lg-8 p-0">
+                    <div class="ml-2 mr-2 main-content">
+                        @RenderBody()
+                    </div>
+                </div>
+                <div class="col-2 p-0 d-none d-lg-block menu menu-right">
+                    @Html.Action("MenuRight", "Navigation")
                 </div>
             </div>
-            <div class="col-2 p-0 d-none d-lg-block menu menu-right">
-                @Html.Action("MenuRight", "Navigation")
-            </div>
-        </div>
-    </content>
-    <hr />
+        </content>
+    </div>
     <footer>
         <div>Linerath, @DateTime.Now.Year</div>
     </footer>

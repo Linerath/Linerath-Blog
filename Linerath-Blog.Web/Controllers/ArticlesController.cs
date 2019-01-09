@@ -39,7 +39,7 @@ namespace Linerath_Blog.Web.Controllers
             return View(model);
         }
 
-        public ViewResult Article(int id, String returnUri, String searchText = null)
+        public ViewResult Article(int id, String returnUri)
         {
             Article article = articleRepository.GetArticleById(id);
             ArticleDetailsViewModel model = new ArticleDetailsViewModel

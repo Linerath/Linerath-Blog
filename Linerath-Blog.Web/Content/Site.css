@@ -154,6 +154,40 @@ body a:hover {
     text-decoration: none !important;
 }
 
+/*
+footer {
+    text-align: center;
+    position: relative;
+    height: 70px;
+}*/
+
+html {
+    height: 100%;
+}
+
+body {
+    min-height: 100%;
+    position: relative;
+    padding-bottom: 70px;
+}
+
+footer {
+    background-color: #303030;
+    color: white;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 70px;
+    text-align: center;
+    padding: 5px 10px 5px 10px;
+    position: absolute;
+}
+
+.wrapper {
+    height: 100%;
+    position: relative;
+}
+
 nav {
     background-color: #303030;
 }
@@ -225,11 +259,6 @@ ul {
 
 hr {
     margin: 0px !important;
-}
-
-footer {
-    padding: 5px 10px 5px 10px;
-    text-align: center;
 }
 /********************/
 
