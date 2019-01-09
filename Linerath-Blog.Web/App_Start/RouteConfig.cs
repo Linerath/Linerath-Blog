@@ -11,6 +11,12 @@ namespace Linerath_Blog.Web
 
             routes.MapRoute(
                 name: "",
+                url: "{category}",
+                defaults: new { controller = "Articles", action = "All" }
+            );
+
+            routes.MapRoute(
+                name: "",
                 url: "Article/{id}",
                 defaults: new { controller = "Articles", action = "Article" }
             );

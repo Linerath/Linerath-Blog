@@ -19,28 +19,47 @@ namespace Linerath_Blog.DAL.Repositories
 
         public List<Article> GetAllArticles(string category = null, string searchText = null, bool caseSensetive = false)
         {
-            String categoryCondition = category != null
-                ? "WHERE EXISTS (" +
-                      "SELECT TOP 1 Id FROM ArticlesCategories ac " +
-                      "WHERE ac.Article_Id = t1.Id AND EXISTS (SELECT TOP 1 Id FROM Categories c WHERE c.Id=ac.Category_Id AND c.Name=@category)" +
-                  ") "
-                : "";
-            String searchCondition = "";
+            String additionalCondition = "";
 
+            // Additional condition for searching and filtering.
             if (searchText != null)
             {
                 // Taken from StackOverflow.
                 searchText = "%" + searchText.Replace("[", "[[]").Replace("%", "[%]") + "%";
-                searchCondition = searchCondition != ""
-                    ? "AND (t1.Title LIKE @searchText OR t1.Body Like @searchText)"
-                    : "WHERE (t1.Title LIKE @searchText OR t1.Body Like @searchText)";
+                if (category != null)
+                {
+                    additionalCondition = "WHERE EXISTS (" +
+                      "SELECT Id FROM ArticlesCategories ac " +
+                      "WHERE ac.Article_Id = t1.Id AND EXISTS (" +
+                        "SELECT Id FROM Categories c " +
+                        "WHERE c.Id=ac.Category_Id AND c.Name=@category AND (c.Name LIKE @searchText OR t1.Title LIKE @searchText OR t1.Body Like @searchText)" +
+                      ")" +
+                    ")";
+                }
+                else
+                {
+                    additionalCondition = "WHERE EXISTS (" +
+                      "SELECT Id FROM ArticlesCategories ac " +
+                      "WHERE ac.Article_Id = t1.Id AND EXISTS (" +
+                        "SELECT Id FROM Categories c " +
+                        "WHERE c.Id=ac.Category_Id AND (c.Name LIKE @searchText OR t1.Title LIKE @searchText OR t1.Body Like @searchText)" +
+                      ")" +
+                    ")";
+                }
+            }
+            else
+            {
+                if (category != null)
+                    additionalCondition = "WHERE EXISTS (" +
+                      "SELECT Id FROM ArticlesCategories ac " +
+                      "WHERE ac.Article_Id = t1.Id AND EXISTS (SELECT Id FROM Categories c WHERE c.Id=ac.Category_Id AND c.Name=@category)" +
+                    ")";
             }
 
             string sql = "SELECT t1.*, t2.* FROM Articles t1 "
                 + "INNER JOIN ArticlesCategories t1t2 ON t1.Id=t1t2.Article_Id "
                 + "INNER JOIN Categories t2 ON t2.Id=t1t2.Category_Id "
-                + categoryCondition
-                + searchCondition
+                + additionalCondition
                 ;
 
             using (var connection = new SqlConnection(connectionString))
