@@ -4,13 +4,9 @@
     Категории
     @if (Model.Category != null)
     {
-        @Html.ActionLink(" ", "All", "Articles",
-            new
-            {
-                category = "",
-                searchText = Model.SearchText,
-                caseSensetive = Model.CaseSensetive
-            },
+        @Html.ActionLink(
+            " ", "All", "Articles",
+            new { Model.SearchText, Model.CaseSensetive },
             new { @class = "fa fa-times" }
         )
     }
@@ -18,19 +14,17 @@
 <ul class="categories p-2">
     @foreach (var item in Model.Categories)
     {
-        <li>@Html.ActionLink(item.Name + " (" + item.Count + ")", "All", "Articles",
-                new
-                {
-                    category = item.Name,
-                    searchText = Model.SearchText,
-                    caseSensetive = Model.CaseSensetive
-                },
+        <li>
+            @Html.ActionLink(
+                item.Name + " (" + item.Count + ")", "All", "Articles",
+                new { category = item.Name, Model.SearchText, Model.CaseSensetive },
                 new { @class = (item.Name == Model.Category) ? "category-selected" : "" }
-            )</li>
+            )
+        </li>
     }
 </ul>
 <hr />
-@using (Html.BeginForm("All", "Articles", FormMethod.Post, new { @class = "search-panel" }))
+@using (Html.BeginForm("All", "Articles", new { Model.Category }, FormMethod.Post, new { @class = "search-panel" }))
 {
     <div class="input-group">
         @Html.TextBoxFor(x => x.SearchText, new { type = "search", @class = "search form-control", placeholder = "Поиск по записям..." })
@@ -38,7 +32,10 @@
     </div>
     <div class="form-check mt-2 ml-2 disabled">
         <label class="form-check-label" for="CaseSensetive">
-            @Html.CheckBoxFor(x => x.CaseSensetive, new { @class = "form-check-input" })
+            @{ 
+                bool caseSens = Model.CaseSensetive.GetValueOrDefault();
+            }
+            @Html.CheckBoxFor(x => caseSens, new { @class = "form-check-input" })
             Учитывать регистр
         </label>
     </div>

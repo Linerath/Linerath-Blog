@@ -12,10 +12,13 @@
     <link rel="icon" href="~/Content/Pics/favicon.png" />
 </head>
 <body>
-    <<<<<<< HEAD
     <div class="wrapper">
         <nav class="navbar navbar-expand">
-            @Html.ActionLink("Linerath Blog", "Home", "Main", new { }, new { @class = "navbar-brand" })
+            @Html.ActionLink(
+                "Linerath Blog", "Home", "Main",
+                new { },
+                new { @class = "navbar-brand" }
+            )
             <ul class="navbar-nav">
                 <li>
                     <a href="/Articles/All">Все записи</a>

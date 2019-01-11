@@ -1,12 +1,12 @@
-﻿using AutoMapper;
+﻿using System;
+using AutoMapper;
+using System.Web.Mvc;
+using System.Collections.Generic;
 using Linerath_Blog.DAL.Entities;
 using Linerath_Blog.DAL.Interfaces;
 using Linerath_Blog.Web.Services;
 using Linerath_Blog.Web.ViewModels;
 using Linerath_Blog.Web.Models;
-using System;
-using System.Collections.Generic;
-using System.Web.Mvc;
 
 namespace Linerath_Blog.Web.Controllers
 {
@@ -27,8 +27,6 @@ namespace Linerath_Blog.Web.Controllers
             CategoriesListViewModel model = new CategoriesListViewModel(category, searchText, caseSensetive)
             {
                 Categories = Mapper.Map<List<Category>, List<CategoryModel>>(categories),
-                SearchText = searchText,
-                CaseSensetive = caseSensetive,
             };
 
             ArticleService.CalculateCategoriesCount(model.Categories, articles);

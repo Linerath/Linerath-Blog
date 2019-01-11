@@ -2,9 +2,7 @@
 using Linerath_Blog.Web.Models;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using System.Web;
 
 namespace Linerath_Blog.Web.Services
 {

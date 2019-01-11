@@ -15,11 +15,19 @@
             {
                 if (i != Model.Article.Categories.Count() - 1)
                 {
-                    @Html.ActionLink(Model.Article.Categories[i].Name + ", ", "All", "Articles", new { category = Model.Article.Categories[i].Name }, null)
+                    @Html.ActionLink(
+                        Model.Article.Categories[i].Name + ", ", "All", "Articles",
+                        new { category = Model.Article.Categories[i].Name },
+                        null
+                    )
                 }
                 else
                 {
-                    @Html.ActionLink(Model.Article.Categories[i].Name, "All", "Articles", new { category = Model.Article.Categories[i].Name }, null)
+                    @Html.ActionLink(
+                        Model.Article.Categories[i].Name, "All", "Articles",
+                        new { category = Model.Article.Categories[i].Name },
+                        null
+                    )
                 }
             }
         </div>

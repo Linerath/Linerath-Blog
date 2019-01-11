@@ -12,12 +12,6 @@ namespace Linerath_Blog.Web
 
             routes.MapRoute(
                 name: "",
-                url: "{category}",
-                defaults: new { controller = "Articles", action = "All", category = (String)null, searchText = (String)null, caseSensetive = (bool?)null }
-            );
-
-            routes.MapRoute(
-                name: "",
                 url: "Article/{id}",
                 defaults: new { controller = "Articles", action = "Article" }
             );

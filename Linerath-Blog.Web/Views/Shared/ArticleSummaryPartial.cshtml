@@ -5,7 +5,18 @@
 }
 
 <div class="article-summ">
-    @Html.ActionLink(article.Title, "Article", "Articles", new { id = article.Id, returnUri = Request.Url.PathAndQuery, Model.Item2.Category, Model.Item2.SearchText, Model.Item2.CaseSensetive }, new { @class = "article-summ-title" })
+    @Html.ActionLink(
+        article.Title, "Article", "Articles",
+        new
+        {
+            id = article.Id,
+            returnUri = Request.Url.PathAndQuery,
+            Model.Item2.Category,
+            Model.Item2.SearchText,
+            Model.Item2.CaseSensetive
+        },
+        new { @class = "article-summ-title" }
+    )
     <div class="article-summ-header">
         <div class="article-summ-date">@article.CreationDate.ToLongDateString()</div>
         <div class="article-summ-categories">
@@ -15,11 +26,19 @@
                 var categories = article.Categories;
                 if (i != article.Categories.Count() - 1)
                 {
-                    @Html.ActionLink(categories[i].Name + ", ", "All", "Articles", new { category = categories[i].Name }, null)
+                    @Html.ActionLink(
+                        categories[i].Name + ", ", "All", "Articles",
+                        new { category = categories[i].Name },
+                        null
+                    )
                 }
                 else
                 {
-                    @Html.ActionLink(categories[i].Name, "All", "Articles", new { category = categories[i].Name }, null)
+                    @Html.ActionLink(
+                        categories[i].Name, "All", "Articles",
+                        new { category = categories[i].Name },
+                        null
+                    )
                 }
             }
         </div>

@@ -80,10 +80,10 @@ namespace Linerath_Blog.DAL.Repositories
                 articles.Add(articles[3]);
         }
 
-        public List<Article> GetAllArticles(String category = null, String searchText = null, bool caseSensetive = false)
+        public List<Article> GetAllArticles(String category = null, String searchText = null, bool? caseSensetive = null)
         {
             searchText = searchText?.Trim();
-            if (!caseSensetive)
+            if (!caseSensetive.GetValueOrDefault())
                 searchText = searchText?.ToLower();
 
             return articles
@@ -95,7 +95,7 @@ namespace Linerath_Blog.DAL.Repositories
                         {
                             bool searchCondition;
 
-                            if (caseSensetive)
+                            if (caseSensetive.GetValueOrDefault())
                                 searchCondition = (x.Title != null && x.Title.Contains(searchText))
                                                   || (x.Body != null && x.Body.Contains(searchText))
                                                   || (x.Categories != null && x.Categories.Any(y => y.Name.Contains(searchText)));
