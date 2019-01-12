@@ -1,9 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using System.Collections.Generic;
 using Linerath_Blog.DAL.Entities;
 using Linerath_Blog.DAL.Interfaces;
+using Linerath_Blog.Web.Enums;
 using Linerath_Blog.Web.Services;
 using Linerath_Blog.Web.ViewModels;
 
@@ -22,13 +23,13 @@ namespace Linerath_Blog.Web.Controllers
         {
             ArticlesSummariesViewModel model = new ArticlesSummariesViewModel(category, searchText, caseSensetive);
 
-            List<Article> articles = articleRepository.GetAllArticles(category, searchText, caseSensetive);
-            
+            List<Article> articles = articleRepository.GetAllArticles(category: category, searchText: searchText, caseSensetive: caseSensetive);
+
             model.PaginationModel = PaginationService.GetDefaultPaginationModel(articles, page);
             articles = PaginationService.Paginate(articles, page).ToList();
             ArticleService.TrucateArticles(articles);
 
-            articles.ForEach(x => model.Articles.Add(x));
+            model.Articles = articles;
 
             return View(model);
         }
@@ -41,6 +42,20 @@ namespace Linerath_Blog.Web.Controllers
                 Article = article,
                 ReturnUri = returnUri,
             };
+
+            return View(model);
+        }
+
+        public ViewResult Archive(ArchiveFilter filter = ArchiveFilter.Alphabet)
+        {
+            ArchiveArticlesViewModel model = new ArchiveArticlesViewModel(null, null, null)
+            {
+                Filter = filter, 
+            };
+
+            List<ArticleTitle> articles = articleRepository.GetArticlesTitles();
+
+            model.ArticlesGroups = ArticleService.GroupArticles(articles, filter);
 
             return View(model);
         }

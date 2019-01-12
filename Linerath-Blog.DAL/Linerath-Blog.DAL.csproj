@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entities\Article.cs" />
+    <Compile Include="Entities\ArticleTitle.cs" />
     <Compile Include="Entities\Category.cs" />
     <Compile Include="Interfaces\IArticlesRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

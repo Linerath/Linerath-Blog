@@ -1,12 +1,13 @@
-﻿using Linerath_Blog.DAL.Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using Linerath_Blog.DAL.Entities;
 
 namespace Linerath_Blog.DAL.Interfaces
 {
     public interface IArticlesRepository
     {
         List<Article> GetAllArticles(String category = null, String searchText = null, bool? caseSensetive = null);
+        List<ArticleTitle> GetArticlesTitles();
         List<Category> GetAllCategories();
         Article GetArticleById(int id);
     }

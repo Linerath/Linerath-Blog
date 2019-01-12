@@ -4,7 +4,8 @@
     --primary-font-color: #ff2e2e;
     --primary-font-color-hover: #f12828;
     --secondary-font-color: #0a00ff;
-    --secondary-font-color-hover: #3f00e0;
+    --secondary-font-color-hover: black;
+    /*--secondary-font-color-hover: #3f00e0;*/
 }
 
 /* Mine */
@@ -44,6 +45,7 @@
 
 .category-selected {
     font-weight: bold;
+    pointer-events: none;
 }
 
 .search-panel {
@@ -70,13 +72,50 @@ input.search {
         box-shadow: none;
     }
 
+.main-row {
+    margin: 10px 0px 10px 0px !important;
+}
+
 .main-content {
     height: 100%;
     min-height: 500px;
 }
 
-.main-row {
-    margin: 10px 0px 10px 0px !important;
+.page-title {
+    text-align: center;
+}
+
+.archive-filters {
+    border: var(--border);
+    border-radius: var(--border-radius);
+    text-align: center;
+    padding: 10px;
+}
+
+    .archive-filters a {
+        color: var(--secondary-font-color);
+    }
+
+.archive-items {
+    padding: 10px 50px 10px 50px;
+}
+
+.archive-items h4 {
+    text-align: center;
+    margin: 0;
+}
+
+.filter {
+    color: var(--secondary-font-color);
+}
+
+.filter:hover {
+    color: var(--secondary-font-color-hover);
+}
+
+.filter-selected {
+    font-weight: bold;
+    pointer-events: none;
 }
 
 .article {

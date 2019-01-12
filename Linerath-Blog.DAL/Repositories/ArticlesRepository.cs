@@ -1,9 +1,9 @@
 ﻿using System;
+using System.Linq;
+using System.Data.SqlClient;
+using System.Collections.Generic;
 using Linerath_Blog.DAL.Entities;
 using Linerath_Blog.DAL.Interfaces;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Linq;
 using Dapper;
 
 namespace Linerath_Blog.DAL.Repositories
@@ -56,7 +56,7 @@ namespace Linerath_Blog.DAL.Repositories
                     ")";
             }
 
-            string sql = "SELECT t1.*, t2.* FROM Articles t1 "
+            string sql = $"SELECT t1.*, t2.* FROM Articles t1 "
                 + "INNER JOIN ArticlesCategories t1t2 ON t1.Id=t1t2.Article_Id "
                 + "INNER JOIN Categories t2 ON t2.Id=t1t2.Category_Id "
                 + additionalCondition
@@ -106,13 +106,32 @@ namespace Linerath_Blog.DAL.Repositories
             }
         }
 
-        public List<Category> GetAllCategories()
+        public List<ArticleTitle> GetArticlesTitles()
         {
-            string sql = "SELECT * FROM Categories";
+            string sql = $"SELECT t1.Id, t1.Title, t1.CreationDate, t2.* FROM Articles t1 "
+                + "INNER JOIN ArticlesCategories t1t2 ON t1.Id=t1t2.Article_Id "
+                + "INNER JOIN Categories t2 ON t2.Id=t1t2.Category_Id "
+                ;
 
             using (var connection = new SqlConnection(connectionString))
             {
-                List<Category> result = connection.Query<Category>(sql).ToList();
+                List<ArticleTitle> result = new List<ArticleTitle>();
+
+                connection
+                    .Query<ArticleTitle, Category, ArticleTitle>(sql,
+                    (_article, _category) =>
+                    {
+                        ArticleTitle existing = result.FirstOrDefault(x => x.Id == _article.Id);
+                        if (existing == null)
+                        {
+                            _article.Categories.Add(_category);
+                            result.Add(_article);
+                        }
+                        else
+                            existing.Categories.Add(_category);
+
+                        return _article;
+                    });
 
                 return result;
             }
@@ -139,6 +158,18 @@ namespace Linerath_Blog.DAL.Repositories
                         result.Categories.Add(category);
                         return article;
                     }, new { id });
+
+                return result;
+            }
+        }
+
+        public List<Category> GetAllCategories()
+        {
+            string sql = "SELECT * FROM Categories";
+
+            using (var connection = new SqlConnection(connectionString))
+            {
+                List<Category> result = connection.Query<Category>(sql).ToList();
 
                 return result;
             }

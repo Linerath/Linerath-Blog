@@ -1,0 +1,53 @@
+﻿@model ArchiveArticlesViewModel
+
+@{
+    ViewBag.Title = "Archive";
+}
+
+<div class="container">
+    <div class="page-title">
+        <h2>Архив</h2>
+    </div>
+    <div class="archive-filters mt-2">
+        Сортировать по:
+        @foreach (var filter in ArticleService.ArchiveFilters)
+        {
+            @Html.ActionLink(
+                filter.Value, "Archive", "Articles",
+                new { filter = filter.Key },
+                new { @class = Model.Filter == filter.Key ? "filter-selected pr-1" : "filter pr-1" }
+            )
+        }
+    </div>
+    <div class="archive-items">
+        @foreach (var group in Model.ArticlesGroups)
+        {
+            <h4>@group.GroupName</h4>
+            foreach (var item in group.Articles)
+            {
+                String title = item.Title;
+
+                switch (Model.Filter)
+                {
+                    case ArchiveFilter.Date:
+                        title = item.Title + " (" + item.CreationDate.ToString("dd.MM.yyyy hh:mm") + ")";
+                        break;
+                }
+                <div>
+                    @Html.ActionLink(
+                        title, "Article", "Articles",
+                        new
+                        {
+                            id = item.Id,
+                            returnUri = Request.Url.PathAndQuery,
+                        },
+                        new { @class = "" }
+                    )
+                </div>
+            }
+        }
+        <div>
+
+        </div>
+    </div>
+</div>

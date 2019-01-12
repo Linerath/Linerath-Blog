@@ -154,5 +154,17 @@ namespace Linerath_Blog.DAL.Repositories
             //    //FiddleHelper.WriteTable(orderDetails);
             //}
         }
+
+        public List<ArticleTitle> GetArticlesTitles()
+        {
+            return articles.Select(x => new ArticleTitle
+            {
+                Id = x.Id,
+                Title = x.Title,
+                CreationDate = x.CreationDate,
+                Categories = x.Categories,
+            })
+            .ToList();
+        }
     }
 }

@@ -194,6 +194,7 @@
     <Compile Include="Controllers\MainController.cs" />
     <Compile Include="Controllers\NavigationController.cs" />
     <Compile Include="Controllers\ArticlesController.cs" />
+    <Compile Include="Enums\ArchiveFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -201,11 +202,13 @@
     <Compile Include="Infrastructure\Automapper\AutoMapperConfiguration.cs" />
     <Compile Include="Infrastructure\Automapper\CategoryMappingProfile.cs" />
     <Compile Include="Infrastructure\NinjectDependencies.cs" />
+    <Compile Include="Models\ArticleTitleGroup.cs" />
     <Compile Include="Models\PaginationModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ArticleService.cs" />
     <Compile Include="Services\PaginationService.cs" />
     <Compile Include="ViewModels\ArticleDetailsViewModel.cs" />
+    <Compile Include="ViewModels\ArchiveArticlesViewModel.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\CategoriesListViewModel.cs" />
     <Compile Include="Models\CategoryModel.cs" />
@@ -222,6 +225,7 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
     <Content Include="Views\Articles\All.cshtml" />
     <Content Include="Views\Articles\Article.cshtml" />
+    <Content Include="Views\Articles\Archive.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
