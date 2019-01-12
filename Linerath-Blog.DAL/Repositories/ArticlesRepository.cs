@@ -22,11 +22,11 @@ namespace Linerath_Blog.DAL.Repositories
             String additionalCondition = "";
 
             // Additional condition for searching and filtering.
-            if (searchText != null)
+            if (!String.IsNullOrWhiteSpace(searchText))
             {
                 // Taken from StackOverflow.
                 searchText = "%" + searchText.Replace("[", "[[]").Replace("%", "[%]") + "%";
-                if (category != null)
+                if (!String.IsNullOrWhiteSpace(category))
                 {
                     additionalCondition = "WHERE EXISTS (" +
                       "SELECT Id FROM ArticlesCategories ac " +

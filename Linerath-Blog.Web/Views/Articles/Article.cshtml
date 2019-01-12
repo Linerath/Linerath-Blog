@@ -8,7 +8,7 @@
     <div class="article-header">
         <a class="fa fa-angle-left pull-left mt-2" href="@Model.ReturnUri"></a>
         <div class="article-title">@Model.Article.Title</div>
-        <div class="article-date">@Model.Article.CreationDate.ToLongDateString()</div>
+        <div class="article-date">@Model.Article.CreationDate.ToString("dddd, dd MMMM yyyy hh:ss")</div>
         <div class="article-categories">
             <span>Категории:</span>
             @for (int i = 0; i < Model.Article.Categories.Count(); i++)

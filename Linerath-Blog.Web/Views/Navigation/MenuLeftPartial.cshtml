@@ -2,7 +2,7 @@
 
 <div class="categories-header">
     Категории
-    @if (Model.Category != null)
+    @if (!String.IsNullOrWhiteSpace(Model.Category))
     {
         @Html.ActionLink(
             " ", "All", "Articles",
@@ -24,19 +24,22 @@
     }
 </ul>
 <hr />
-@using (Html.BeginForm("All", "Articles", new { Model.Category }, FormMethod.Post, new { @class = "search-panel" }))
+@using (Html.BeginForm("All", "Articles", new { Model.Category }, FormMethod.Post, new { @class = "search-panel", onsubmit = "return onSearchSubmit()" }))
 {
     <div class="input-group">
-        @Html.TextBoxFor(x => x.SearchText, new { type = "search", @class = "search form-control", placeholder = "Поиск по записям..." })
+        @Html.TextBoxFor(
+            x => x.SearchText,
+            new { type = "search", @class = "search form-control", placeholder = "Поиск по записям...", id = "search" }
+        )
         <button type="submit" class="fa fa-search input-group-append input-group-text"></button>
     </div>
     <div class="form-check mt-2 ml-2 disabled">
-        <label class="form-check-label" for="CaseSensetive">
-            @{ 
-                bool caseSens = Model.CaseSensetive.GetValueOrDefault();
-            }
-            @Html.CheckBoxFor(x => caseSens, new { @class = "form-check-input" })
-            Учитывать регистр
-        </label>
+        @*<label class="form-check-label" for="CaseSensetive">
+                @{
+                    bool caseSens = Model.CaseSensetive.GetValueOrDefault();
+                }
+                @Html.CheckBoxFor(x => caseSens, new { @class = "form-check-input" })
+                Учитывать регистр
+            </label>*@
     </div>
 }
