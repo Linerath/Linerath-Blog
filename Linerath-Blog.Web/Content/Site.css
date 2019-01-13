@@ -9,6 +9,14 @@
 }
 
 /* Mine */
+body a {
+    color: var(--secondary-font-color);
+}
+    
+    body a:hover {
+        color: var(--secondary-font-color-hover);
+    }
+
 .menu {
     border: var(--border);
     border-radius: var(--border-radius);
@@ -34,14 +42,6 @@
     text-align: left;
     margin: 0px;
 }
-
-    .categories a {
-        color: var(--secondary-font-color);
-    }
-
-        .categories a:hover {
-            color: var(--secondary-font-color-hover);
-        }
 
 .category-selected {
     font-weight: bold;
@@ -92,26 +92,14 @@ input.search {
     padding: 10px;
 }
 
-    .archive-filters a {
-        color: var(--secondary-font-color);
-    }
-
 .archive-items {
     padding: 10px 50px 10px 50px;
 }
 
-.archive-items h4 {
-    text-align: center;
-    margin: 0;
-}
-
-.filter {
-    color: var(--secondary-font-color);
-}
-
-.filter:hover {
-    color: var(--secondary-font-color-hover);
-}
+    .archive-items h4 {
+        text-align: center;
+        margin: 0;
+    }
 
 .filter-selected {
     font-weight: bold;
@@ -136,16 +124,6 @@ input.search {
 .article-summ-categories span {
     opacity: 0.5;
 }
-
-.article-categories a,
-.article-summ-categories a {
-    color: var(--secondary-font-color);
-}
-
-    .article-categories a:hover,
-    .article-summ-categories a:hover {
-        color: var(--secondary-font-color-hover);
-    }
 
 .article-body,
 .article-summ-body {
@@ -196,13 +174,6 @@ input.search {
 body a:hover {
     text-decoration: none !important;
 }
-
-/*
-footer {
-    text-align: center;
-    position: relative;
-    height: 70px;
-}*/
 
 html {
     height: 100%;

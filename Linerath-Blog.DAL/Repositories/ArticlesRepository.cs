@@ -34,7 +34,7 @@ namespace Linerath_Blog.DAL.Repositories
                         "SELECT Id FROM Categories c " +
                         "WHERE c.Id=ac.Category_Id AND c.Name=@category AND (c.Name LIKE @searchText OR t1.Title LIKE @searchText OR t1.Body Like @searchText)" +
                       ")" +
-                    ")";
+                    ") ";
                 }
                 else
                 {
@@ -44,7 +44,7 @@ namespace Linerath_Blog.DAL.Repositories
                         "SELECT Id FROM Categories c " +
                         "WHERE c.Id=ac.Category_Id AND (c.Name LIKE @searchText OR t1.Title LIKE @searchText OR t1.Body Like @searchText)" +
                       ")" +
-                    ")";
+                    ") ";
                 }
             }
             else
@@ -53,13 +53,14 @@ namespace Linerath_Blog.DAL.Repositories
                     additionalCondition = "WHERE EXISTS (" +
                       "SELECT Id FROM ArticlesCategories ac " +
                       "WHERE ac.Article_Id = t1.Id AND EXISTS (SELECT Id FROM Categories c WHERE c.Id=ac.Category_Id AND c.Name=@category)" +
-                    ")";
+                    ") ";
             }
 
             string sql = $"SELECT t1.*, t2.* FROM Articles t1 "
                 + "INNER JOIN ArticlesCategories t1t2 ON t1.Id=t1t2.Article_Id "
                 + "INNER JOIN Categories t2 ON t2.Id=t1t2.Category_Id "
                 + additionalCondition
+                + "ORDER BY t1.CreationDate DESC"
                 ;
 
             using (var connection = new SqlConnection(connectionString))
@@ -111,6 +112,7 @@ namespace Linerath_Blog.DAL.Repositories
             string sql = $"SELECT t1.Id, t1.Title, t1.CreationDate, t2.* FROM Articles t1 "
                 + "INNER JOIN ArticlesCategories t1t2 ON t1.Id=t1t2.Article_Id "
                 + "INNER JOIN Categories t2 ON t2.Id=t1t2.Category_Id "
+                + "ORDER BY t1.CreationDate DESC "
                 ;
 
             using (var connection = new SqlConnection(connectionString))
