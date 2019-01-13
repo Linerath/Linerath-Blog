@@ -1,6 +1,6 @@
 ﻿@model CategoriesListViewModel
 
-<div class="categories-header">
+<div class="menu-header">
     Категории
     @if (!String.IsNullOrWhiteSpace(Model.Category))
     {
@@ -11,7 +11,7 @@
         )
     }
 </div>
-<ul class="categories p-2">
+<ul class="menu-body">
     @foreach (var item in Model.Categories)
     {
         <li>

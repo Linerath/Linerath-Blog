@@ -19,14 +19,16 @@
                 new { },
                 new { @class = "navbar-brand" }
             )
-            <ul class="navbar-nav">
-                <li>
-                    <a href="/Articles/All">Все записи</a>
-                </li>
-                <li class="ml-2">
-                    <a href="/Articles/Archive">Архив</a>
-                </li>
-            </ul>
+            <div>
+                <ul class="navbar-nav">
+                    <li>
+                        <a href="/Articles/All">Все записи</a>
+                    </li>
+                    <li class="ml-2">
+                        <a href="/Articles/Archive">Архив</a>
+                    </li>
+                </ul>
+            </div>
             @*<ul class="navbar-nav ml-auto">
                 <li class="nav-item">
                     <span><a class="fa fa-github nav-link" target="_blank" href="https://github.com/Linerath"></a></span>
@@ -52,7 +54,8 @@
                         @RenderBody()
                     </div>
                 </div>
-                <div class="col-2 p-0 d-none d-lg-block menu menu-right">
+                @*<div class="col-2 p-0 d-none d-lg-block menu menu-right">*@
+                <div class="col-lg-2 p-0 m-2 m-lg-0 menu menu-right">
                     @Html.Action("MenuRight", "Navigation")
                 </div>
             </div>

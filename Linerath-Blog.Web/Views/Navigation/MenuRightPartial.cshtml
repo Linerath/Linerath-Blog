@@ -1,8 +1,15 @@
 ﻿@model IEnumerable<MenuRightViewModel>
 
-<ul>
-    @foreach (var item in Model)
-    {
-        <li>@Html.ActionLink(item.Name, "Home", "Main")</li>
-    }
+<div class="menu-header">
+    Project100
+</div>
+<ul class="menu-body">
+    <li>
+        Progress: 27/100
+    </li>
+    <li class="text-center">
+        <a href="https://www.goodreads.com/review/list/82021750?shelf=read" target="_blank">
+            <img src="~/Content/Pics/goodreads.png" class="goodreads" />
+        </a>
+    </li>
 </ul>
