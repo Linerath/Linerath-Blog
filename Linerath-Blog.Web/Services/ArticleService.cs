@@ -84,6 +84,9 @@ namespace Linerath_Blog.Web.Services
 
             List<ArticleTitleGroup> articlesGroups = new List<ArticleTitleGroup>();
 
+            if (articles.Count() == 0)
+                return articlesGroups;
+
             if (filter == ArchiveFilter.Alphabet)
             {
                 var grouped = articles
@@ -103,7 +106,7 @@ namespace Linerath_Blog.Web.Services
             else if (filter == ArchiveFilter.Date)
             {
                 var grouped = articles
-                    .OrderBy(x => x.CreationDate)
+                    .OrderByDescending(x => x.CreationDate)
                     .GroupBy(x => x.CreationDate.Year)
                     .ToList();
 

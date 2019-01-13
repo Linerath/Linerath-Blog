@@ -1,12 +1,14 @@
 ﻿:root {
     --border: 1px solid rgba(0,0,0,.1);
-    --border-radius: 6px;
+    --border-radius: 4px;
 
     /*--primary-font-color: #FF0000;*/
     /*--primary-font-color: #eca800;*/
     /*--primary-font-color: #0800c8;*/
-    --primary-font-color: #4A76A8;
-    --primary-font-color-hover: #40648f;
+    /*--primary-font-color: #4A76A8;*/
+    /*--primary-font-color: #6543aa;*/
+    --primary-font-color: #f61515;
+    --primary-font-color-hover: #e11313;
 
     /*--secondary-font-color: #0a00ff;*/
     /*--secondary-font-color: #7400b7;*/
@@ -149,7 +151,7 @@ input.search {
 }
 
     .article-summ:hover {
-        background-color: #f2f2f2;
+        background-color: #f3f3f3;
     }
 
     .article-summ:last-child {
