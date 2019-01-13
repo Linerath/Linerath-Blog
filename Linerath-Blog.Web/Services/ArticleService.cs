@@ -49,7 +49,7 @@ namespace Linerath_Blog.Web.Services
             }
             else
             {
-                String[] lines = source.Split('\n');
+                String[] lines = source.Split('\n', '\r');
 
                 if (lines.Count() > maxLinesCount)
                 {
