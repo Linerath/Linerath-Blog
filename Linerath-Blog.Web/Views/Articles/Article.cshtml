@@ -34,3 +34,12 @@
     </div>
     <p class="article-summ-body">@Html.Raw(Model.Article.Body)</p>
 </div>
+
+@*<div class="comments-section">
+    <h3>Комментарии</h3>
+    @foreach (var comment in Model.Article.Comments)
+    {
+        <div>@comment.Sender</div>
+        <div>@comment.Body</div>
+    }
+</div>*@

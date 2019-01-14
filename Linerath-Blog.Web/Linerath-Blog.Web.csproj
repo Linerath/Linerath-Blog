@@ -189,7 +189,7 @@
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Navigation\MenuLeftPartial.cshtml" />
     <Content Include="Views\Navigation\MenuRightPartial.cshtml" />
-    <Content Include="Views\Shared\ArticleSummaryPartial.cshtml" />
+    <Content Include="Views\Articles\ArticleSummaryPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -229,6 +229,7 @@
     <Content Include="Views\Articles\All.cshtml" />
     <Content Include="Views\Articles\Article.cshtml" />
     <Content Include="Views\Articles\Archive.cshtml" />
+    <Content Include="Views\Comments\CommentsSectionPartial.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

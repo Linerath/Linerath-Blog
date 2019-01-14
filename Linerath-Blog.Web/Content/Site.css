@@ -168,6 +168,12 @@ input.search {
         color: var(--primary-font-color-hover);
     }
 
+.comments-section {
+    background-color: #f5f5f5;
+    margin-top: 40px;
+    padding: 5px 15px 5px 15px !important;
+}
+
 .goodreads {
     max-width: 120px;
     margin-top: 5px;

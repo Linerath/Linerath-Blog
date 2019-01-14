@@ -1,6 +1,7 @@
 ﻿USE [Linerath-Blog]
 GO
 
+--Articles
 INSERT INTO [dbo].[Articles]
            ([Title], [Body], [CreationDate])
      VALUES
@@ -13,6 +14,7 @@ GO
 UPDATE [dbo].[Articles] SET Body=REPLACE(Body, '\\n', '\n')
 GO
 
+--Categories
 INSERT INTO [dbo].[Categories]
            ([Name])
      VALUES
@@ -30,4 +32,12 @@ INSERT INTO [dbo].[ArticlesCategories]
           ,(3, 3)
           ,(4, 3)
 
+GO
+
+--Comments
+INSERT INTO [dbo].[Comments]
+           ([Body], [Sender], [Article_Id])
+     VALUES
+           (N'In the rich man''s world', N'Abbba', 4)
+          ,(N'Test message', N'Test sender', 4)
 GO
