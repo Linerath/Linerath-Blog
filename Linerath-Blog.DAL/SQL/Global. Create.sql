@@ -7,13 +7,13 @@ GO
 DROP TABLE IF EXISTS [dbo].[ArticlesComments]
 GO
 
+DROP TABLE IF EXISTS [dbo].[Comments]
+GO
+
 DROP TABLE IF EXISTS [dbo].[Articles]
 GO
 
 DROP TABLE IF EXISTS [dbo].[Categories]
-GO
-
-DROP TABLE IF EXISTS [dbo].[Comments]
 GO
 
 

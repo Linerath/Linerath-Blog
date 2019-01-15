@@ -38,7 +38,15 @@ namespace Linerath_Blog.Web.Services
             if (maxLinesCount == 0 || maxArticleLength == 0)
                 return "...";
 
-            if (source.Length > maxArticleLength)
+            String[] lines = source.Split('\n', '\r');
+            if (lines.Count() > maxLinesCount)
+            {
+                lines = lines.Take(maxLinesCount).ToArray();
+                String truncated = String.Join("\n", lines);
+
+                return truncated;
+            }
+            else if (source.Length > maxArticleLength)
             {
                 String truncated = source.Remove(maxArticleLength);
                 if (truncated.LastIndexOf(' ') >= 0)
@@ -48,21 +56,7 @@ namespace Linerath_Blog.Web.Services
                 return truncated;
             }
             else
-            {
-                String[] lines = source.Split('\n', '\r');
-
-                if (lines.Count() > maxLinesCount)
-                {
-                    lines = lines.Take(maxLinesCount).ToArray();
-                    String truncated = String.Join("\n", lines);
-
-                    return truncated;
-                }
-                else
-                    return source;
-            }
-
-
+                return source;
         }
 
         public static void CalculateCategoriesCount(List<CategoryModel> categories, List<Article> allArticles)
