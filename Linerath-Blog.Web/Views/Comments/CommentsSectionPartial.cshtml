@@ -1,5 +1,23 @@
-﻿@model (Comment, BaseViewModel)
+﻿@model IEnumerable<Comment>
 
-<div>
+@if (Model.Count() > 0)
+{
+    <h3>Комментарии</h3>
+}
 
+<div class="comments-section">
+    @foreach (var comment in Model)
+    {
+        <div class="comment">
+            <div class="comment-header">@comment.Sender</div>
+            <div class="comment-date blurred">@comment.CreationDate.ToString("dd MMMM yyyy hh:ss")</div>
+            <div class="comment-body">@comment.Body</div>
+        </div>
+    }
+    <div class="comments-enter text-center">
+        <div class="form-group">
+            <label for="comment">Оставить комментарий:</label>
+            <textarea class="form-control w-75" id="comment"></textarea>
+        </div>
+    </div>
 </div>

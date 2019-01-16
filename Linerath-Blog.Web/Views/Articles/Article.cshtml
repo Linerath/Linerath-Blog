@@ -4,7 +4,7 @@
     ViewBag.Title = Model.Article.Title;
 }
 
-<div class="container article">
+<div class="container article mb-3">
     <div class="article-header">
         <a class="fa fa-angle-left pull-left mt-2" href="@Model.ReturnUri"></a>
         <div class="article-title">@Model.Article.Title</div>
@@ -16,18 +16,18 @@
                 if (i != Model.Article.Categories.Count() - 1)
                 {
                     @Html.ActionLink(
-                        Model.Article.Categories[i].Name + ", ", "All", "Articles",
-                        new { category = Model.Article.Categories[i].Name },
-                        null
-                    )
+                 Model.Article.Categories[i].Name + ", ", "All", "Articles",
+                 new { category = Model.Article.Categories[i].Name },
+                 null
+             )
                 }
                 else
                 {
                     @Html.ActionLink(
-                        Model.Article.Categories[i].Name, "All", "Articles",
-                        new { category = Model.Article.Categories[i].Name },
-                        null
-                    )
+                 Model.Article.Categories[i].Name, "All", "Articles",
+                 new { category = Model.Article.Categories[i].Name },
+                 null
+             )
                 }
             }
         </div>
@@ -35,11 +35,4 @@
     <p class="article-summ-body">@Html.Raw(Model.Article.Body)</p>
 </div>
 
-<div class="comments-section">
-    <h3>Комментарии</h3>
-    @foreach (var comment in Model.Article.Comments)
-    {
-        <div>@comment.Sender</div>
-        <div>@comment.Body</div>
-    }
-</div>
+@{ Html.RenderPartial("~/Views/Comments/CommentsSectionPartial.cshtml", Model.Article.Comments); }

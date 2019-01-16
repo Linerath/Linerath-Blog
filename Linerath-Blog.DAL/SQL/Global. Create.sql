@@ -57,6 +57,7 @@ CREATE TABLE [dbo].[Comments](
 	[Body] [nvarchar](max) NOT NULL,
 	[Sender] [nvarchar](max) NULL,
 	[Article_Id] [int] NOT NULL,
+	[CreationDate] [datetime] NOT NULL,
  CONSTRAINT [PK_dbo.Comments] PRIMARY KEY CLUSTERED ([Id] ASC),
  CONSTRAINT [FK_dbo.Comments_dbo.Comments_Article_Id]
 	FOREIGN KEY([Article_Id])
