@@ -15,5 +15,10 @@ namespace Linerath_Blog.Web.Controllers
         {
             //this.commentsRepository = commentsRepository;
         }
+
+        //public PartialViewResult AddComment()
+        //{
+
+        //}
     }
 }

@@ -80,10 +80,6 @@ input.search {
     font-size: 14px;
 }
 
-    input.search:focus {
-        box-shadow: none;
-    }
-
 .main-row {
     margin: 10px 0px 10px 0px !important;
 }
@@ -200,10 +196,18 @@ input.search {
 }
 
 .comments-enter {
-    background-color: var(--primary-color);
-    border: var(--border);
+    /*background-color: var(--primary-color);*/
+    /*border: var(--border);*/
+}
+
+@media screen and (min-width: 1170px) {
+    .comments-enter div:first-child {
+        /*width: 75%;*/
+    }
+}
+
+#comment {
     height: 150px;
-    margin-top: 20px;
 }
 
 .goodreads {
@@ -333,6 +337,14 @@ nav a.nav-link {
     color: var(--link-font-color);
 }
 
+input, textarea, button {
+    box-shadow: none !important;
+}
+
+label {
+    margin: 0px !important;
+}
+
 textarea {
     /*box-sizing: border-box;*/
     /*width: 100%;*/
@@ -351,7 +363,7 @@ ul {
     padding: 0px;
 }
 
-h3 {
+h2, h3, h4 {
     margin-bottom: 0px !important;
 }
 
