@@ -143,10 +143,9 @@ namespace Linerath_Blog.DAL.Repositories
 
         public Article GetArticleById(int id)
         {
-            string sql = "SELECT t1.*, t2.*, t3.* FROM Articles t1 "
+            string sql = "SELECT t1.*, t2.* FROM Articles t1 "
                 + "INNER JOIN ArticlesCategories t1t2 ON t1.Id=t1t2.Article_Id "
                 + "INNER JOIN Categories t2 ON t2.Id=t1t2.Category_Id "
-                + "LEFT JOIN Comments t3 ON t3.Article_Id=t1.Id "
                 + "WHERE t1.Id=@id"
                 ;
 
@@ -155,17 +154,13 @@ namespace Linerath_Blog.DAL.Repositories
                 Article result = null;
 
                 connection
-                    .Query<Article, Category, Comment, Article>(sql,
-                    (article, category, comment) =>
+                    .Query<Article, Category, Article>(sql,
+                    (article, category) =>
                     {
                         if (result == null)
                             result = article;
 
-                        if (!result.Categories.Any(x => x.Id == category.Id))
-                            result.Categories.Add(category);
-
-                        if (comment != null && !result.Comments.Any(x => x.Id == comment.Id))
-                            result.Comments.Add(comment);
+                        result.Categories.Add(category);
 
                         return article;
                     }, new { id });

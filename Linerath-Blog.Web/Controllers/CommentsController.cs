@@ -16,9 +16,9 @@ namespace Linerath_Blog.Web.Controllers
             //this.commentsRepository = commentsRepository;
         }
 
-        //public PartialViewResult AddComment()
-        //{
-
-        //}
+        public PartialViewResult GetComments(int articleId)
+        {
+            return null;
+        }
     }
 }
