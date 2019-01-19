@@ -35,4 +35,11 @@
     <p class="article-summ-body">@Html.Raw(Model.Article.Body)</p>
 </div>
 
+@{
+    Html.RenderAction(
+        "GetComments", "Comments",
+        new { articleId = Model.Article.Id }
+    );
+}
+
 @*@{ Html.RenderPartial("~/Views/Comments/CommentsSectionPartial.cshtml", Model.Article.Comments); }*@

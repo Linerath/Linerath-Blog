@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Comment>
+﻿@model IEnumerable<CommentViewModel>
 
 <h4>Комментарии</h4>
 <div class="comments-section">
@@ -13,9 +13,6 @@
     <hr class="@(Model.Count() > 0 ? "mt-3" : "")" />
     <div class="comments-enter">
         <div class="form-group ml-auto mr-auto mt-1">
-            @*Ajax.BeginForm(""
-                {
-                })*@
             <label for="nick">Имя:</label>
             <input class="form-control" id="nick" />
             <label for="comment">Сообщение:</label>
@@ -26,3 +23,9 @@
         </div>
     </div>
 </div>
+
+@*@Ajax.BeginForm(
+    "GetComments", "Comments",
+    new { articleId = Model.Article.Id },
+    new AjaxOptions { }
+)*@

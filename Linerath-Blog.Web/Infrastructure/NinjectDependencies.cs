@@ -1,7 +1,8 @@
-﻿using Ninject.Modules;
+﻿using System;
+using System.Configuration;
 using Linerath_Blog.DAL.Interfaces;
 using Linerath_Blog.DAL.Repositories;
-using System.Configuration;
+using Ninject.Modules;
 
 namespace Linerath_Blog.Web.Infrastructure
 {
@@ -9,8 +10,12 @@ namespace Linerath_Blog.Web.Infrastructure
     {
         public override void Load()
         {
+            String connectionString = ConfigurationManager.ConnectionStrings["MainDb"].ConnectionString;
+
             Bind<IArticlesRepository>().To<ArticlesRepository>()
-                .WithConstructorArgument("connectionString", ConfigurationManager.ConnectionStrings["MainDb"].ConnectionString);
+                .WithConstructorArgument(nameof(connectionString), connectionString);
+            Bind<ICommentsRepository>().To<CommentsRepository>()
+                .WithConstructorArgument(nameof(connectionString), connectionString);
         }
     }
 }

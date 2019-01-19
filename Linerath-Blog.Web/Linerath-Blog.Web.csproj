@@ -215,6 +215,7 @@
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\CategoriesListViewModel.cs" />
     <Compile Include="Models\CategoryModel.cs" />
+    <Compile Include="ViewModels\CommentViewModel.cs" />
     <Compile Include="ViewModels\MenuRightViewModel.cs" />
     <Compile Include="ViewModels\ArticlesSummariesViewModel.cs" />
   </ItemGroup>

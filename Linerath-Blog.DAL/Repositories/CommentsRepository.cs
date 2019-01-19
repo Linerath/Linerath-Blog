@@ -1,10 +1,10 @@
-﻿using Linerath_Blog.DAL.Entities;
-using Linerath_Blog.DAL.Interfaces;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Data.SqlClient;
+using System.Collections.Generic;
+using Linerath_Blog.DAL.Entities;
+using Linerath_Blog.DAL.Interfaces;
+using Dapper;
 
 namespace Linerath_Blog.DAL.Repositories
 {
@@ -12,10 +12,21 @@ namespace Linerath_Blog.DAL.Repositories
     {
         private String connectionString;
 
+        public CommentsRepository(String connectionString)
+        {
+            this.connectionString = connectionString;
+        }
+
         public List<Comment> GetComments(int articleId)
         {
-            // fake
-            return null;
+            String sql = "SELECT * FROM Comments WHERE Article_Id=@articleId";
+
+            using (var connection = new SqlConnection(connectionString))
+            {
+                List<Comment> result = connection.Query<Comment>(sql, new { articleId }).ToList();
+
+                return result;
+            }
         }
     }
 }
