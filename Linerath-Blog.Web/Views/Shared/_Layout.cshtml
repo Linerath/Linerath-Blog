@@ -38,7 +38,7 @@
 
         <content class="container-fluid">
             <div class="row main-row">
-                <div class="col-lg-2 p-0 m-2 m-lg-0 menu menu-left">
+                @*<div class="col-lg-2 p-0 m-2 m-lg-0 menu menu-left">
                     @{
                         Html.RenderAction(
                             "MenuLeft", "Navigation",
@@ -49,16 +49,15 @@
                                 caseSensetive = Model != null ? Model.CaseSensetive : false,
                             });
                     }
-                </div>
-                <div class="col-lg-8 p-0">
-                    <div class="ml-2 mr-2 main-content">
+                </div>*@
+                <div class="col-md-10 col-lg-8 ml-auto mr-auto p-0">
+                    <div class="main-content">
                         @RenderBody()
                     </div>
                 </div>
-                @*<div class="col-2 p-0 d-none d-lg-block menu menu-right">*@
-                <div class="col-lg-2 p-0 m-2 m-lg-0 menu menu-right">
+                @*<div class="col-lg-2 p-0 m-2 m-lg-0 menu menu-right">
                     @{ Html.RenderAction("MenuRight", "Navigation"); }
-                </div>
+                </div>*@
             </div>
         </content>
     </div>

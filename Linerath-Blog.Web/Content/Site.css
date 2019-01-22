@@ -1,5 +1,5 @@
 ﻿:root {
-    --border: 1px solid rgba(0,0,0,.1);
+    --border: 0px solid rgba(0,0,0,.07);
     --border-radius: 4px;
     /*--primary-font-color: #FF0000;*/
     /*--primary-font-color: #eca800;*/
@@ -87,6 +87,7 @@ input.search {
 .main-content {
     height: 100%;
     min-height: 500px;
+    text-align: center;
 }
 
 .page-title {
@@ -166,13 +167,14 @@ input.search {
     }
 
 .comments-section {
+    text-align: left;
 }
 
 .comment {
     /*background-color: var(--primary-color);*/
     /*background-color: #f7fafa;*/
-    background-color: #b8aef11a;
-    border: var(--border);
+    background-color: #F7F7F7;
+    border: 1px solid rgba(0,0,0,.07);
     border-radius: var(--border-radius);
     /*padding: 5px 15px 5px 15px !important;*/
     margin-top: 5px;
@@ -236,7 +238,8 @@ body {
     position: relative;
     padding-bottom: 74px;
     font-family: Calibri !important;
-    /*background-color: #fafafa !important;*/
+    /*background-color: #fcfcfc !important;*/
+    background-color: var(--primary-color) !important;
     /*font-family: Candara !important;*/
 }
 
@@ -275,7 +278,7 @@ nav {
 }
 
 .container {
-    background-color: var(--primary-color);
+    /*background-color: var(--primary-color);*/
     border: var(--border);
     border-radius: var(--border-radius);
     padding: 5px 15px 5px 15px !important;
@@ -355,7 +358,7 @@ textarea {
 }
 
 p, .intro {
-    text-align: justify;
+    /*text-align: justify;*/
 }
 
 ul {
