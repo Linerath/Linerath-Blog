@@ -13,51 +13,39 @@
 </head>
 <body>
     <div class="wrapper">
-        <nav class="navbar navbar-expand">
-            @Html.ActionLink(
-                "Linerath Blog", "Home", "Main",
-                new { },
-                new { @class = "navbar-brand" }
-            )
-            <div>
-                <ul class="navbar-nav">
-                    <li>
-                        <a href="/Articles/All">Все записи</a>
-                    </li>
-                    <li class="ml-2">
-                        <a href="/Articles/Archive">Архив</a>
-                    </li>
-                </ul>
-            </div>
-            @*<ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <span><a class="fa fa-github nav-link" target="_blank" href="https://github.com/Linerath"></a></span>
-                    </li>
-                </ul>*@
-        </nav>
-
+        @{
+            Html.RenderAction(
+                "Navbar", "Navigation",
+                new
+                {
+                    category = Model != null ? Model.Category : null,
+                    searchText = Model != null ? Model.SearchText : null,
+                    caseSensetive = Model != null ? Model.CaseSensetive : false,
+                }
+            );
+        }
         <content class="container-fluid">
             <div class="row main-row">
                 @*<div class="col-lg-2 p-0 m-2 m-lg-0 menu menu-left">
-                    @{
-                        Html.RenderAction(
-                            "MenuLeft", "Navigation",
-                            new
-                            {
-                                category = Model != null ? Model.Category : null,
-                                searchText = Model != null ? Model.SearchText : null,
-                                caseSensetive = Model != null ? Model.CaseSensetive : false,
-                            });
-                    }
-                </div>*@
+                        @{
+                            Html.RenderAction(
+                                "MenuLeft", "Navigation",
+                                new
+                                {
+                                    category = Model != null ? Model.Category : null,
+                                    searchText = Model != null ? Model.SearchText : null,
+                                    caseSensetive = Model != null ? Model.CaseSensetive : false,
+                                });
+                        }
+                    </div>*@
                 <div class="col-md-10 col-lg-8 ml-auto mr-auto p-0">
                     <div class="main-content">
                         @RenderBody()
                     </div>
                 </div>
                 @*<div class="col-lg-2 p-0 m-2 m-lg-0 menu menu-right">
-                    @{ Html.RenderAction("MenuRight", "Navigation"); }
-                </div>*@
+                        @{ Html.RenderAction("MenuRight", "Navigation"); }
+                    </div>*@
             </div>
         </content>
     </div>

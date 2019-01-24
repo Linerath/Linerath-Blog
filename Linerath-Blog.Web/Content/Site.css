@@ -56,8 +56,8 @@
 }
 
 .category-selected {
-    font-weight: bold;
     pointer-events: none;
+    font-weight: bold !important;
 }
 
 .search-panel {
@@ -124,7 +124,7 @@ input.search {
 
 .article-summ-header,
 .article-header {
-    font-size: 13px;
+    font-size: 15px;
 }
 
 .article-date,
@@ -134,10 +134,21 @@ input.search {
     opacity: 0.5;
 }
 
+.article-title,
+.article-summ-title {
+    font-size: 37px;
+    color: var(--primary-font-color);
+}
+
+    .article-summ-title:hover {
+        color: var(--primary-font-color-hover);
+    }
+
 .article-body,
 .article-summ-body {
     margin-top: 7px;
     white-space: pre-line;
+    font-size: 18px;
 }
 
 .article-summ {
@@ -154,16 +165,6 @@ input.search {
 
     .article-summ:last-child {
         margin-bottom: 0px;
-    }
-
-.article-title,
-.article-summ-title {
-    font-size: 27px;
-    color: var(--primary-font-color);
-}
-
-    .article-summ-title:hover {
-        color: var(--primary-font-color-hover);
     }
 
 .comments-section {
@@ -292,6 +293,7 @@ nav {
 
 .navbar a {
     font-weight: 100;
+    font-size: 18px;
     color: white;
 }
 
@@ -300,12 +302,17 @@ nav {
     }
 
 a.navbar-brand {
+    font-size: 25px;
     font-weight: bold;
 }
 
-nav a.nav-link {
-    font-size: 40px;
+.nav-item .dropdown-menu a {
+    color: black;
 }
+
+    .nav-item .dropdown-menu a:active {
+        background-color: #dc3545;
+    }
 
 .fa.fa-github {
     color: #fff;

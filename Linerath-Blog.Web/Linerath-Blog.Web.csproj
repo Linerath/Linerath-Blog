@@ -231,6 +231,7 @@
     <Content Include="Views\Articles\Article.cshtml" />
     <Content Include="Views\Articles\Archive.cshtml" />
     <Content Include="Views\Comments\CommentsSectionPartial.cshtml" />
+    <Content Include="Views\Navigation\NavbarPartial.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
