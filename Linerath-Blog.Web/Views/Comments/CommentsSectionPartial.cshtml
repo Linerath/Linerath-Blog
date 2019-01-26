@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<CommentViewModel>
 
 <h4>Комментарии</h4>
-<div class="comments-section">
+<div class="comments-section ml-auto mr-auto">
     @foreach (var comment in Model)
     {
         <div class="comment">
@@ -12,7 +12,7 @@
     }
     <hr class="@(Model.Count() > 0 ? "mt-3" : "")" />
     <div class="comments-enter">
-        <div class="form-group ml-auto mr-auto mt-1">
+        <div class="form-group mt-1">
             <label for="nick">Имя:</label>
             <input class="form-control" id="nick" />
             <label for="comment">Сообщение:</label>
@@ -23,9 +23,3 @@
         </div>
     </div>
 </div>
-
-@*@Ajax.BeginForm(
-    "GetComments", "Comments",
-    new { articleId = Model.Article.Id },
-    new AjaxOptions { }
-)*@
