@@ -34,6 +34,10 @@
     background-color: var(--secondary-color);
 }
 
+.title {
+    font-size: 37px;
+}
+
 .menu-left {
     max-height: max-content;
 }
@@ -124,7 +128,7 @@ input.search {
 
 .article-summ-header,
 .article-header {
-    font-size: 15px;
+    font-size: 1rem;
 }
 
 .article-date,
@@ -148,7 +152,7 @@ input.search {
 .article-summ-body {
     margin-top: 7px;
     white-space: pre-line;
-    font-size: 18px;
+    /*font-size: 18px;*/
 }
 
 .article-summ {
@@ -227,8 +231,8 @@ input.search {
 .blurred {
     opacity: 0.5;
 }
-
 /********************/
+
 /* Overriding */
 html {
     height: 100%;
@@ -242,6 +246,7 @@ body {
     /*background-color: #fcfcfc !important;*/
     background-color: var(--primary-color) !important;
     /*font-family: Candara !important;*/
+    font-size: 1.05rem !important;
 }
 
     body a {
