@@ -37,6 +37,7 @@
 
 .title {
     font-size: 37px;
+    color: var(--primary-font-color);
 }
 
 .menu-left {
@@ -141,8 +142,6 @@ input.search {
 
 .article-title,
 .article-summ-title {
-    font-size: 37px;
-    color: var(--primary-font-color);
 }
 
     .article-summ-title:hover {
