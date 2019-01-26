@@ -37,6 +37,9 @@
 
 .title {
     font-size: 37px;
+}
+
+.prm-clr {
     color: var(--primary-font-color);
 }
 
@@ -82,8 +85,23 @@
     }
 
 input.search {
-    height: 30px;
+    height: 35px;
     font-size: 14px;
+}
+
+.col-return:hover {
+    background-color: #fafafa;
+    cursor: pointer;
+}
+
+.col-return a {
+    color: black;
+    opacity: 0.5;
+}
+
+.col-return i {
+    font-size: 40px;
+    opacity: 0.5;
 }
 
 .main-row {
@@ -140,13 +158,9 @@ input.search {
     opacity: 0.5;
 }
 
-.article-title,
-.article-summ-title {
+.article-summ-title:hover {
+    color: var(--primary-font-color-hover);
 }
-
-    .article-summ-title:hover {
-        color: var(--primary-font-color-hover);
-    }
 
 .article-body,
 .article-summ-body {
@@ -228,6 +242,13 @@ input.search {
 .blurred {
     opacity: 0.5;
 }
+
+@media (max-width: 767px) {
+    .ml-sm-auto-l {
+        margin-left: auto;
+    }
+}
+
 /********************/
 
 /* Overriding */
@@ -325,6 +346,16 @@ a.navbar-brand {
     color: #4A76A8;
 }
 
+.fa.fa-times {
+    color: var(--link-font-color);
+}
+
+.fa.fa-search {
+    width: 35px;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+}
+
 .pagination-panel .pagination-page {
     width: 32px;
     height: 32px;
@@ -339,15 +370,6 @@ a.navbar-brand {
 .pagination-first,
 .pagination-last {
     width: 32px;
-}
-
-.fa.fa-angle-left {
-    font-size: 26px;
-    color: inherit;
-}
-
-.fa.fa-times {
-    color: var(--link-font-color);
 }
 
 input, textarea, button {

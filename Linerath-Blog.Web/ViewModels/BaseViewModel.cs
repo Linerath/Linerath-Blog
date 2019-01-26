@@ -7,6 +7,7 @@ namespace Linerath_Blog.Web.ViewModels
         public String Category { get; set; }
         public String SearchText { get; set; }
         public bool? CaseSensetive { get; set; }
+        public String ReturnUri { get; set; }
 
         public BaseViewModel(String category, String searchText, bool? caseSensetive)
         {
