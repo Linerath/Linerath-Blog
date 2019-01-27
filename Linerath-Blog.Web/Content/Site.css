@@ -29,12 +29,6 @@
 }
 
 /* Mine */
-.menu {
-    border: var(--border);
-    border-radius: var(--border-radius);
-    background-color: var(--secondary-color);
-}
-
 .title {
     font-size: 37px;
 }
@@ -43,25 +37,8 @@
     color: var(--primary-font-color);
 }
 
-.menu-left {
-    max-height: max-content;
-}
-
-.menu-right {
-    max-height: 300px;
-}
-
-.menu-header {
-    font-size: 16px;
-    text-align: center;
-    padding-top: 10px;
-}
-
-.menu-body {
-    font-size: 14px;
-    text-align: left;
-    margin: 0px;
-    padding: .5rem;
+.intro {
+    margin-top: 7px;
 }
 
 .category-selected {
@@ -78,10 +55,6 @@
     .search-panel button {
         width: 30px;
         padding: 0px;
-    }
-
-    .search-panel .form-check-label {
-        font-size: 14px;
     }
 
 input.search {
@@ -148,7 +121,7 @@ input.search {
 
 .article-summ-header,
 .article-header {
-    font-size: 1rem;
+    font-size: 13px;
 }
 
 .article-date,
@@ -183,7 +156,7 @@ input.search {
 
 .comments-section {
     text-align: left;
-    max-width: 1000px;
+    max-width: 800px;
 }
 
 .comment {
@@ -386,10 +359,6 @@ textarea {
     resize: none !important;
     margin-left: auto !important;
     margin-right: auto !important;
-}
-
-p, .intro {
-    /*text-align: justify;*/
 }
 
 ul {

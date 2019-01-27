@@ -27,7 +27,7 @@
                     {
                         @Html.ActionLink(
                             item.Name + " (" + item.Count + ")", "All", "Articles",
-                            new { category = item.Name, Model.SearchText, Model.CaseSensetive },
+                            new { category = item.Name, Model.SearchText },
                             new { @class = (item.Name == Model.Category) ? "dropdown-item category-selected" : "dropdown-item" }
                         )
                     }

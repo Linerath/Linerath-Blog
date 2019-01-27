@@ -8,8 +8,8 @@ namespace Linerath_Blog.Web.ViewModels
     {
         public List<CategoryModel> Categories { get; set; }
 
-        public CategoriesListViewModel(String category, String searchText, bool? caseSensetive)
-            : base(category, searchText, caseSensetive)
+        public CategoriesListViewModel(String category, String searchText)
+            : base(category, searchText)
         {
             Categories = new List<CategoryModel>();
         }

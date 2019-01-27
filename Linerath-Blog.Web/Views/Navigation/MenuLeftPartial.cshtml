@@ -6,7 +6,7 @@
     {
         @Html.ActionLink(
             " ", "All", "Articles",
-            new { Model.SearchText, Model.CaseSensetive },
+            new { Model.SearchText },
             new { @class = "fa fa-times" }
         )
     }
@@ -17,7 +17,7 @@
         <li>
             @Html.ActionLink(
                 item.Name + " (" + item.Count + ")", "All", "Articles",
-                new { category = item.Name, Model.SearchText, Model.CaseSensetive },
+                new { category = item.Name, Model.SearchText },
                 new { @class = (item.Name == Model.Category) ? "category-selected" : "" }
             )
         </li>
@@ -32,14 +32,5 @@
             new { type = "search", @class = "search form-control", placeholder = "Поиск по записям...", id = "search" }
         )
         <button type="submit" class="fa fa-search input-group-append input-group-text"></button>
-    </div>
-    <div class="form-check mt-2 ml-2 disabled">
-        @*<label class="form-check-label" for="CaseSensetive">
-                @{
-                    bool caseSens = Model.CaseSensetive.GetValueOrDefault();
-                }
-                @Html.CheckBoxFor(x => caseSens, new { @class = "form-check-input" })
-                Учитывать регистр
-            </label>*@
     </div>
 }

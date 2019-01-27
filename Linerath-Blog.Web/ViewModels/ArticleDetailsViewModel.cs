@@ -7,8 +7,8 @@ namespace Linerath_Blog.Web.ViewModels
     {
         public Article Article { get; set; }
 
-        public ArticleDetailsViewModel(String category, String searchText, bool? caseSensetive)
-            :base(category, searchText, caseSensetive)
+        public ArticleDetailsViewModel(String category, String searchText)
+            :base(category, searchText)
         { }
     }
 }

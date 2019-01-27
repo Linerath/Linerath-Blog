@@ -17,7 +17,7 @@ namespace Linerath_Blog.DAL.Repositories
             this.connectionString = connectionString;
         }
 
-        public List<Article> GetAllArticles(string category = null, string searchText = null, bool? caseSensetive = null)
+        public List<Article> GetAllArticles(string category = null, string searchText = null)
         {
             String additionalCondition = "";
 

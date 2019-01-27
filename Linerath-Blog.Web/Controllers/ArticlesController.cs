@@ -19,11 +19,11 @@ namespace Linerath_Blog.Web.Controllers
             this.articleRepository = articleRepository;
         }
 
-        public ViewResult All(int page = 1, String category = null, String searchText = null, bool? caseSensetive = null)
+        public ViewResult All(int page = 1, String category = null, String searchText = null)
         {
-            ArticlesSummariesViewModel model = new ArticlesSummariesViewModel(category, searchText, caseSensetive);
+            ArticlesSummariesViewModel model = new ArticlesSummariesViewModel(category, searchText);
 
-            List<Article> articles = articleRepository.GetAllArticles(category: category, searchText: searchText, caseSensetive: caseSensetive);
+            List<Article> articles = articleRepository.GetAllArticles(category: category, searchText: searchText);
 
             model.PaginationModel = PaginationService.GetDefaultPaginationModel(articles, page);
             articles = PaginationService.Paginate(articles, page).ToList();
@@ -34,10 +34,10 @@ namespace Linerath_Blog.Web.Controllers
             return View(model);
         }
 
-        public ViewResult Article(int id, String returnUri, String category = null, String searchText = null, bool? caseSensetive = null)
+        public ViewResult Article(int id, String returnUri, String category = null, String searchText = null)
         {
             Article article = articleRepository.GetArticleById(id);
-            ArticleDetailsViewModel model = new ArticleDetailsViewModel(category, searchText, caseSensetive)
+            ArticleDetailsViewModel model = new ArticleDetailsViewModel(category, searchText)
             {
                 Article = article,
                 ReturnUri = returnUri,
@@ -48,7 +48,7 @@ namespace Linerath_Blog.Web.Controllers
 
         public ViewResult Archive(ArchiveFilter filter = ArchiveFilter.Alphabet)
         {
-            ArchiveArticlesViewModel model = new ArchiveArticlesViewModel(null, null, null)
+            ArchiveArticlesViewModel model = new ArchiveArticlesViewModel(null, null)
             {
                 Filter = filter, 
             };

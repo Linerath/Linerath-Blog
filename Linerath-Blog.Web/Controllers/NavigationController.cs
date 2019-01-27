@@ -19,12 +19,12 @@ namespace Linerath_Blog.Web.Controllers
             this.articleRepository = articleRepository;
         }
 
-        public PartialViewResult Navbar(String category = null, String searchText = null, bool? caseSensetive = null)
+        public PartialViewResult Navbar(String category = null, String searchText = null)
         {
             List<Category> categories = articleRepository.GetAllCategories();
             List<Article> articles = articleRepository.GetAllArticles();
 
-            CategoriesListViewModel model = new CategoriesListViewModel(category, searchText, caseSensetive)
+            CategoriesListViewModel model = new CategoriesListViewModel(category, searchText)
             {
                 Categories = Mapper.Map<List<Category>, List<CategoryModel>>(categories),
             };
@@ -34,12 +34,12 @@ namespace Linerath_Blog.Web.Controllers
             return PartialView("NavbarPartial", model);
         }
 
-        public PartialViewResult MenuLeft(String category = null, String searchText = null, bool? caseSensetive = null)
+        public PartialViewResult MenuLeft(String category = null, String searchText = null)
         {
             List<Category> categories = articleRepository.GetAllCategories();
             List<Article> articles = articleRepository.GetAllArticles();
 
-            CategoriesListViewModel model = new CategoriesListViewModel(category, searchText, caseSensetive)
+            CategoriesListViewModel model = new CategoriesListViewModel(category, searchText)
             {
                 Categories = Mapper.Map<List<Category>, List<CategoryModel>>(categories),
             };

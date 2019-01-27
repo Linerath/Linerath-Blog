@@ -10,8 +10,8 @@ namespace Linerath_Blog.Web.ViewModels
         public List<Article> Articles { get; set; }
         public PaginationModel PaginationModel { get; set; }
 
-        public ArticlesSummariesViewModel(String category, String searchText, bool? caseSensetive)
-            : base(category, searchText, caseSensetive)
+        public ArticlesSummariesViewModel(String category, String searchText)
+            : base(category, searchText)
         {
             Articles = new List<Article>();
         }

@@ -10,8 +10,8 @@ namespace Linerath_Blog.Web.ViewModels
         public List<ArticleTitleGroup> ArticlesGroups { get; set; }
         public ArchiveFilter Filter { get; set; }
 
-        public ArchiveArticlesViewModel(String category, String searchText, bool? caseSensetive)
-            : base(category, searchText, caseSensetive)
+        public ArchiveArticlesViewModel(String category, String searchText)
+            : base(category, searchText)
         {
             ArticlesGroups = new List<ArticleTitleGroup>();
         }

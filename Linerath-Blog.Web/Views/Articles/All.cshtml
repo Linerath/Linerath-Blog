@@ -41,6 +41,6 @@ else
 
     @PaginationHelper.Pagination(
         Model.PaginationModel,
-        x => Url.Action("All", "Articles", new { page = x, Model.Category, Model.SearchText, Model.CaseSensetive })
+        x => Url.Action("All", "Articles", new { page = x, Model.Category, Model.SearchText })
     )
 }
