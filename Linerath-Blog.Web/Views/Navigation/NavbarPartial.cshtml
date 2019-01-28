@@ -39,7 +39,7 @@
             "All", "Articles",
             new { Model.Category },
             FormMethod.Post,
-            new { @class = "form-inline ml-auto search-panel", onsubmit = "return onSearchSubmit()" })
+            new { id ="searchForm" , @class = "form-inline ml-auto search-panel", onsubmit = "return onSearchSubmit()" })
         )
     {
         <div class="input-group">
