@@ -34,13 +34,17 @@
 }
 else
 {
-    foreach (var article in Model.Articles)
+    for (int i = 0; i < Model.Articles.Count; i++)
     {
-        { Html.RenderPartial("ArticleSummaryPartial", (article, (BaseViewModel)Model)); }
+        if (i != 0 && i != Model.Articles.Count)
+        {
+            <hr />
+        }
+        Html.RenderPartial("ArticleSummaryPartial", (Model.Articles[i], (BaseViewModel)Model));
     }
-
-    @PaginationHelper.Pagination(
-        Model.PaginationModel,
-        x => Url.Action("All", "Articles", new { page = x, Model.Category, Model.SearchText })
-    )
 }
+
+@PaginationHelper.Pagination(
+    Model.PaginationModel,
+    x => Url.Action("All", "Articles", new { page = x, Model.Category, Model.SearchText })
+)
