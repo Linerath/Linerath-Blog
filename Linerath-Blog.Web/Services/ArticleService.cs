@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
 using System.Collections.Generic;
 using Linerath_Blog.Web.Enums;
@@ -26,7 +27,7 @@ namespace Linerath_Blog.Web.Services
                 source[i].Body = ArticleService.GetTruncatedString(source[i].Body, maxLinesCount);
         }
 
-        public static String GetTruncatedString(String source, int maxLinesCount = MAX_LINES_COUNT, int maxArticleLength = MAX_ARTICLE_LENGHT)
+        private static String GetTruncatedString(String source, int maxLinesCount = MAX_LINES_COUNT, int maxArticleLength = MAX_ARTICLE_LENGHT)
         {
             if (source == null)
                 throw new ArgumentNullException("source");
@@ -57,6 +58,54 @@ namespace Linerath_Blog.Web.Services
             }
             else
                 return source;
+        }
+
+        public static void FormatArticle(String pathToFile)
+        {
+            if (!File.Exists(pathToFile))
+                return;
+
+            String extension = pathToFile.Substring(pathToFile.IndexOf('.'));
+            String pathToNewFile = pathToFile.Remove(pathToFile.LastIndexOf('.'));
+            pathToNewFile += ". formatted" + extension;
+
+            using (FileStream fs = new FileStream(pathToNewFile, FileMode.Create, FileAccess.Write))
+            {
+                using (StreamWriter writer = new StreamWriter(fs))
+                {
+                    bool first = true;
+                    foreach (String line in File.ReadLines(pathToFile))
+                    {
+                        String formattedLine = FormatLine(line, first);
+
+                        if (first)
+                            first = false;
+
+                        writer.Write(formattedLine);
+                    }
+                }
+            }
+
+        }
+
+        private static String FormatLine(String line, bool first = true)
+        {
+            if (String.IsNullOrEmpty(line))
+            {
+                return (first)
+                    ? "CHAR(13)"
+                    : " + CHAR(13)";
+            }
+            else
+            {
+                line = line.Replace("'", "''");
+
+                line = first
+                    ? "'" + line + "'"
+                    : "+ CHAR(13) + '" + line + "'";
+
+                return line;
+            }
         }
 
         public static void CalculateCategoriesCount(List<CategoryModel> categories, List<Article> allArticles)
