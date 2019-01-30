@@ -36,20 +36,25 @@
                                 });
                         }
                     </div>*@
-                @{ 
+                @{
                     bool returnUriExists = Model != null && !String.IsNullOrEmpty(Model.ReturnUri);
                 }
                 @if (returnUriExists)
                 {
-                    <div class="col-md-2 d-md-block p-0 col-return">
-                        <a class="h-100 w-100 d-table text-center" href="@Model.ReturnUri">
-                            <div class="d-table-cell align-middle">
-                                <i class="fa fa-angle-left"></i>
-                            </div>
+                    @*<div class="col-md-2 d-md-block p-0 col-return">
+                            <a class="h-100 w-100 d-table text-center" href="@Model.ReturnUri">
+                                <div class="d-table-cell align-middle">
+                                    <i class="fa fa-angle-left"></i>
+                                </div>
+                            </a>
+                        </div>*@
+                    <div class="d-none d-md-table col-return text-center">
+                        <a class="w-100 h-100 d-table-cell align-middle" href="@Model.ReturnUri">
+                            <i class="fa fa-angle-left"></i>
                         </a>
                     </div>
                 }
-                <div class="col-md-8 mr-auto p-0 @(!returnUriExists ? "ml-auto" : "")">
+                <div class="col-md-8 ml-auto mr-auto p-0 @(!returnUriExists ? "" : "")">
                     <div class="main-content">
                         @RenderBody()
                     </div>

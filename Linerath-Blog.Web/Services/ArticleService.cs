@@ -24,7 +24,7 @@ namespace Linerath_Blog.Web.Services
                 throw new ArgumentNullException("source");
 
             for (int i = 0; i < source.Count(); ++i)
-                source[i].Body = ArticleService.GetTruncatedString(source[i].Body, maxLinesCount);
+                source[i].Body = GetTruncatedString(source[i].Body, maxLinesCount);
         }
 
         private static String GetTruncatedString(String source, int maxLinesCount = MAX_LINES_COUNT, int maxArticleLength = MAX_ARTICLE_LENGHT)

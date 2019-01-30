@@ -58,36 +58,44 @@
     font-weight: bold !important;
 }
 
-.search-panel {
+.search-form {
     text-align: center;
-    margin: 10px 0px 10px 0px;
     padding: 0px 3px 0px 3px;
 }
 
-    .search-panel button {
-        width: 30px;
-        padding: 0px;
-    }
+.search-panel button {
+    width: 30px;
+    padding: 0px;
+}
 
 input.search {
     height: 35px;
     font-size: 14px;
 }
 
-.col-return:hover {
+.col-return {
     background-color: #fafafa;
-    cursor: pointer;
+    width: 100px;
+    height: 200px;
+    position: fixed;
+    top: calc(50% - 100px);
+    z-index: 1000;
 }
 
-.col-return a {
-    color: black;
-    opacity: 0.5;
-}
+    .col-return:hover {
+        cursor: pointer;
+        background-color: #f2f2f2;
+    }
 
-.col-return i {
-    font-size: 40px;
-    opacity: 0.5;
-}
+    .col-return a {
+        color: black;
+        opacity: 0.6;
+    }
+
+    .col-return i {
+        font-size: 40px;
+        opacity: 0.6;
+    }
 
 .main-row {
     margin: 10px 0px 10px 0px !important;
@@ -284,6 +292,7 @@ footer {
 
 nav {
     background-color: #303030;
+    height: 55px;
 }
 
 .container {
@@ -305,22 +314,39 @@ nav {
     color: white;
 }
 
-    .navbar a:hover {
-        color: #efefef;
-    }
-
 a.navbar-brand {
     font-size: 25px;
     font-weight: bold;
 }
 
-.nav-item .dropdown-menu a {
-    color: black;
+    a.navbar-brand:hover {
+        color: #efefef;
+    }
+
+.navbar-nav {
+    height: 100%;
 }
 
-    .nav-item .dropdown-menu a:active {
+.nav-item {
+    margin-left: 5px;
+    padding-top: 7px;
+}
+
+    .nav-item:hover {
         background-color: #dc3545;
     }
+
+    .nav-item a:hover {
+        color: white;
+    }
+
+    .nav-item .dropdown-menu a {
+        color: black;
+    }
+
+        .nav-item .dropdown-menu a:active {
+            background-color: #dc3545;
+        }
 
 .fa.fa-github {
     color: #fff;
