@@ -16,7 +16,7 @@ namespace Linerath_Blog.Web.Controllers
             this.commentsRepository = commentsRepository;
         }
 
-        public PartialViewResult GetComments(int articleId)
+        public ActionResult GetComments(int articleId)
         {
             List<Comment> comments = commentsRepository.GetComments(articleId);
 

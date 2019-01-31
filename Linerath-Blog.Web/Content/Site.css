@@ -51,6 +51,7 @@
 
 .intro {
     margin-top: 7px;
+    text-align: center;
 }
 
 .category-selected {
@@ -104,7 +105,7 @@ input.search {
 .main-content {
     height: 100%;
     min-height: 500px;
-    text-align: center;
+    text-align: justify;
 }
 
 .page-title {
@@ -135,13 +136,10 @@ input.search {
 .article {
 }
 
-.article-title {
-    text-align: center;
-}
-
 .article-summ-header,
 .article-header {
     font-size: 13px;
+    text-align: center;
 }
 
 .article-date,
@@ -155,7 +153,6 @@ input.search {
 .article-summ-body {
     margin-top: 7px;
     white-space: pre-line;
-    /*font-size: 18px;*/
 }
 
 .article-summ {
@@ -176,14 +173,10 @@ input.search {
 }
 
 .comment {
-    /*background-color: var(--primary-color);*/
-    /*background-color: #f7fafa;*/
     background-color: #f7f7f7a8;
     border: 1px solid rgba(0,0,0,.07);
     border-radius: var(--border-radius);
-    /*padding: 5px 15px 5px 15px !important;*/
     margin-top: 5px;
-    /*min-height: 200px;*/
 }
 
 .comment-header {
@@ -204,8 +197,6 @@ input.search {
 }
 
 .comments-enter {
-    /*background-color: var(--primary-color);*/
-    /*border: var(--border);*/
 }
 
 @media screen and (min-width: 1170px) {

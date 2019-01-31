@@ -27,7 +27,6 @@ namespace Linerath_Blog.Web.Controllers
 
             model.PaginationModel = PaginationService.GetDefaultPaginationModel(articles, page);
             articles = PaginationService.Paginate(articles, page).ToList();
-            ArticleService.TrucateArticles(articles);
 
             model.Articles = articles;
 

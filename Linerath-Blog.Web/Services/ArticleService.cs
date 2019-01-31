@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using Linerath_Blog.Web.Enums;
 using Linerath_Blog.Web.Models;
 using Linerath_Blog.DAL.Entities;
+using System.Text;
+using System.Globalization;
 
 namespace Linerath_Blog.Web.Services
 {
@@ -18,7 +20,7 @@ namespace Linerath_Blog.Web.Services
             { ArchiveFilter.Date, "Дате" },
         };
 
-        public static void TrucateArticles(List<Article> source, int maxLinesCount = MAX_LINES_COUNT, int maxArticleLength = MAX_ARTICLE_LENGHT)
+        public static void TruncateArticles(List<Article> source, int maxLinesCount = MAX_LINES_COUNT, int maxArticleLength = MAX_ARTICLE_LENGHT)
         {
             if (source == null)
                 throw new ArgumentNullException("source");
@@ -27,64 +29,61 @@ namespace Linerath_Blog.Web.Services
                 source[i].Body = GetTruncatedString(source[i].Body, maxLinesCount);
         }
 
-        private static String GetTruncatedString(String source, int maxLinesCount = MAX_LINES_COUNT, int maxArticleLength = MAX_ARTICLE_LENGHT)
+        public static void FormatArticle(String pathToBody, String pathToSummary, String title, DateTime creationDate)
         {
-            if (source == null)
-                throw new ArgumentNullException("source");
-            if (maxLinesCount < 0)
-                throw new ArgumentException("maxLinesCount must be more or equal to 0");
-            if (maxArticleLength < 0)
-                throw new ArgumentException("maxArticleLength must be more or equal to 0");
-
-            if (maxLinesCount == 0 || maxArticleLength == 0)
-                return "...";
-
-            String[] lines = source.Split('\n', '\r');
-            if (lines.Count() > maxLinesCount)
-            {
-                lines = lines.Take(maxLinesCount).ToArray();
-                String truncated = String.Join("\n", lines);
-
-                return truncated;
-            }
-            else if (source.Length > maxArticleLength)
-            {
-                String truncated = source.Remove(maxArticleLength);
-                if (truncated.LastIndexOf(' ') >= 0)
-                    truncated = truncated.Remove(truncated.LastIndexOf(' '));
-                truncated += "...";
-
-                return truncated;
-            }
-            else
-                return source;
-        }
-
-        public static void FormatArticle(String pathToFile)
-        {
-            if (!File.Exists(pathToFile))
+            if (!File.Exists(pathToBody) || !File.Exists(pathToSummary))
                 return;
 
-            String extension = pathToFile.Substring(pathToFile.IndexOf('.'));
-            String pathToNewFile = pathToFile.Remove(pathToFile.LastIndexOf('.'));
+            String extension = pathToBody.Substring(pathToBody.IndexOf('.'));
+            String pathToNewFile = pathToBody.Remove(pathToBody.LastIndexOf('.'));
             pathToNewFile += ". formatted" + extension;
 
-            using (FileStream fs = new FileStream(pathToNewFile, FileMode.Create, FileAccess.Write))
+            StringBuilder body = new StringBuilder();
+            StringBuilder summary = new StringBuilder();
+
+            bool first = true;
+            foreach (String line in File.ReadLines(pathToBody))
             {
-                using (StreamWriter writer = new StreamWriter(fs))
-                {
-                    bool first = true;
-                    foreach (String line in File.ReadLines(pathToFile))
-                    {
-                        String formattedLine = FormatLine(line, first);
+                String formattedLine = FormatLine(line, first);
 
-                        if (first)
-                            first = false;
+                if (first)
+                    first = false;
 
-                        writer.Write(formattedLine);
-                    }
-                }
+                body.Append(formattedLine);
             }
+            first = true;
+            foreach (String line in File.ReadLines(pathToSummary))
+            {
+                String formattedLine = FormatLine(line, first);
+
+                if (first)
+                    first = false;
+
+                summary.Append(formattedLine);
+            }
+
+            CultureInfo enUS = new CultureInfo("en-US");
+
+            String result = $"(N'{title}', N{body.ToString()}, N{summary.ToString()}, '{creationDate.ToString("yyyyMMdd hh:mm:ss tt", enUS)}')";
+
+            File.WriteAllText(pathToNewFile, result);
+
+            //using (FileStream fs = new FileStream(pathToNewFile, FileMode.Create, FileAccess.Write))
+            //{
+            //    using (StreamWriter writer = new StreamWriter(fs))
+            //    {
+            //        bool first = true;
+            //        foreach (String line in File.ReadLines(pathToBody))
+            //        {
+            //            String formattedLine = FormatLine(line, first);
+
+            //            if (first)
+            //                first = false;
+
+            //            writer.Write(formattedLine);
+            //        }
+            //    }
+            //}
 
         }
 

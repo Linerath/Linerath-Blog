@@ -12,6 +12,7 @@ CREATE TABLE [dbo].[Articles](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[Title] [nvarchar](max) NOT NULL,
 	[Body] [nvarchar](max) NOT NULL,
+	[Summary] [nvarchar](max),
 	[CreationDate] [datetime] NOT NULL,
     CONSTRAINT [PK_dbo.Articles] PRIMARY KEY CLUSTERED ([Id] ASC)
  )
