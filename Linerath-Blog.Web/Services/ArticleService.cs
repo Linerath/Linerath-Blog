@@ -20,23 +20,15 @@ namespace Linerath_Blog.Web.Services
             { ArchiveFilter.Date, "Дате" },
         };
 
-        public static void TruncateArticles(List<Article> source, int maxLinesCount = MAX_LINES_COUNT, int maxArticleLength = MAX_ARTICLE_LENGHT)
-        {
-            if (source == null)
-                throw new ArgumentNullException("source");
-
-            for (int i = 0; i < source.Count(); ++i)
-                source[i].Body = GetTruncatedString(source[i].Body, maxLinesCount);
-        }
-
         public static void FormatArticle(String pathToBody, String pathToSummary, String title, DateTime creationDate)
         {
             if (!File.Exists(pathToBody) || !File.Exists(pathToSummary))
                 return;
 
-            String extension = pathToBody.Substring(pathToBody.IndexOf('.'));
-            String pathToNewFile = pathToBody.Remove(pathToBody.LastIndexOf('.'));
-            pathToNewFile += ". formatted" + extension;
+            title = title.Replace("'", "''");
+
+            String fileName = Path.GetFileName(pathToBody);
+            String pathToNewFile = pathToBody.Remove(pathToBody.LastIndexOf('\\')) + $"\\formatted\\{fileName}";
 
             StringBuilder body = new StringBuilder();
             StringBuilder summary = new StringBuilder();

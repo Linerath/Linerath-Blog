@@ -1,40 +1,64 @@
-﻿@model IEnumerable<CommentViewModel>
+﻿@model (int, IEnumerable<CommentViewModel>)
 
-<h4 class="text-center">Комментарии (@Model.Count())</h4>
-<div class="comments-section ml-auto mr-auto mt-2">
-    @foreach (var comment in Model)
-    {
-        <div class="comment">
-            <div class="comment-header">@comment.Sender</div>
-            <div class="comment-date blurred">@comment.CreationDate.ToString("dd MMMM yyyy hh:ss")</div>
-            <div class="comment-body">@comment.Body</div>
-        </div>
-    }
-    <div class="comments-enter @(Model.Count() > 0 ? "mt-3" : "")" id="results">
-        @*@using (Html.BeginForm(
-                "", "",
-                method: FormMethod.Post,
-                routeValues: new { },
-                htmlAttributes: new { @class = "form-group mt-1" }
-            ))*@
-        @using (Ajax.BeginForm(
-            "GetComments", "Comments",
-            routeValues: new { articleId = 1 },
-            ajaxOptions: new AjaxOptions
-            {
-                HttpMethod = "POST",
-                UpdateTargetId = "results",
-                InsertionMode = InsertionMode.Replace
-            }
-        ))
+<div id="ajaxResult">
+    <h4 class="text-center">Комментарии (@Model.Item2.Count())</h4>
+    <div class="comments-section ml-auto mr-auto mt-2">
+        @foreach (var comment in Model.Item2)
         {
-            <label for="nick">Имя:</label>
-            <input class="form-control" id="nick" />
-            <label for="comment">Сообщение:</label>
-            <textarea class="form-control" id="comment"></textarea>
-            <div class="text-right mt-2">
-                <button type="submit" class="btn btn-primary">Отправить</button>
+            <div class="comment">
+                <div class="comment-header">@comment.Sender</div>
+                <div class="comment-date blurred">@comment.CreationDate.ToString("dd MMMM yyyy hh:ss")</div>
+                <div class="comment-body mt-1">@comment.Body</div>
             </div>
         }
+        <div class="comments-enter @(Model.Item2.Count() > 0 ? "mt-3" : "")">
+            @using (Ajax.BeginForm(
+                "AddComment", "Comments",
+                routeValues: new { articleId = Model.Item1 },
+                ajaxOptions: new AjaxOptions
+                {
+                    HttpMethod = "GET",
+                    UpdateTargetId = "ajaxResult",
+                    InsertionMode = InsertionMode.Replace,
+                    OnBegin = "onBegin",
+                    OnSuccess = "onSuccess",
+                }
+            ))
+            {
+                <label for="nick">Имя:</label>
+                @Html.TextBox("sender", "", new { @class = "form-control", id = "sender" })
+                <label for="comment">Сообщение:</label>
+                @Html.TextArea("body", new { @class = "form-control", id = "comment" })
+                <div class="text-right mt-2">
+                    <button type="submit" class="btn btn-primary">Отправить</button>
+                </div>
+            }
+        </div>
     </div>
+
+    <script>
+        function onBegin() {
+            let sender = $('#sender');
+            let comment = $('#comment');
+            let senderText = sender.val().trim();
+            let commentText = comment.val().trim();
+
+            if (senderText.length <= 0)
+                sender.addClass('border-danger');
+            else
+                sender.removeClass('border-danger');
+
+            if (commentText.length <= 0)
+                comment.addClass('border-danger');
+            else
+                comment.removeClass('border-danger');
+
+            return (senderText.length > 0 && commentText.length > 0);
+        }
+
+        function onSuccess() {
+            $('#sender').val('');
+            $('#comment').val('');
+        }
+    </script>
 </div>

@@ -6,7 +6,7 @@
         let uri = form.action;
         let searchText = searchElem.value;
 
-        if (!uri || !searchText || searchText.length <= 0)
+        if (!uri || !searchText || searchText.trim().length <= 0)
             return false;
 
         if (uri.includes(`${searchElem.name}=`) || uri.includes)
