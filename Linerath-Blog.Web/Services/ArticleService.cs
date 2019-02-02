@@ -1,9 +1,12 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
 using System.Collections.Generic;
 using Linerath_Blog.Web.Enums;
 using Linerath_Blog.Web.Models;
 using Linerath_Blog.DAL.Entities;
+using System.Text;
+using System.Globalization;
 
 namespace Linerath_Blog.Web.Services
 {
@@ -17,46 +20,83 @@ namespace Linerath_Blog.Web.Services
             { ArchiveFilter.Date, "Дате" },
         };
 
-        public static void TrucateArticles(List<Article> source, int maxLinesCount = MAX_LINES_COUNT, int maxArticleLength = MAX_ARTICLE_LENGHT)
+        public static void FormatArticle(String pathToBody, String pathToSummary, String title, DateTime creationDate)
         {
-            if (source == null)
-                throw new ArgumentNullException("source");
+            if (!File.Exists(pathToBody) || !File.Exists(pathToSummary))
+                return;
 
-            for (int i = 0; i < source.Count(); ++i)
-                source[i].Body = ArticleService.GetTruncatedString(source[i].Body, maxLinesCount);
+            title = title.Replace("'", "''");
+
+            String fileName = Path.GetFileName(pathToBody);
+            String pathToNewFile = pathToBody.Remove(pathToBody.LastIndexOf('\\')) + $"\\formatted\\{fileName}";
+
+            StringBuilder body = new StringBuilder();
+            StringBuilder summary = new StringBuilder();
+
+            bool first = true;
+            foreach (String line in File.ReadLines(pathToBody))
+            {
+                String formattedLine = FormatLine(line, first);
+
+                if (first)
+                    first = false;
+
+                body.Append(formattedLine);
+            }
+            first = true;
+            foreach (String line in File.ReadLines(pathToSummary))
+            {
+                String formattedLine = FormatLine(line, first);
+
+                if (first)
+                    first = false;
+
+                summary.Append(formattedLine);
+            }
+
+            CultureInfo enUS = new CultureInfo("en-US");
+
+            String result = $"(N'{title}', N{body.ToString()}, N{summary.ToString()}, '{creationDate.ToString("yyyyMMdd hh:mm:ss tt", enUS)}')";
+
+            File.WriteAllText(pathToNewFile, result);
+
+            //using (FileStream fs = new FileStream(pathToNewFile, FileMode.Create, FileAccess.Write))
+            //{
+            //    using (StreamWriter writer = new StreamWriter(fs))
+            //    {
+            //        bool first = true;
+            //        foreach (String line in File.ReadLines(pathToBody))
+            //        {
+            //            String formattedLine = FormatLine(line, first);
+
+            //            if (first)
+            //                first = false;
+
+            //            writer.Write(formattedLine);
+            //        }
+            //    }
+            //}
+
         }
 
-        public static String GetTruncatedString(String source, int maxLinesCount = MAX_LINES_COUNT, int maxArticleLength = MAX_ARTICLE_LENGHT)
+        private static String FormatLine(String line, bool first = true)
         {
-            if (source == null)
-                throw new ArgumentNullException("source");
-            if (maxLinesCount < 0)
-                throw new ArgumentException("maxLinesCount must be more or equal to 0");
-            if (maxArticleLength < 0)
-                throw new ArgumentException("maxArticleLength must be more or equal to 0");
-
-            if (maxLinesCount == 0 || maxArticleLength == 0)
-                return "...";
-
-            String[] lines = source.Split('\n', '\r');
-            if (lines.Count() > maxLinesCount)
+            if (String.IsNullOrEmpty(line))
             {
-                lines = lines.Take(maxLinesCount).ToArray();
-                String truncated = String.Join("\n", lines);
-
-                return truncated;
-            }
-            else if (source.Length > maxArticleLength)
-            {
-                String truncated = source.Remove(maxArticleLength);
-                if (truncated.LastIndexOf(' ') >= 0)
-                    truncated = truncated.Remove(truncated.LastIndexOf(' '));
-                truncated += "...";
-
-                return truncated;
+                return (first)
+                    ? "CHAR(13)"
+                    : " + CHAR(13)";
             }
             else
-                return source;
+            {
+                line = line.Replace("'", "''");
+
+                line = first
+                    ? "'" + line + "'"
+                    : "+ CHAR(13) + '" + line + "'";
+
+                return line;
+            }
         }
 
         public static void CalculateCategoriesCount(List<CategoryModel> categories, List<Article> allArticles)

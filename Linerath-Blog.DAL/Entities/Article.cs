@@ -8,6 +8,7 @@ namespace Linerath_Blog.DAL.Entities
         public int Id { get; set; }
         public String Title { get; set; }
         public String Body { get; set; }
+        public String Summary { get; set; }
         public DateTime CreationDate { get; set; }
         public List<Category> Categories { get; set; }
 

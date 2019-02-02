@@ -5,18 +5,18 @@
 }
 
 <div class="article-summ">
-    @Html.ActionLink(
-        article.Title, "Article", "Articles",
-        new
-        {
-            id = article.Id,
-            returnUri = Request.Url.PathAndQuery,
-            Model.Item2.Category,
-            Model.Item2.SearchText,
-        },
-        new { @class = "title prm-clr article-summ-title" }
-    )
     <div class="article-summ-header">
+        @Html.ActionLink(
+            article.Title, "Article", "Articles",
+            new
+            {
+                id = article.Id,
+                returnUri = Request.Url.PathAndQuery,
+                Model.Item2.Category,
+                Model.Item2.SearchText,
+            },
+            new { @class = "title primary-font-color hover article-summ-title" }
+        )
         <div class="article-summ-date">@article.CreationDate.ToString("dddd, dd MMMM yyyy hh:ss")</div>
         <div class="article-summ-categories">
             <span>Категории:</span>
@@ -42,5 +42,5 @@
             }
         </div>
     </div>
-    <p class="article-summ-body">@Html.Raw(article.Body)</p>
+    <div class="article-summ-body">@Html.Raw(article.Summary)</div>
 </div>

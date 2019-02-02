@@ -6,7 +6,7 @@
 
 <div class="container article mb-5">
     <div class="article-header">
-        <div class="title prm-clr article-title">@Model.Article.Title</div>
+        <div class="title primary-font-color article-title">@Model.Article.Title</div>
         <div class="article-date">@Model.Article.CreationDate.ToString("dddd, dd MMMM yyyy hh:ss")</div>
         <div class="article-categories">
             <span>Категории:</span>
@@ -31,7 +31,7 @@
             }
         </div>
     </div>
-    <p class="article-summ-body">@Html.Raw(Model.Article.Body)</p>
+    <div class="article-body">@Html.Raw(Model.Article.Body)</div>
 </div>
 
 @{
