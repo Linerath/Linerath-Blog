@@ -28,7 +28,7 @@
                     @Html.ActionLink(
                         categories[i].Name + ", ", "All", "Articles",
                         new { category = categories[i].Name },
-                        null
+                        new { @class = Model.Item2.Category == categories[i].Name ? "selected" : "" }
                     )
                 }
                 else
@@ -36,7 +36,7 @@
                     @Html.ActionLink(
                         categories[i].Name, "All", "Articles",
                         new { category = categories[i].Name },
-                        null
+                        new { @class = Model.Item2.Category == categories[i].Name ? "selected" : "" }
                     )
                 }
             }

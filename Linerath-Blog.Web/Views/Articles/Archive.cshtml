@@ -15,7 +15,7 @@
             @Html.ActionLink(
                 filter.Value, "Archive", "Articles",
                 new { filter = filter.Key },
-                new { @class = Model.Filter == filter.Key ? "filter-selected pr-1" : "pr-1" }
+                new { @class = Model.Filter == filter.Key ? "selected pr-1" : "pr-1" }
             )
         }
     </div>

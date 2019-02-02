@@ -37,6 +37,11 @@
     color: var(--primary-font-color);
 }
 
+.selected {
+    font-weight: bold;
+    pointer-events: none;
+}
+
 .intro {
     margin-top: 7px;
 }
@@ -106,11 +111,6 @@ input.search {
         text-align: center;
         margin: 0;
     }
-
-.filter-selected {
-    font-weight: bold;
-    pointer-events: none;
-}
 
 .article {
 }
