@@ -43,6 +43,7 @@ namespace Linerath_Blog.Web.Services
 
                 body.Append(formattedLine);
             }
+
             first = true;
             foreach (String line in File.ReadLines(pathToSummary))
             {
@@ -56,44 +57,24 @@ namespace Linerath_Blog.Web.Services
 
             CultureInfo enUS = new CultureInfo("en-US");
 
-            String result = $"(N'{title}', N{body.ToString()}, N{summary.ToString()}, '{creationDate.ToString("yyyyMMdd hh:mm:ss tt", enUS)}')";
+            String result = $"(N'{title}', N'{body.ToString()}', N'{summary.ToString()}', '{creationDate.ToString("yyyyMMdd hh:mm:ss tt", enUS)}')";
 
             File.WriteAllText(pathToNewFile, result);
-
-            //using (FileStream fs = new FileStream(pathToNewFile, FileMode.Create, FileAccess.Write))
-            //{
-            //    using (StreamWriter writer = new StreamWriter(fs))
-            //    {
-            //        bool first = true;
-            //        foreach (String line in File.ReadLines(pathToBody))
-            //        {
-            //            String formattedLine = FormatLine(line, first);
-
-            //            if (first)
-            //                first = false;
-
-            //            writer.Write(formattedLine);
-            //        }
-            //    }
-            //}
-
         }
 
-        private static String FormatLine(String line, bool first = true)
+        private static String FormatLine(String line, bool first)
         {
             if (String.IsNullOrEmpty(line))
             {
-                return (first)
-                    ? "CHAR(13)"
-                    : " + CHAR(13)";
+                return "<br/>";
             }
             else
             {
                 line = line.Replace("'", "''");
 
                 line = first
-                    ? "'" + line + "'"
-                    : "+ CHAR(13) + '" + line + "'";
+                    ? line
+                    : "<br/>" + line;
 
                 return line;
             }

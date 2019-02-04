@@ -19,10 +19,10 @@
             )
         }
     </div>
-    <div class="archive-items">
+    <div class="archive-items text-center">
         @foreach (var group in Model.ArticlesGroups)
         {
-            <h4>@group.GroupName</h4>
+            <h4 class="mt-1">@group.GroupName</h4>
             foreach (var item in group.Articles)
             {
                 String title = item.Title;
