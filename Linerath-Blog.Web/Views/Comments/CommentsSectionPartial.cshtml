@@ -11,7 +11,7 @@
                 <div class="comment-body mt-1">@comment.Body</div>
             </div>
         }
-        <div class="comments-enter @(Model.Item2.Count() > 0 ? "mt-3" : "")">
+        <div class="@(Model.Item2.Count() > 0 ? "mt-3" : "")">
             @using (Ajax.BeginForm(
                 "AddComment", "Comments",
                 routeValues: new { articleId = Model.Item1 },

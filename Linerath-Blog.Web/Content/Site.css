@@ -193,15 +193,6 @@ input.search {
     padding: 0 15px 5px 15px !important;
 }
 
-.comments-enter {
-}
-
-@media screen and (min-width: 1170px) {
-    .comments-enter div:first-child {
-        /*width: 75%;*/
-    }
-}
-
 #comment {
     height: 150px;
 }
@@ -223,13 +214,6 @@ input.search {
 .blurred {
     opacity: 0.5;
 }
-
-@media (max-width: 767px) {
-    .ml-sm-auto-l {
-        margin-left: auto;
-    }
-}
-
 /********************/
 
 /* Overriding */
@@ -283,6 +267,17 @@ nav {
     height: 55px;
 }
 
+.navbar-collapse {
+    background-color: #303030;
+    z-index: 10;
+    height: 55px;
+}
+
+.navbar-toggler i {
+    font-size: 36px;
+    color: white;
+}
+
 .container {
     /*background-color: var(--primary-color);*/
     border: var(--border);
@@ -316,7 +311,6 @@ a.navbar-brand {
 }
 
 .nav-item {
-    margin-left: 5px;
     padding-top: 7px;
 }
 
@@ -340,10 +334,18 @@ a.navbar-brand {
     color: #fff;
 }
 
-.fa.fa-vk,
-.fa.fa-vk:hover {
+    .fa.fa-github:hover {
+        color: #000000;
+    }
+
+
+.fa.fa-vk {
     color: #4A76A8;
 }
+
+    .fa.fa-vk:hover {
+        color: #5685bb;
+    }
 
 .fa.fa-times {
     color: var(--link-font-color);
@@ -371,7 +373,7 @@ a.navbar-brand {
     width: 32px;
 }
 
-input, textarea, button {
+input, textarea, button, a {
     box-shadow: none !important;
 }
 
@@ -401,3 +403,28 @@ hr {
     margin: 0px !important;
 }
 /********************/
+
+@media (max-width: 767px) {
+    .ml-sm-auto-l {
+        margin-left: auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar-collapse {
+        height: auto;
+    }
+
+    .nav-item {
+        padding-top: 0px;
+    }
+
+    .search-form {
+        padding: 0px;
+    }
+
+        .search-form .input-group {
+            margin: 5px auto 5px auto;
+            width: 75% !important;
+        }
+}
