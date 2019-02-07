@@ -195,10 +195,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AdministrationController.cs" />
     <Compile Include="Controllers\CommentsController.cs" />
     <Compile Include="Controllers\MainController.cs" />
     <Compile Include="Controllers\NavigationController.cs" />
     <Compile Include="Controllers\ArticlesController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Enums\ArchiveFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -206,6 +208,8 @@
     <Compile Include="Infrastructure\Automapper\ArticleMappingProfile.cs" />
     <Compile Include="Infrastructure\Automapper\AutoMapperConfiguration.cs" />
     <Compile Include="Infrastructure\Automapper\CategoryMappingProfile.cs" />
+    <Compile Include="Infrastructure\Implementations\FormsAuthProvider.cs" />
+    <Compile Include="Infrastructure\Interfaces\IAuthProvider.cs" />
     <Compile Include="Infrastructure\NinjectDependencies.cs" />
     <Compile Include="Models\ArticleTitleGroup.cs" />
     <Compile Include="Models\PaginationModel.cs" />
@@ -218,6 +222,7 @@
     <Compile Include="ViewModels\CategoriesListViewModel.cs" />
     <Compile Include="Models\CategoryModel.cs" />
     <Compile Include="ViewModels\CommentViewModel.cs" />
+    <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MenuRightViewModel.cs" />
     <Compile Include="ViewModels\ArticlesSummariesViewModel.cs" />
   </ItemGroup>
@@ -234,6 +239,8 @@
     <Content Include="Views\Articles\Archive.cshtml" />
     <Content Include="Views\Comments\CommentsSectionPartial.cshtml" />
     <Content Include="Views\Navigation\NavbarPartial.cshtml" />
+    <Content Include="Views\User\Login.cshtml" />
+    <Content Include="Views\Administration\Home.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

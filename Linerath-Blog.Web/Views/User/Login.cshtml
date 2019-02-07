@@ -1,0 +1,30 @@
+﻿@model Linerath_Blog.Web.ViewModels.LoginViewModel
+
+@{
+    ViewBag.Title = "Login";
+}
+
+<div class="container">
+    <h2 class="page-title title">Вход</h2>
+    <div class="login ml-auto mr-auto">
+        @using (Html.BeginForm(
+            "Login", "User", method: FormMethod.Post,
+            routeValues: new { returnUri = Request.QueryString["ReturnUrl"] },
+            htmlAttributes: new { }
+        ))
+        {
+            <div class="form-group mt-2">
+                <label>Логин</label>
+                @Html.TextBox("username", "", new { @class = "form-control ml-auto mr-auto" })
+            </div>
+            <div class="form-group">
+                <label>Пароль</label>
+                @Html.Password("password", "", new { type = "password", @class = "form-control ml-auto mr-auto" })
+                <div class="text-right mt-2">
+                    <button class="btn btn-primary">Let's go</button>
+                </div>
+            </div>
+        }
+    </div>
+
+</div>

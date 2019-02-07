@@ -44,7 +44,6 @@ namespace Linerath_Blog.DAL.Repositories
                         date = comment.CreationDate
                     });
 
-
                 //List<Comment> result = connection.Query<Comment>(sql, new { articleId }).ToList();
             }
         }

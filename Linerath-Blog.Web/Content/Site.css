@@ -197,6 +197,10 @@ input.search {
     height: 150px;
 }
 
+.login {
+    width: 256px;
+}
+
 .goodreads {
     max-width: 120px;
     margin-top: 5px;
@@ -230,6 +234,10 @@ body {
     background-color: var(--primary-color) !important;
     /*font-family: Candara !important;*/
     font-size: 1.05rem !important;
+}
+
+::selection {
+    background: #ff5e5e;
 }
 
     body a {
