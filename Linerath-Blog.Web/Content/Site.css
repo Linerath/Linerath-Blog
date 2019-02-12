@@ -59,6 +59,13 @@
     text-align: center;
 }
 
+.sticky {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    text-align: center;
+}
+
 .category-selected {
     pointer-events: none;
     font-weight: bold !important;
@@ -77,6 +84,12 @@
 input.search {
     height: 35px;
     font-size: 14px;
+}
+
+.notification {
+    background-color: #f7f7f7;
+    font-size: 16px;
+    padding: 10px 0 10px 0;
 }
 
 .col-return {

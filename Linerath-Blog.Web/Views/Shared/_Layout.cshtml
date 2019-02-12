@@ -24,30 +24,13 @@
             );
         }
         <content class="container-fluid">
+            <div class="notification sticky">Внимание! Блог находится в активной (почти) разработке. Возможны всевозможные баги и ошибки. Пожалуйста, сообщайте о них связавшись со мной либо, если обладаете соответствующими навыками, на <a href="https://github.com/Linerath/Linerath-Blog/issues">GitHub.</a></div>
             <div class="row main-row">
-                @*<div class="col-lg-2 p-0 m-2 m-lg-0 menu menu-left">
-                        @{
-                            Html.RenderAction(
-                                "MenuLeft", "Navigation",
-                                new
-                                {
-                                    category = Model != null ? Model.Category : null,
-                                    searchText = Model != null ? Model.SearchText : null,
-                                });
-                        }
-                    </div>*@
                 @{
                     bool returnUriExists = Model != null && !String.IsNullOrEmpty(Model.ReturnUri);
                 }
                 @if (returnUriExists)
                 {
-                    @*<div class="col-md-2 d-md-block p-0 col-return">
-                            <a class="h-100 w-100 d-table text-center" href="@Model.ReturnUri">
-                                <div class="d-table-cell align-middle">
-                                    <i class="fa fa-angle-left"></i>
-                                </div>
-                            </a>
-                        </div>*@
                     <div class="d-none d-md-table col-return text-center">
                         <a class="w-100 h-100 d-table-cell align-middle" href="@Model.ReturnUri">
                             <i class="fa fa-angle-left"></i>
@@ -59,9 +42,6 @@
                         @RenderBody()
                     </div>
                 </div>
-                @*<div class="col-lg-2 p-0 m-2 m-lg-0 menu menu-right">
-                        @{ Html.RenderAction("MenuRight", "Navigation"); }
-                    </div>*@
             </div>
         </content>
     </div>
