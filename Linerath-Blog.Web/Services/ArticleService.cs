@@ -19,8 +19,36 @@ namespace Linerath_Blog.Web.Services
             { ArchiveFilter.Alphabet, "Алфавиту" },
             { ArchiveFilter.Date, "Дате" },
         };
+        
+        public static Article FormatArticle(Article article)
+        {
+            String[] separator = { "\r\n", "\r", "\n" };
 
-        public static void FormatArticle(String pathToBody, String pathToSummary, String title, DateTime creationDate)
+            String[] bodyArr = article.Body.Split(separator, StringSplitOptions.None);
+            String[] summaryArr = article.Summary.Split(separator, StringSplitOptions.None);
+
+            StringBuilder body = new StringBuilder();
+            StringBuilder summary = new StringBuilder();
+
+            for (int i = 0; i < bodyArr.Length; i++)
+            {
+                String formattedLine = FormatLine(bodyArr[i], i == 0);
+                body.Append(formattedLine);
+            }
+
+            for (int i = 0; i < summaryArr.Length; i++)
+            {
+                String formattedLine = FormatLine(summaryArr[i], i == 0);
+                summary.Append(formattedLine);
+            }
+
+            article.Body = body.ToString();
+            article.Summary = summary.ToString();
+
+            return article;
+        }
+
+        public static void FormatArticle(String title, String pathToBody, String pathToSummary, DateTime creationDate)
         {
             if (!File.Exists(pathToBody) || !File.Exists(pathToSummary))
                 return;
@@ -80,7 +108,7 @@ namespace Linerath_Blog.Web.Services
             }
         }
 
-        public static void CalculateCategoriesCount(List<CategoryModel> categories, List<Article> allArticles)
+        public static void CalculateCategoriesCount(List<MenuCategoryModel> categories, List<Article> allArticles)
         {
             foreach (var category in categories)
             {

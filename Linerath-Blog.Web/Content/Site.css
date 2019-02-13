@@ -141,6 +141,29 @@ input.search {
     padding: 10px 50px 10px 50px;
 }
 
+.new-article {
+    min-width: 280px;
+    max-width: 600px;
+}
+
+#addCategory {
+    font-size: 25px;
+    color: #2ea000;
+    cursor: pointer;
+}
+
+#newArticleSummary {
+    height: 100px;
+}
+
+#newArticleBody {
+    height: 700px;
+}
+
+.dropdown-categories {
+    width: 100%;
+}
+
 .article {
 }
 
@@ -394,7 +417,7 @@ a.navbar-brand {
     width: 32px;
 }
 
-input, textarea, button, a {
+input, textarea, button, a, select {
     box-shadow: none !important;
 }
 

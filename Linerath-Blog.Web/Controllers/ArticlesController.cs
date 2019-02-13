@@ -49,7 +49,7 @@ namespace Linerath_Blog.Web.Controllers
         {
             ArchiveArticlesViewModel model = new ArchiveArticlesViewModel(null, null)
             {
-                Filter = filter, 
+                Filter = filter,
             };
 
             List<ArticleTitle> articles = articleRepository.GetArticlesTitles();
@@ -57,6 +57,39 @@ namespace Linerath_Blog.Web.Controllers
             model.ArticlesGroups = ArticleService.GroupArticles(articles, filter);
 
             return View(model);
+        }
+
+        [HttpGet]
+        public ViewResult NewArticle()
+        {
+            List<Category> data = articleRepository.GetAllCategories();
+            CategoriesListViewModel model = new CategoriesListViewModel(null, null)
+            {
+                Categories = data,
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult NewArticle(NewArticleViewModel data)
+        {
+            Article article = new Article
+            {
+                Title = data.Title,
+                Body = data.Body,
+                Summary = data.Summary,
+            };
+
+            article = ArticleService.FormatArticle(article);
+            article.CreationDate = DateTime.Now;
+
+            int id = articleRepository.AddArticle(article, data.Categories);
+
+            if (id > 0)
+                return RedirectToAction("Article", new { id });
+            else
+                return new HttpStatusCodeResult(500);
         }
     }
 }

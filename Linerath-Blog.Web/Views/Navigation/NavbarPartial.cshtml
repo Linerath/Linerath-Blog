@@ -1,4 +1,4 @@
-﻿@model CategoriesListViewModel
+﻿@model MenuCategoriesListViewModel
 
 @{
     Layout = null;
@@ -36,13 +36,16 @@
                     }
                 </div>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/Articles/NewArticle">+</a>
+            </li>
         </ul>
         @using (Html.BeginForm(
                 "All", "Articles",
                 new { Model.Category },
                 FormMethod.Post,
                 new { id = "searchForm", @class = "form-inline ml-auto search-form", onsubmit = "return onSearchSubmit()" })
-            )
+        )
         {
             <div class="input-group">
                 @Html.TextBoxFor(

@@ -40,20 +40,10 @@
         function onBegin() {
             let sender = $('#sender');
             let comment = $('#comment');
-            let senderText = sender.val().trim();
-            let commentText = comment.val().trim();
 
-            if (senderText.length <= 0)
-                sender.addClass('border-danger');
-            else
-                sender.removeClass('border-danger');
+            let result = validateElement(sender) & validateElement(comment);
 
-            if (commentText.length <= 0)
-                comment.addClass('border-danger');
-            else
-                comment.removeClass('border-danger');
-
-            return (senderText.length > 0 && commentText.length > 0);
+            return !!result;
         }
 
         function onSuccess() {

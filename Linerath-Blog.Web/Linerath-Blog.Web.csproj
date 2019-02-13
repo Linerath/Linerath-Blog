@@ -220,11 +220,13 @@
     <Compile Include="ViewModels\ArchiveArticlesViewModel.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\CategoriesListViewModel.cs" />
-    <Compile Include="Models\CategoryModel.cs" />
+    <Compile Include="ViewModels\MenuCategoriesListViewModel.cs" />
+    <Compile Include="Models\MenuCategoryModel.cs" />
     <Compile Include="ViewModels\CommentViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MenuRightViewModel.cs" />
     <Compile Include="ViewModels\ArticlesSummariesViewModel.cs" />
+    <Compile Include="ViewModels\NewArticleViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -241,6 +243,7 @@
     <Content Include="Views\Navigation\NavbarPartial.cshtml" />
     <Content Include="Views\User\Login.cshtml" />
     <Content Include="Views\Administration\Home.cshtml" />
+    <Content Include="Views\Articles\NewArticle.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

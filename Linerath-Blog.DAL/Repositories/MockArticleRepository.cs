@@ -8,7 +8,7 @@ using Dapper;
 
 namespace Linerath_Blog.DAL.Repositories
 {
-    public class MockArticleRepository : IArticlesRepository
+    public class MockArticleRepository
     {
         private List<Category> categories = new List<Category>();
         private List<Article> articles = new List<Article>();

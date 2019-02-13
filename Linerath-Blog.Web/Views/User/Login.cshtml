@@ -9,8 +9,7 @@
     <div class="login ml-auto mr-auto">
         @using (Html.BeginForm(
             "Login", "User", method: FormMethod.Post,
-            routeValues: new { returnUri = Request.QueryString["ReturnUrl"] },
-            htmlAttributes: new { }
+            routeValues: new { returnUri = Request.QueryString["ReturnUrl"] }
         ))
         {
             <div class="form-group mt-2">
@@ -20,9 +19,9 @@
             <div class="form-group">
                 <label>Пароль</label>
                 @Html.Password("password", "", new { type = "password", @class = "form-control ml-auto mr-auto" })
-                <div class="text-right mt-2">
-                    <button class="btn btn-primary">Let's go</button>
-                </div>
+            </div>
+            <div class="text-right">
+                <button class="btn btn-primary">Let's go</button>
             </div>
         }
     </div>

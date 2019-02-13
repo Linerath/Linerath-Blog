@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using Linerath_Blog.DAL.Entities;
 using Linerath_Blog.DAL.Interfaces;
 using Dapper;
+using System.Globalization;
 
 namespace Linerath_Blog.DAL.Repositories
 {
@@ -15,6 +16,46 @@ namespace Linerath_Blog.DAL.Repositories
         public ArticlesRepository(String connectionString)
         {
             this.connectionString = connectionString;
+        }
+
+        public int AddArticle(Article article, int[] categoriesList = null)
+        {
+            String sql = @"
+                INSERT INTO Articles (Title, Body, Summary, CreationDate) Values (@Title, @Body, @Summary, @CreationDate);
+                SELECT CAST(SCOPE_IDENTITY() as int)";
+
+            using (var connection = new SqlConnection(connectionString))
+            {
+                CultureInfo enUS = new CultureInfo("en-US");
+                String creationDate = article.CreationDate.ToString("yyyyMMdd hh:mm:ss tt", enUS);
+
+                int id = connection.Query<int>(sql, new { article.Title, article.Body, article.Summary, creationDate }).Single();
+
+                sql = "INSERT INTO ArticlesCategories (Article_Id, Category_Id) Values (@articleId, @categoryId)";
+
+                if (categoriesList != null)
+                {
+                    var list = categoriesList.Select(x => new
+                    {
+                        articleId = id,
+                        categoryId = x,
+                    });
+
+                    connection.Execute(sql, list);
+                }
+                else
+                {
+                    var list = article.Categories.Select(x => new
+                    {
+                        articleId = id,
+                        categoryId = x.Id,
+                    });
+
+                    connection.Execute(sql, list);
+                }
+
+                return id;
+            }
         }
 
         public List<Article> GetAllArticles(string category = null, string searchText = null)

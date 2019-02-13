@@ -24,9 +24,9 @@ namespace Linerath_Blog.Web.Controllers
             List<Category> categories = articleRepository.GetAllCategories();
             List<Article> articles = articleRepository.GetAllArticles();
 
-            CategoriesListViewModel model = new CategoriesListViewModel(category, searchText)
+            MenuCategoriesListViewModel model = new MenuCategoriesListViewModel(category, searchText)
             {
-                Categories = Mapper.Map<List<Category>, List<CategoryModel>>(categories),
+                Categories = Mapper.Map<List<Category>, List<MenuCategoryModel>>(categories),
             };
 
             ArticleService.CalculateCategoriesCount(model.Categories, articles);
@@ -39,9 +39,9 @@ namespace Linerath_Blog.Web.Controllers
             List<Category> categories = articleRepository.GetAllCategories();
             List<Article> articles = articleRepository.GetAllArticles();
 
-            CategoriesListViewModel model = new CategoriesListViewModel(category, searchText)
+            MenuCategoriesListViewModel model = new MenuCategoriesListViewModel(category, searchText)
             {
-                Categories = Mapper.Map<List<Category>, List<CategoryModel>>(categories),
+                Categories = Mapper.Map<List<Category>, List<MenuCategoryModel>>(categories),
             };
 
             ArticleService.CalculateCategoriesCount(model.Categories, articles);

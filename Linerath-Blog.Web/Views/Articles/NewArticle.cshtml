@@ -1,0 +1,67 @@
+﻿@model CategoriesListViewModel
+
+@{
+    ViewBag.Title = "NewArticle";
+
+    List<SelectListItem> items = Model.Categories.Select(x => new SelectListItem
+    {
+        Text = x.Name,
+        Value = x.Id.ToString(),
+    })
+    .ToList();
+}
+
+<div class="container">
+    <h2 class="page-title title">Новая статья</h2>
+    <div class="new-article ml-auto mr-auto mt-2">
+        @using (Html.BeginForm(
+            "NewArticle", "Articles", method: FormMethod.Post,
+            routeValues: new { },
+            htmlAttributes: new { onsubmit = "return onSubmit()" }
+        ))
+        {
+            <label>Категории</label>
+            <div class="form-group">
+                @Html.DropDownList("Categories", items, new { @class = "form-control dropdown-categories" })
+            </div>
+            <div class="text-center">
+                <i id="addCategory" class="fa fa-plus" onclick="onNewCategoryClick()"></i>
+            </div>
+            <div class="form-group">
+                <label>Заголовок</label>
+                @Html.TextBox("Title", "", new { @class = "form-control", id = "newArticleTitle" })
+            </div>
+            <div class="form-group">
+                <label>Краткое описание (выводится в списке статей)</label>
+                @Html.TextArea("Summary", "", new { @class = "form-control", id = "newArticleSummary" })
+            </div>
+            <div class="form-group">
+                <label>Статья</label>
+                @Html.TextArea("Body", "", new { @class = "form-control", id = "newArticleBody" })
+            </div>
+            <div class="text-right">
+                <button type="button" class="btn btn-info">Предпросмотр</button>
+                <button type="submit" class="btn btn-primary">Создать</button>
+            </div>
+        }
+    </div>
+</div>
+
+<script>
+    function onSubmit() {
+        let title = $("#newArticleTitle");
+        let summary = $("#newArticleSummary");
+        let body = $("#newArticleBody");
+
+        let result = validateElement(title) & validateElement(summary) & validateElement(body);
+
+        return !!result;
+    }
+
+    function onNewCategoryClick() {
+        let lastElem = $(".dropdown-categories").last().parent();
+
+        lastElem.clone().insertAfter(lastElem);
+    }
+</script>
+

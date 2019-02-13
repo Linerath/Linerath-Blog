@@ -9,7 +9,7 @@ namespace Linerath_Blog.Web.Infrastructure.Automapper
     {
         public CategoryMappingProfile()
         {
-            CreateMap<Category, CategoryModel>()
+            CreateMap<Category, MenuCategoryModel>()
             //.ForMember(dest => dest.Count, opt => opt.Ignore())
                 ;
         }

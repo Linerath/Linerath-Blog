@@ -21,3 +21,14 @@
 
     return false;
 }
+
+function validateElement(element) {
+    let text = $(element).val().trim();
+
+    if (text.length <= 0)
+        element.addClass('border-danger');
+    else
+        element.removeClass('border-danger');
+
+    return text.length > 0;
+}
