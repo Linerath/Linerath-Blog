@@ -7,7 +7,7 @@ namespace Linerath_Blog.Web.Services
 {
     public static class PaginationService
     {
-        public const int PAGE_SIZE = 5;
+        public const int PAGE_SIZE = 10;
         public const int MAX_VISIBLE_PAGES = 10;
 
         public static IEnumerable<T> Paginate<T>(IEnumerable<T> data, int page, int pageSize = PAGE_SIZE)

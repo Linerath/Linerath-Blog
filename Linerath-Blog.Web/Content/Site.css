@@ -187,7 +187,7 @@ input.search {
 .article-body,
 .article-summ-body {
     margin-top: 7px;
-    white-space: pre-line;
+    word-break: break-all;
 }
 
 .article-summ {
