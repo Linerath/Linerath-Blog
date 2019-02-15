@@ -160,6 +160,10 @@ input.search {
     height: 700px;
 }
 
+.new-article .form-check {
+    display: inline;
+}
+
 .dropdown-categories {
     width: 100%;
 }
@@ -415,6 +419,10 @@ a.navbar-brand {
 .pagination-first,
 .pagination-last {
     width: 32px;
+}
+
+p {
+    margin-bottom: 0px;
 }
 
 input, textarea, button, a, select {

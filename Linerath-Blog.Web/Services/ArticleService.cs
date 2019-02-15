@@ -1,12 +1,12 @@
 ﻿using System;
 using System.IO;
+using System.Text;
 using System.Linq;
 using System.Collections.Generic;
 using Linerath_Blog.Web.Enums;
 using Linerath_Blog.Web.Models;
 using Linerath_Blog.DAL.Entities;
-using System.Text;
-using System.Globalization;
+using Linerath_Blog.DAL.Extensions;
 
 namespace Linerath_Blog.Web.Services
 {
@@ -83,9 +83,7 @@ namespace Linerath_Blog.Web.Services
                 summary.Append(formattedLine);
             }
 
-            CultureInfo enUS = new CultureInfo("en-US");
-
-            String result = $"(N'{title}', N'{body.ToString()}', N'{summary.ToString()}', '{creationDate.ToString("yyyyMMdd hh:mm:ss tt", enUS)}')";
+            String result = $"(N'{title}', N'{body.ToString()}', N'{summary.ToString()}', '{creationDate.ToSqlString()}')";
 
             File.WriteAllText(pathToNewFile, result);
         }

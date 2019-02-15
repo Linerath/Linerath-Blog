@@ -1,11 +1,11 @@
-﻿using System;
+﻿using Dapper;
+using System;
 using System.Linq;
 using System.Data.SqlClient;
 using System.Collections.Generic;
 using Linerath_Blog.DAL.Entities;
 using Linerath_Blog.DAL.Interfaces;
-using Dapper;
-using System.Globalization;
+using Linerath_Blog.DAL.Extensions;
 
 namespace Linerath_Blog.DAL.Repositories
 {
@@ -26,14 +26,13 @@ namespace Linerath_Blog.DAL.Repositories
 
             using (var connection = new SqlConnection(connectionString))
             {
-                CultureInfo enUS = new CultureInfo("en-US");
-                String creationDate = article.CreationDate.ToString("yyyyMMdd hh:mm:ss tt", enUS);
+                String creationDate = article.CreationDate.ToSqlString();
 
                 int id = connection.Query<int>(sql, new { article.Title, article.Body, article.Summary, creationDate }).Single();
 
                 sql = "INSERT INTO ArticlesCategories (Article_Id, Category_Id) Values (@articleId, @categoryId)";
 
-                if (categoriesList != null)
+                if (categoriesList != null && categoriesList.Length > 0)
                 {
                     var list = categoriesList.Select(x => new
                     {
@@ -43,7 +42,7 @@ namespace Linerath_Blog.DAL.Repositories
 
                     connection.Execute(sql, list);
                 }
-                else
+                else if (article.Categories.Count > 0)
                 {
                     var list = article.Categories.Select(x => new
                     {
@@ -52,6 +51,10 @@ namespace Linerath_Blog.DAL.Repositories
                     });
 
                     connection.Execute(sql, list);
+                }
+                else
+                {
+                    return -1;
                 }
 
                 return id;
