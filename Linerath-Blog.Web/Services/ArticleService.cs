@@ -7,6 +7,7 @@ using Linerath_Blog.Web.Enums;
 using Linerath_Blog.Web.Models;
 using Linerath_Blog.DAL.Entities;
 using Linerath_Blog.DAL.Extensions;
+using System.Text.RegularExpressions;
 
 namespace Linerath_Blog.Web.Services
 {
@@ -19,7 +20,15 @@ namespace Linerath_Blog.Web.Services
             { ArchiveFilter.Alphabet, "Алфавиту" },
             { ArchiveFilter.Date, "Дате" },
         };
-        
+        public readonly static Dictionary<String, String> ReservedBodyTags = new Dictionary<string, string>
+        {
+            { "[c]", "<div class=\"text-center\">" },
+            { "[/c]", "</div>" },
+            { "[b]", "<b>" },
+            { "[/b]", "</b>" },
+            { "[/]", "</div>" },
+        };
+
         public static Article FormatArticle(Article article)
         {
             String[] separator = { "\r\n", "\r", "\n" };
@@ -98,9 +107,16 @@ namespace Linerath_Blog.Web.Services
             {
                 line = line.Replace("'", "''");
 
-                line = first
-                    ? line
-                    : "<br/>" + line;
+                foreach (var item in ReservedBodyTags)
+                {
+                    //String pattern = $@"([^\$]|^){Regex.Escape(item.Key)}";
+                    //pattern = $@"\${Regex.Escape(item.Key)}";
+                    String pattern = Regex.Escape(item.Key);
+                    line = Regex.Replace(line, pattern, item.Value);
+                }
+
+                if (first)
+                    line = "<br/>" + line;
 
                 return line;
             }
