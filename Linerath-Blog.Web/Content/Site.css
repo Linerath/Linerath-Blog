@@ -366,6 +366,10 @@ a.navbar-brand {
         background-color: #dc3545;
     }
 
+    .nav-item .nav-link {
+        height: 100%;
+    }
+
     .nav-item a:hover {
         color: white;
     }
@@ -387,13 +391,13 @@ a.navbar-brand {
     }
 
 
-.fa.fa-vk {
+/*.fa.fa-vk {
     color: #4A76A8;
 }
 
     .fa.fa-vk:hover {
         color: #5685bb;
-    }
+    }*/
 
 .fa.fa-times {
     color: var(--link-font-color);
