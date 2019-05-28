@@ -19,6 +19,7 @@ namespace Linerath_Blog.Web.Controllers
             this.articleRepository = articleRepository;
         }
 
+        [ChildActionOnly]
         public PartialViewResult Navbar(String category = null, String searchText = null)
         {
             List<Category> categories = articleRepository.GetAllCategories();
